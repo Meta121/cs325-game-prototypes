@@ -213,7 +213,7 @@ function update() {
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 	
 	//game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
-	 game.physics.arcade.overlap(player, stars, collectDiamond, null, this); //test
+	 game.physics.arcade.overlap(player, diamonds, collectDiamond, null, this); //test
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 
