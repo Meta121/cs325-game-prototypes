@@ -164,7 +164,7 @@ function create() {
     }
 	//My Code. Creating stars at the bottom evenly
 	//for (var i = 0; i < 12; i++) //original
-	for (var i = 0; i < 6; i++)
+	for (var i = 0; i < 5; i++)
     {
         //  Create a star inside of the 'stars' group
         var star = stars.create(i * 70, game.world.height - 150, 'star'); //test
