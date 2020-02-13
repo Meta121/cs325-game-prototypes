@@ -162,7 +162,7 @@ function create() {
     {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
-		var baddie = baddies.create(i * 70, 0, 'baddie'); //test
+		var baddie = baddies.create(i * 70, 400, 'baddie'); //test
 
         //  Let gravity do its thing
         //star.body.gravity.y = 300; //original
@@ -187,9 +187,13 @@ function update() {
     //  Collide the player and the stars with the platforms
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(stars, platforms);
+	
+	game.physics.arcade.collide(baddies, platforms); //test
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+	
+	game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -211,7 +215,7 @@ function update() {
         player.animations.play('right');
     }
 	//My Code. Implementing a fast fall function. //test
-	else if (cursors.right.isDown)
+	else if (cursors.down.isDown)
     {
         //Fast fall
 		player.body.velocity.y = 800; //test
@@ -251,7 +255,7 @@ function collectStar (player, star) {
 function baddieKillPlayer (player, baddie) {
     
     //Removes the player from the screen
-    player.kill();
+    //player.kill();
 
     //Decrease and update the score
     //score += 10; //original
