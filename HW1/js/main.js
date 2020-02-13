@@ -153,7 +153,8 @@ function create() {
     {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
-		var star = stars.create(i * 70, 280, 'star'); //test
+		//var star = stars.create(i * 70, 280, 'star'); //test
+		var star = stars.create(i * 70, 500, 'star'); //test
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
@@ -223,7 +224,7 @@ function create() {
 
     //  The score
     //scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' }); //original
-	scoreText = game.add.text(10, 10, 'score: 0', { fontSize: '32px', fill: '#000' });
+	scoreText = game.add.text(10, 10, 'Points: 0', { fontSize: '32px', fill: '#000' }); //test
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -300,11 +301,14 @@ function collectStar (player, star) {
     
     // Removes the star from the screen
     star.kill();
+	
+	//My code--- Removes the player from the screen
+	player.kill(); //test
 
     //  Add and update the score
     //score += 10; //original
 	score -= 100; //test
-    scoreText.text = 'Score: ' + score;
+    scoreText.text = 'Points: ' + score;
 
 }
 
@@ -316,7 +320,7 @@ function collectDiamond (player, diamond) {
     //  Add and update the score
     //score += 10; //original
 	score += 200; //test
-    scoreText.text = 'Score: ' + score;
+    scoreText.text = 'Points: ' + score;
 
 }
 
