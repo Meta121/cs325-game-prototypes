@@ -60,21 +60,24 @@ function create() {
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
 	//ledge = platforms.create(-100, -100, 'ground'); //test //Broke the 100, 100 platform
-	ledge = platforms.create(-100, 50, 'ground'); //test
+	//ledge = platforms.create(-100, 50, 'ground'); //test //Made a platform even higher on top left
+	ledge = platforms.create(0, 0, 'ground'); //test 
+	ledge = platforms.create(600, 600, 'ground'); //test 
+	
 	
     ledge.body.immovable = true;
 
     // The player and its settings
     //player = game.add.sprite(32, game.world.height - 150, 'dude'); //original
-	player = game.add.sprite(50, game.world.height - 0, 'dude'); //test
-	
+	//player = game.add.sprite(50, game.world.height - 0, 'dude'); //test //Spawned player off screen
+	player = game.add.sprite(50, game.world.height - 50, 'dude'); //test
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
     //  Player physics properties. Give the little guy a slight bounce.
-    player.body.bounce.y = 0.2;
-    player.body.gravity.y = 300;
+    //player.body.bounce.y = 0.2; //original
+    //player.body.gravity.y = 300; //original
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
