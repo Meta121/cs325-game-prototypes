@@ -59,7 +59,7 @@ function create() {
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
-	ledge = platforms.create(400, 150, 'ground'); //test //Right platform in top right of screen
+	//ledge = platforms.create(400, 150, 'ground'); //test //Right platform in top right of screen
 	
 	ledge.body.immovable = true; //test
 	
@@ -73,8 +73,8 @@ function create() {
 	ledge = platforms.create(0, 200, 'ground'); //test 
 	ledge.body.immovable = true; //test
 	
-	ledge = platforms.create(0, 100, 'ground'); //test 
-	ledge.body.immovable = true; //test
+	//ledge = platforms.create(0, 100, 'ground'); //test 
+	//ledge.body.immovable = true; //test
 	
 	//ledge = platforms.create(0, 50, 'ground'); //test
 	//ledge.body.immovable = true; //test
@@ -84,9 +84,9 @@ function create() {
 	//ledge.body.immovable = true; //test
 	//ledge = platforms.create(500, 500, 'ground'); //test //Spawned lowest bottom right platform where player spawned
 	//ledge.body.immovable = true; //test
-	ledge = platforms.create(0, 450, 'ground'); //test
+	ledge = platforms.create(0, 450, 'ground'); //test //Spawned bottom left platform
 	ledge.body.immovable = true; //test
-	ledge = platforms.create(200, 400, 'ground'); //test
+	ledge = platforms.create(200, 350, 'ground'); //test
 	ledge.body.immovable = true; //test
 	
 	
@@ -136,7 +136,8 @@ function create() {
     }
 
     //  The score
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    //scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' }); //original
+	scoreText = game.add.text(10, 10, 'score: 0', { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -195,7 +196,8 @@ function collectStar (player, star) {
     star.kill();
 
     //  Add and update the score
-    score += 10;
+    //score += 10; //original
+	score += 100; //test
     scoreText.text = 'Score: ' + score;
 
 }
