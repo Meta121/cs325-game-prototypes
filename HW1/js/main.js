@@ -131,7 +131,7 @@ function create() {
 
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
-	diamonds.enableBody = true;
+	diamonds.enableBody = true; //test
 	
 	//baddies.enableBody = true; //test //Enable physics for baddies
 
@@ -164,7 +164,7 @@ function create() {
 	for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
-        var diamond = diamonds.create(i * 70, 350, 'diamond'); //test
+        var diamond = diamonds.create(i * 70, 425, 'diamond'); //test
 
         //  Let gravity do its thing
         diamond.body.gravity.y = 300;
@@ -212,10 +212,13 @@ function update() {
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 	
+	//  Reset the players velocity (movement) //original
+    player.body.velocity.x = 0; //original
+	
 	//game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
-	 game.physics.arcade.overlap(player, diamonds, collectDiamond, null, this); //test
-    //  Reset the players velocity (movement)
-    player.body.velocity.x = 0;
+	game.physics.arcade.overlap(player, diamonds, collectDiamond, null, this); //test
+    //  Reset the players velocity (movement) //test
+    player.body.velocity.x = 0; //test
 
     if (cursors.left.isDown)
     {
