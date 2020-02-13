@@ -39,6 +39,7 @@ var baddie; //test //Note this is baddie not baddies
 var diamonds; //test
 
 var sound; //test
+var music; //test
 //---
 function create() {
 
@@ -63,6 +64,11 @@ function create() {
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
+	//My code--- Playing background theme
+	music = game.add.audio("background_theme"); //test
+	music.play('', 0, 1, true); //test
+	
+	
     //  Now let's create two ledges
     //var ledge = platforms.create(400, 400, 'ground'); //original code //This was the first bottom right platform in original
 	var ledge = platforms.create(100, 100, 'ground');
