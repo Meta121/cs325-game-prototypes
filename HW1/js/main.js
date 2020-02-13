@@ -59,9 +59,9 @@ function create() {
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
+	ledge.body.immovable = true;
 	//ledge = platforms.create(400, 150, 'ground'); //test //Right platform in top right of screen
-	
-	ledge.body.immovable = true; //test
+	//ledge.body.immovable = true; //test
 	
 	//ledge = platforms.create(-100, -100, 'ground'); //test //Broke the 100, 100 platform
 	//ledge = platforms.create(-100, 50, 'ground'); //test //Made a platform even higher on top left
@@ -109,7 +109,7 @@ function create() {
     //player.body.gravity.y = 20; //test //Player was made even more lighter and floatier
 	//player.body.gravity.y = 1000; //test //Made his jump very small
 	//player.body.gravity.y = 800; //test //Not high enough jump
-	player.body.gravity.y = 600; //test //This is good for what I want.
+	player.body.gravity.y = 700; //test //This is good for what I want.
 	player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
@@ -184,8 +184,8 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down && hitPlatform)
     {
         //player.body.velocity.y = -350; //original
-		//player.body.velocity.y = -400; //test //Made heavier
-		player.body.velocity.y = -500; //test //Made more heavier
+		player.body.velocity.y = -400; //test //Made heavier
+		//player.body.velocity.y = -500; //test //Made more heavier
     }
 
 }
