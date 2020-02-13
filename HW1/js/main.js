@@ -154,7 +154,7 @@ function create() {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
 		//var star = stars.create(i * 70, 280, 'star'); //test
-		var star = stars.create(i * 70, 500, 'star'); //test
+		var star = stars.create(i * 70, 100, 'star'); //test
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
