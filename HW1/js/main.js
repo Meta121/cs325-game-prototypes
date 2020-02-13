@@ -59,18 +59,24 @@ function create() {
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
+	
+	ledge.body.immovable = true; //test
+	
 	//ledge = platforms.create(-100, -100, 'ground'); //test //Broke the 100, 100 platform
 	//ledge = platforms.create(-100, 50, 'ground'); //test //Made a platform even higher on top left
 	ledge = platforms.create(0, 0, 'ground'); //test 
+	ledge.body.immovable = true; //test
 	ledge = platforms.create(600, 600, 'ground'); //test 
+	ledge.body.immovable = true; //test
 	
 	
-    ledge.body.immovable = true;
+    //ledge.body.immovable = true; //original //Need 1 of this for every single platform made so they won't fall off.
 
     // The player and its settings
     //player = game.add.sprite(32, game.world.height - 150, 'dude'); //original
 	//player = game.add.sprite(50, game.world.height - 0, 'dude'); //test //Spawned player off screen
-	player = game.add.sprite(50, game.world.height - 50, 'dude'); //test
+	//player = game.add.sprite(50, game.world.height - 50, 'dude'); //test //Spawned at the bottom left stuck in ground
+	player = game.add.sprite(300, game.world.height - 100, 'dude'); //test
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
