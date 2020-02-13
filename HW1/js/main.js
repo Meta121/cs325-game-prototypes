@@ -161,6 +161,7 @@ function create() {
     }
 	
 	//My Code. Creating diamonds at the middle evenly //test
+	/*
 	for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
@@ -172,6 +173,7 @@ function create() {
         //  This just gives each star a slightly random bounce value
         diamond.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+	*/
 
 	//My code --- create 12 baddies evenly spaced apart
     /*
