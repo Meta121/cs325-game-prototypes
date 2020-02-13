@@ -149,7 +149,7 @@ function create() {
 	//baddies.enableBody = true; //test //Enable physics for baddies
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++)
+    for (var i = 0; i < 5; i++)
     {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
@@ -178,7 +178,7 @@ function create() {
 	
 	//My Code. Creating diamonds at the top evenly //test
 	
-	for (var i = 0; i < 15; i++)
+	for (var i = 0; i < 7; i++)
     {
         //  Create a star inside of the 'stars' group
         var diamond = diamonds.create(i * 10, 50, 'diamond'); //test
