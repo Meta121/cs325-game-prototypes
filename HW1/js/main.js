@@ -36,7 +36,9 @@ var scoreText;
 
 //My code---
 var baddie; //test //Note this is baddie not baddies
-var diamonds;
+var diamonds; //test
+
+var sound; //test
 //---
 function create() {
 
@@ -277,6 +279,10 @@ function update() {
         //player.body.velocity.y = -350; //original
 		player.body.velocity.y = -400; //test //Made heavier
 		//player.body.velocity.y = -500; //test //Made more heavier
+		
+		//My code --- Adding jump sound effect
+		sound = game.add.audio("jump_player_sound"); //test
+		sound.play(); //test
     }
 
 }
