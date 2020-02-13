@@ -59,13 +59,14 @@ function create() {
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
-	ledge = platforms.create(-100, -100, 'ground'); //test
+	//ledge = platforms.create(-100, -100, 'ground'); //test //Broke the 100, 100 platform
+	ledge = platforms.create(-100, 50, 'ground'); //test
 	
     ledge.body.immovable = true;
 
     // The player and its settings
     //player = game.add.sprite(32, game.world.height - 150, 'dude'); //original
-	player = game.add.sprite(50, game.world.height - 150, 'dude'); //test
+	player = game.add.sprite(50, game.world.height - 0, 'dude'); //test
 	
 
     //  We need to enable physics on the player
