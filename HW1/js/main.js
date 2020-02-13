@@ -165,10 +165,10 @@ function create() {
 	
 	//My Code. Creating stars at the middle evenly //test
 	
-	for (var i = 0; i < 15; i++)
+	for (var i = 0; i < 10; i++)
     {
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 60, 225, 'star'); //test
+        var star = stars.create(i * 100, 225, 'star'); //test
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
