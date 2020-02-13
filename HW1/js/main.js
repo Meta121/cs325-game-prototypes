@@ -162,10 +162,10 @@ function create() {
 	
 	//My Code. Creating diamonds at the top evenly //test
 	
-	for (var i = 0; i < 12; i++)
+	for (var i = 0; i < 15; i++)
     {
         //  Create a star inside of the 'stars' group
-        var diamond = diamonds.create(i * 70, 50, 'diamond'); //test
+        var diamond = diamonds.create(i * 10, 50, 'diamond'); //test
 
         //  Let gravity do its thing
         diamond.body.gravity.y = 300;
