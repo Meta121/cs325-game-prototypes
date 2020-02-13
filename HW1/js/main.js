@@ -21,6 +21,9 @@ function preload() {
 	//game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 	game.load.image('diamond', 'assets/diamond.png');//test
 
+	//My code ---Adding sound effects and background theme ---//test
+	game.load.audio('background_theme', 'sounds/background_song.m4a'); //test
+	game.load.audio('jump_player_sound', 'sounds/jump.wav'); //test
 }
 
 var player;
