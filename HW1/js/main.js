@@ -66,8 +66,8 @@ function create() {
 	//ledge = platforms.create(-100, 50, 'ground'); //test //Made a platform even higher on top left
 	ledge = platforms.create(0, 0, 'ground'); //test //Very top left platform made.
 	ledge.body.immovable = true; //test
-	ledge = platforms.create(600, 600, 'ground'); //test 
-	ledge.body.immovable = true; //test
+	//ledge = platforms.create(600, 600, 'ground'); //test //Is in the ground
+	//ledge.body.immovable = true; //test
 	
 	ledge = platforms.create(0, 200, 'ground'); //test 
 	ledge.body.immovable = true; //test
@@ -81,7 +81,9 @@ function create() {
 	//ledge.body.immovable = true; //test
 	//ledge = platforms.create(0, 800, 'ground'); //test //Didn't show up
 	//ledge.body.immovable = true; //test
-	ledge = platforms.create(500, 500, 'ground'); //test
+	//ledge = platforms.create(500, 500, 'ground'); //test //Spawned lowest bottom right platform where player spawned
+	//ledge.body.immovable = true; //test
+	ledge = platforms.create(0, 450, 'ground'); //test
 	ledge.body.immovable = true; //test
 	
 	
@@ -103,7 +105,8 @@ function create() {
 	//player.body.gravity.y = 100; //test //Player could jump way higher with this
     //player.body.gravity.y = 20; //test //Player was made even more lighter and floatier
 	//player.body.gravity.y = 1000; //test //Made his jump very small
-	player.body.gravity.y = 800; //test
+	//player.body.gravity.y = 800; //test //Not high enough jump
+	player.body.gravity.y = 600; //test
 	player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
