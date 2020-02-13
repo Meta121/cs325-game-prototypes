@@ -46,8 +46,13 @@ function create() {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+	//My code--- Playing background theme
+	music = game.add.audio("background_theme"); //test
+	music.play('', 0, 1, true); //test
+	
     //  A simple background for our game
-    game.add.sprite(0, 0, 'sky');
+    //game.add.sprite(0, 0, 'sky'); //original
+	game.stage.backgroundColor = "b3b54a"; //test
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -64,9 +69,6 @@ function create() {
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
-	//My code--- Playing background theme
-	music = game.add.audio("background_theme"); //test
-	music.play('', 0, 1, true); //test
 	
 	
     //  Now let's create two ledges
