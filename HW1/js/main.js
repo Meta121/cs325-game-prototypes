@@ -160,8 +160,22 @@ function create() {
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
 	
+	//My Code. Creating diamonds at the top evenly //test
+	
+	for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var diamond = diamonds.create(i * 70, 50, 'diamond'); //test
+
+        //  Let gravity do its thing
+        diamond.body.gravity.y = 300;
+
+        //  This just gives each star a slightly random bounce value
+        diamond.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+	
 	//My Code. Creating diamonds at the middle evenly //test
-	/*
+	
 	for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
@@ -173,7 +187,7 @@ function create() {
         //  This just gives each star a slightly random bounce value
         diamond.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-	*/
+	
 
 	//My code --- create 12 baddies evenly spaced apart
     /*
@@ -283,7 +297,7 @@ function collectDiamond (player, diamond) {
 
     //  Add and update the score
     //score += 10; //original
-	score += 100; //test
+	score += 200; //test
     scoreText.text = 'Score: ' + score;
 
 }
