@@ -58,7 +58,7 @@ function create() {
     ledge.body.immovable = true;
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
-	//ledge = platforms.create(400, 300, 'ground');
+	ledge = platforms.create(400, 300, 'ground');
 	
     ledge.body.immovable = true;
 
