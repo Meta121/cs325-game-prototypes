@@ -19,7 +19,7 @@ function preload() {
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	//game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
-	game.load.image('baddie', 'assets/diamond.png');//test
+	game.load.image('diamond', 'assets/diamond.png');//test
 
 }
 
@@ -33,6 +33,7 @@ var scoreText;
 
 //My code---
 var baddie; //test //Note this is baddie not baddies
+var diamond;
 //---
 function create() {
 
@@ -125,12 +126,12 @@ function create() {
     stars = game.add.group();
 	
 	//My code. -- Adding baddies to kill player
-	baddies = game.add.group();
+	//baddies = game.add.group();
 
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
 	
-	baddies.enableBody = true; //test //Enable physics for baddies
+	//baddies.enableBody = true; //test //Enable physics for baddies
 
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++)
@@ -158,7 +159,8 @@ function create() {
     }
 
 	//My code --- create 12 baddies evenly spaced apart
-    for (var i = 0; i < 12; i++)
+    /*
+	for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
@@ -172,6 +174,7 @@ function create() {
         //star.body.bounce.y = 0.7 + Math.random() * 0.2; //original
 		baddie.body.bounce.y = 0.7 + Math.random() * 0.2; //test
     }
+	*/
 
     //  The score
     //scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' }); //original
@@ -188,12 +191,12 @@ function update() {
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(stars, platforms);
 	
-	game.physics.arcade.collide(baddies, platforms); //test
+	//game.physics.arcade.collide(baddies, platforms); //test
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 	
-	game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
+	//game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -252,6 +255,7 @@ function collectStar (player, star) {
 
 }
 
+/*
 function baddieKillPlayer (player, baddie) {
     
     //Removes the player from the screen
@@ -263,5 +267,6 @@ function baddieKillPlayer (player, baddie) {
     scoreText.text = 'Score: ' + score;
 
 }
+*/
 
 };
