@@ -72,6 +72,12 @@ function create() {
 	ledge = platforms.create(0, 200, 'ground'); //test 
 	ledge.body.immovable = true; //test
 	
+	ledge = platforms.create(0, 100, 'ground'); //test 
+	ledge.body.immovable = true; //test
+	
+	ledge = platforms.create(0, 50, 'ground'); //test 
+	ledge.body.immovable = true; //test
+	
 	
     //ledge.body.immovable = true; //original //Need 1 of this for every single platform made so they won't fall off.
 
@@ -86,8 +92,9 @@ function create() {
     game.physics.arcade.enable(player);
 
     //  Player physics properties. Give the little guy a slight bounce.
-    //player.body.bounce.y = 0.2; //original
+    player.body.bounce.y = 0.2; //original
     //player.body.gravity.y = 300; //original
+	player.body.gravity.y = 100; //test
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
