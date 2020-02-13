@@ -126,7 +126,19 @@ function create() {
     for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 70, 0, 'star');
+        var star = stars.create(i * 70, 0, 'star'); //original
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 300;
+
+        //  This just gives each star a slightly random bounce value
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+	//My Code. Creating stars at the bottom evenly
+	for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 70, game.world.height - 150, 'star'); //test
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
@@ -171,6 +183,14 @@ function update() {
 		player.body.velocity.x = 300; //test //made faster
 
         player.animations.play('right');
+    }
+	//My Code. Implementing a fast fall function. //test
+	else if (cursors.right.isDown)
+    {
+        //Fast fall
+		player.body.velocity.y = 800; //test
+
+        //player.animations.play('right'); //original
     }
     else
     {
