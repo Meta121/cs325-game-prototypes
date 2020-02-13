@@ -127,9 +127,11 @@ function create() {
 	
 	//My code. -- Adding baddies to kill player
 	//baddies = game.add.group();
+	diamonds = game.add.group();
 
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
+	diamonds.enableBody = true;
 	
 	//baddies.enableBody = true; //test //Enable physics for baddies
 
@@ -156,6 +158,19 @@ function create() {
 
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+	
+	//My Code. Creating diamonds at the middle evenly //test
+	for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var diamond = diamonds.create(i * 70, 350, 'diamond'); //test
+
+        //  Let gravity do its thing
+        diamond.body.gravity.y = 300;
+
+        //  This just gives each star a slightly random bounce value
+        diamond.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
 
 	//My code --- create 12 baddies evenly spaced apart
@@ -190,6 +205,7 @@ function update() {
     //  Collide the player and the stars with the platforms
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(stars, platforms);
+	game.physics.arcade.collide(diamonds, platforms); //test
 	
 	//game.physics.arcade.collide(baddies, platforms); //test
 
@@ -197,7 +213,7 @@ function update() {
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 	
 	//game.physics.arcade.overlap(player, baddies, baddieKillPlayer, null, this); //test
-
+	 game.physics.arcade.overlap(player, stars, collectDiamond, null, this); //test
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 
@@ -247,6 +263,18 @@ function collectStar (player, star) {
     
     // Removes the star from the screen
     star.kill();
+
+    //  Add and update the score
+    //score += 10; //original
+	score -= 100; //test
+    scoreText.text = 'Score: ' + score;
+
+}
+
+function collectDiamond (player, diamond) {
+    
+    // Removes the star from the screen
+    diamond.kill();
 
     //  Add and update the score
     //score += 10; //original
