@@ -168,7 +168,7 @@ function create() {
 	for (var i = 0; i < 15; i++)
     {
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 60, 425, 'star'); //test
+        var star = stars.create(i * 60, 225, 'star'); //test
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
