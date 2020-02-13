@@ -18,6 +18,7 @@ function preload() {
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+	game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 
 }
 
@@ -29,6 +30,9 @@ var stars;
 var score = 0;
 var scoreText;
 
+//My code---
+var baddie; //test //Note this is baddie not baddies
+//---
 function create() {
 
     //  We're going to be using physics, so enable the Arcade Physics system
@@ -118,9 +122,14 @@ function create() {
 
     //  Finally some stars to collect
     stars = game.add.group();
+	
+	//My code. -- Adding baddies to kill player
+	baddies = game.add.group();
 
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
+	
+	baddies.enableBody = true; //test //Enable physics for baddies
 
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++)
@@ -145,6 +154,22 @@ function create() {
 
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+
+	//My code --- create 12 baddies evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        //var star = stars.create(i * 70, 0, 'star'); //original
+		var baddie = baddies.create(i * 70, 0, 'baddie'); //test
+
+        //  Let gravity do its thing
+        //star.body.gravity.y = 300; //original
+		baddie.body.gravity.y = 300; //test
+
+        //  This just gives each star a slightly random bounce value
+        //star.body.bounce.y = 0.7 + Math.random() * 0.2; //original
+		baddie.body.bounce.y = 0.7 + Math.random() * 0.2; //test
     }
 
     //  The score
@@ -218,6 +243,18 @@ function collectStar (player, star) {
     //  Add and update the score
     //score += 10; //original
 	score += 100; //test
+    scoreText.text = 'Score: ' + score;
+
+}
+
+function baddieKillPlayer (player, baddie) {
+    
+    //Removes the player from the screen
+    player.kill();
+
+    //Decrease and update the score
+    //score += 10; //original
+	score -= 100; //test
     scoreText.text = 'Score: ' + score;
 
 }
