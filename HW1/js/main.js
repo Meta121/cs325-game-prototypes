@@ -59,6 +59,7 @@ function create() {
 
     //ledge = platforms.create(-150, 250, 'ground'); //original code //This was the second top left platform in the original
 	ledge = platforms.create(400, 300, 'ground'); //test //Right platform in center right of screen
+	ledge = platforms.create(400, 150, 'ground'); //test //Right platform in top right of screen
 	
 	ledge.body.immovable = true; //test
 	
@@ -85,7 +86,7 @@ function create() {
 	//ledge.body.immovable = true; //test
 	ledge = platforms.create(0, 450, 'ground'); //test
 	ledge.body.immovable = true; //test
-	ledge = platforms.create(200, 475, 'ground'); //test
+	ledge = platforms.create(200, 400, 'ground'); //test
 	ledge.body.immovable = true; //test
 	
 	
@@ -158,7 +159,7 @@ function update() {
     {
         //  Move to the left
         //player.body.velocity.x = -150; //original
-		player.body.velocity.x = -150; //test //made faster
+		player.body.velocity.x = -300; //test //made faster
 
         player.animations.play('left');
     }
@@ -182,7 +183,8 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down && hitPlatform)
     {
         //player.body.velocity.y = -350; //original
-		player.body.velocity.y = -400; //test //Made heavier
+		//player.body.velocity.y = -400; //test //Made heavier
+		player.body.velocity.y = -500; //test //Made more heavier
     }
 
 }
