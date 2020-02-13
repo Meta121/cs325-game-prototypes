@@ -162,6 +162,21 @@ function create() {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+	
+	//My Code. Creating stars at the middle evenly //test
+	
+	for (var i = 0; i < 15; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 60, 425, 'star'); //test
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 300;
+
+        //  This just gives each star a slightly random bounce value
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+	
 	//My Code. Creating stars at the bottom evenly
 	//for (var i = 0; i < 12; i++) //original
 	for (var i = 0; i < 5; i++)
@@ -191,7 +206,7 @@ function create() {
     }
 	
 	//My Code. Creating diamonds at the middle evenly //test
-	
+	/*
 	for (var i = 0; i < 15; i++)
     {
         //  Create a star inside of the 'stars' group
@@ -203,6 +218,7 @@ function create() {
         //  This just gives each star a slightly random bounce value
         diamond.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+	*/
 	
 
 	//My code --- create 12 baddies evenly spaced apart
