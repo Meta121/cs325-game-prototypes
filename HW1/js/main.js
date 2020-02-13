@@ -85,6 +85,8 @@ function create() {
 	//ledge.body.immovable = true; //test
 	ledge = platforms.create(0, 450, 'ground'); //test
 	ledge.body.immovable = true; //test
+	ledge = platforms.create(200, 475, 'ground'); //test
+	ledge.body.immovable = true; //test
 	
 	
     //ledge.body.immovable = true; //original //Need 1 of this for every single platform made so they won't fall off.
@@ -106,7 +108,7 @@ function create() {
     //player.body.gravity.y = 20; //test //Player was made even more lighter and floatier
 	//player.body.gravity.y = 1000; //test //Made his jump very small
 	//player.body.gravity.y = 800; //test //Not high enough jump
-	player.body.gravity.y = 600; //test
+	player.body.gravity.y = 600; //test //This is good for what I want.
 	player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
@@ -155,14 +157,16 @@ function update() {
     if (cursors.left.isDown)
     {
         //  Move to the left
-        player.body.velocity.x = -150;
+        //player.body.velocity.x = -150; //original
+		player.body.velocity.x = -150; //test //made faster
 
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
-        player.body.velocity.x = 150;
+        //player.body.velocity.x = 150; //original
+		player.body.velocity.x = 300; //test //made faster
 
         player.animations.play('right');
     }
@@ -177,7 +181,8 @@ function update() {
     //  Allow the player to jump if they are touching the ground.
     if (cursors.up.isDown && player.body.touching.down && hitPlatform)
     {
-        player.body.velocity.y = -350;
+        //player.body.velocity.y = -350; //original
+		player.body.velocity.y = -400; //test //Made heavier
     }
 
 }
