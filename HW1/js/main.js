@@ -20,6 +20,8 @@ function preload() {
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	//game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 	game.load.image('diamond', 'assets/diamond.png');//test
+	game.load.image('player', 'assets/player.png');//test
+
 
 	//My code ---Adding sound effects and background theme ---//test
 	game.load.audio('background_theme', 'sounds/background_song.m4a'); //test
@@ -116,7 +118,7 @@ function create() {
 	//player = game.add.sprite(50, game.world.height - 0, 'dude'); //test //Spawned player off screen
 	//player = game.add.sprite(50, game.world.height - 50, 'dude'); //test //Spawned at the bottom left stuck in ground
 	//player = game.add.sprite(300, game.world.height - 10, 'dude'); //test //Stuck in the floor in the middle
-	player = game.add.sprite(600, game.world.height - 150, 'dude'); //test
+	player = game.add.sprite(600, game.world.height - 150, 'player'); //test
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
@@ -132,8 +134,8 @@ function create() {
 	player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+    //player.animations.add('left', [0, 1, 2, 3], 10, true); //original
+   // player.animations.add('right', [5, 6, 7, 8], 10, true); //original
 
     //  Finally some stars to collect
     stars = game.add.group();
@@ -276,7 +278,7 @@ function update() {
         //player.body.velocity.x = -150; //original
 		player.body.velocity.x = -300; //test //made faster
 
-        player.animations.play('left');
+        //player.animations.play('left'); //original
     }
     else if (cursors.right.isDown)
     {
@@ -284,7 +286,7 @@ function update() {
         //player.body.velocity.x = 150; //original
 		player.body.velocity.x = 300; //test //made faster
 
-        player.animations.play('right');
+        //player.animations.play('right'); //original
     }
 	//My Code. Implementing a fast fall function. //test
 	else if (cursors.down.isDown)
@@ -297,9 +299,9 @@ function update() {
     else
     {
         //  Stand still
-        player.animations.stop();
+        //player.animations.stop(); //original
 
-        player.frame = 4;
+        //player.frame = 4; //original
     }
     
     //  Allow the player to jump if they are touching the ground.
@@ -328,6 +330,10 @@ function collectStar (player, star) {
     //score += 10; //original
 	score -= 100; //test
     scoreText.text = 'Points: ' + score;
+	
+	//My code --- play death sound
+	sound = game.add.audio("jump_player_sound"); //test
+	sound.play(); //test
 
 }
 
