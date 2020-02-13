@@ -33,7 +33,7 @@ var scoreText;
 
 //My code---
 var baddie; //test //Note this is baddie not baddies
-var diamond;
+var diamonds;
 //---
 function create() {
 
