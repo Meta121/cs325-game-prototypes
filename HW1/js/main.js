@@ -149,7 +149,8 @@ function create() {
 	//baddies.enableBody = true; //test //Enable physics for baddies
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 5; i++)
+    /*
+	for (var i = 0; i < 5; i++)
     {
         //  Create a star inside of the 'stars' group
         //var star = stars.create(i * 70, 0, 'star'); //original
@@ -162,6 +163,7 @@ function create() {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+	*/
 	
 	//My Code. Creating stars at the middle evenly //test
 	
@@ -241,7 +243,7 @@ function create() {
 
     //  The score
     //scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' }); //original
-	scoreText = game.add.text(10, 10, 'Points: 0', { fontSize: '32px', fill: '#000' }); //test
+	scoreText = game.add.text(10, 20, 'Points: 0', { fontSize: '32px', fill: '#000' }); //test
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
