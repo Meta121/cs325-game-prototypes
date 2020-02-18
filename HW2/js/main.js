@@ -93,10 +93,12 @@ function create() {
 
     //  Lives
     lives = game.add.group();
-    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
+    //game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' }); //original
+	game.add.text(game.world.width - 100, 10, 'Health: ', { font: '34px', fill: '#fff' }); //test
 
     //  Text
-    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
+    //stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' }); //original
+	stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px', fill: '#fff' }); //test
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
 
@@ -169,19 +171,23 @@ function update() {
 
         if (cursors.left.isDown)
         {
-            player.body.velocity.x = -200;
+            //player.body.velocity.x = -200; //original
+			player.body.velocity.x = -100; //test
         }
         else if (cursors.right.isDown)
         {
-            player.body.velocity.x = 200;
+            //player.body.velocity.x = 200; //original
+			player.body.velocity.x = 100; //test
         }
 		else if (cursors.up.isDown) //test
         {
-            player.body.velocity.y = -200; //test
+            //player.body.velocity.y = -200; //test
+			player.body.velocity.y = -100; //test
         }
 		else if (cursors.down.isDown) //test
         {
-            player.body.velocity.y = 200; //test
+            //player.body.velocity.y = 200; //test
+			player.body.velocity.y = 100; //test
         }
 
         //  Firing?
@@ -218,7 +224,8 @@ function collisionHandler (bullet, alien) {
     alien.kill();
 
     //  Increase the score
-    score += 20;
+    //score += 20; //original
+	score += 100;
     scoreText.text = scoreString + score;
 
     //  And create an explosion :)
@@ -232,7 +239,8 @@ function collisionHandler (bullet, alien) {
         scoreText.text = scoreString + score;
 
         enemyBullets.callAll('kill',this);
-        stateText.text = " You Won, \n Click to restart";
+        //stateText.text = " You Won, \n Click to restart"; //original
+		stateText.text = " You beat the level!. \n Click anything to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
@@ -263,7 +271,8 @@ function enemyHitsPlayer (player,bullet) {
         player.kill();
         enemyBullets.callAll('kill');
 
-        stateText.text=" GAME OVER \n Click to restart";
+        //stateText.text=" GAME OVER \n Click to restart"; //original
+		stateText.text=" You Lose :( \n Click anything to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
