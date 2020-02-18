@@ -36,6 +36,7 @@ var starfield;
 var score = 0;
 var scoreString = '';
 var scoreText;
+var live; //test
 var lives;
 var enemyBullet;
 var enemyBullets; //test
