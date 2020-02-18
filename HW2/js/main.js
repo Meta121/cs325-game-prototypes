@@ -179,7 +179,8 @@ function update() {
             //player.body.velocity.x = 200; //original
 			player.body.velocity.x = 500; //test
         }
-		else if (cursors.up.isDown) //test
+		//else if (cursors.up.isDown) //test
+		if (cursors.up.isDown) //test
         {
             //player.body.velocity.y = -200; //test
 			player.body.velocity.y = -500; //test
@@ -189,6 +190,7 @@ function update() {
             //player.body.velocity.y = 200; //test
 			player.body.velocity.y = 500; //test
         }
+		/*
 		else if (cursors.up.isDown && cursors.left.isDown) //test
         {
 			player.body.velocity.x = -500; //test
@@ -209,6 +211,7 @@ function update() {
 			player.body.velocity.x = 500; //test
 			player.body.velocity.y = 500; //test
         }
+		*/
 		
 
         //  Firing?
@@ -261,7 +264,7 @@ function collisionHandler (bullet, alien) {
 
         enemyBullets.callAll('kill',this);
         //stateText.text = " You Won, \n Click to restart"; //original
-		stateText.text = "You beat the level!. \n Clickto play again"; //test
+		stateText.text = "You Win!. \n Click to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
