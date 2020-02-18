@@ -45,6 +45,9 @@ var firingTimer = 0;
 var stateText;
 var livingEnemies = [];
 
+//My new variables ------
+var health; //test
+
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -102,6 +105,8 @@ function create() {
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
 
+	//original code --- Where lives are created in original code---------
+	//test //Change this to health points
     for (var i = 0; i < 3; i++) 
     {
         var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
@@ -175,8 +180,8 @@ function update() {
             //player.body.velocity.x = -200; //original
 			player.body.velocity.x = -500; //test
         }
-        //else if (cursors.right.isDown) //original
-		if (cursors.right.isDown)
+        else if (cursors.right.isDown) //original
+		//if (cursors.right.isDown)
         {
             //player.body.velocity.x = 200; //original
 			player.body.velocity.x = 500; //test
@@ -187,8 +192,8 @@ function update() {
             //player.body.velocity.y = -200; //test
 			player.body.velocity.y = -500; //test
         }
-		//else if (cursors.down.isDown) //test
-		if (cursors.down.isDown) //test
+		else if (cursors.down.isDown) //test
+		//if (cursors.down.isDown) //test
         {
             //player.body.velocity.y = 200; //test
 			player.body.velocity.y = 500; //test
@@ -262,7 +267,8 @@ function collisionHandler (bullet, alien) {
 
     if (aliens.countLiving() == 0)
     {
-        score += 1000;
+        //score += 1000; //original
+		score += 2000; //test
         scoreText.text = scoreString + score;
 
         enemyBullets.callAll('kill',this);
