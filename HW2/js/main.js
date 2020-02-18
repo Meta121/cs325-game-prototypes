@@ -85,8 +85,11 @@ function create() {
     createAliens();
 
     //  The score
-    scoreString = 'Score : ';
-    scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' });
+    //scoreString = 'Score : '; //original
+	scoreString = 'Points: '; //test
+    //scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' }); //original
+	scoreText = game.add.text(10, 10, scoreString + score, { font: '34px', fill: '#000' }); //test
+
 
     //  Lives
     lives = game.add.group();
@@ -171,6 +174,14 @@ function update() {
         else if (cursors.right.isDown)
         {
             player.body.velocity.x = 200;
+        }
+		else if (cursors.up.isDown) //test
+        {
+            player.body.velocity.y = -200; //test
+        }
+		else if (cursors.down.isDown) //test
+        {
+            player.body.velocity.y = 200; //test
         }
 
         //  Firing?
