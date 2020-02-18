@@ -172,23 +172,44 @@ function update() {
         if (cursors.left.isDown)
         {
             //player.body.velocity.x = -200; //original
-			player.body.velocity.x = -100; //test
+			player.body.velocity.x = -500; //test
         }
         else if (cursors.right.isDown)
         {
             //player.body.velocity.x = 200; //original
-			player.body.velocity.x = 100; //test
+			player.body.velocity.x = 500; //test
         }
 		else if (cursors.up.isDown) //test
         {
             //player.body.velocity.y = -200; //test
-			player.body.velocity.y = -100; //test
+			player.body.velocity.y = -500; //test
         }
 		else if (cursors.down.isDown) //test
         {
             //player.body.velocity.y = 200; //test
-			player.body.velocity.y = 100; //test
+			player.body.velocity.y = 500; //test
         }
+		else if (cursors.up.isDown && cursors.left.isDown) //test
+        {
+			player.body.velocity.x = -500; //test
+			player.body.velocity.y = -500; //test
+        }
+		else if (cursors.up.isDown && cursors.right.isDown) //test
+        {
+			player.body.velocity.x = 500; //test
+			player.body.velocity.y = -500; //test
+        }
+		else if (cursors.down.isDown && cursors.left.isDown) //test
+        {
+			player.body.velocity.x = -500; //test
+			player.body.velocity.y = 500; //test
+        }
+		else if (cursors.down.isDown && cursors.right.isDown) //test
+        {
+			player.body.velocity.x = 500; //test
+			player.body.velocity.y = 500; //test
+        }
+		
 
         //  Firing?
         if (fireButton.isDown)
@@ -240,7 +261,7 @@ function collisionHandler (bullet, alien) {
 
         enemyBullets.callAll('kill',this);
         //stateText.text = " You Won, \n Click to restart"; //original
-		stateText.text = " You beat the level!. \n Click anything to play again"; //test
+		stateText.text = "You beat the level!. \n Clickto play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
