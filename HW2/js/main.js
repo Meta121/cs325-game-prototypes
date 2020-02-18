@@ -117,7 +117,8 @@ function create() {
 
     //  And some controls to play the game with
     cursors = game.input.keyboard.createCursorKeys();
-    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+	//add mouse left click here //test
     
 }
 
@@ -174,7 +175,8 @@ function update() {
             //player.body.velocity.x = -200; //original
 			player.body.velocity.x = -500; //test
         }
-        else if (cursors.right.isDown)
+        //else if (cursors.right.isDown) //original
+		if (cursors.right.isDown)
         {
             //player.body.velocity.x = 200; //original
 			player.body.velocity.x = 500; //test
@@ -185,7 +187,8 @@ function update() {
             //player.body.velocity.y = -200; //test
 			player.body.velocity.y = -500; //test
         }
-		else if (cursors.down.isDown) //test
+		//else if (cursors.down.isDown) //test
+		if (cursors.down.isDown) //test
         {
             //player.body.velocity.y = 200; //test
 			player.body.velocity.y = 500; //test
