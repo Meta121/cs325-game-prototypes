@@ -11,7 +11,7 @@ window.onload = function() {
     // All loading functions will typically all be found inside "preload()".
     
     
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -38,6 +38,7 @@ var scoreString = '';
 var scoreText;
 var lives;
 var enemyBullet;
+var enemyBullets; //test
 var firingTimer = 0;
 var stateText;
 var livingEnemies = [];
