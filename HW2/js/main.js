@@ -1,21 +1,16 @@
 "use strict";
 
-window.onload = function() {
-	
 	var config = {
     type: Phaser.AUTO,
-    parent: 'phaser-example',
     width: 800,
-    height: 600,
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 0 },
-        debug: false
-      }
-    },
+    height: 600
 
 };
+
+
+window.onload = function() {
+	
+
     // You can copy-and-paste the code from any of the examples at http://examples.phaser.io here.
     // You will need to change the fourth parameter to "new Phaser.Game()" from
     // 'phaser-example' to 'game', which is the id of the HTML element where we
