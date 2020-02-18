@@ -27,6 +27,7 @@ function preload() {
 
 var player;
 var aliens;
+var bullet; //test
 var bullets;
 var bulletTime = 0;
 var cursors;
