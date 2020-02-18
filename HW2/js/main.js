@@ -38,8 +38,8 @@ window.onload = function() {
     }
 };
 
-//var game = new Phaser.Game(config); //original
-	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update }); //test
+var game = new Phaser.Game(config); //original
+	//var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update }); //test
 
 
 var Bullet = new Phaser.Class({
