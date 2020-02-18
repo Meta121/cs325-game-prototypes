@@ -88,7 +88,7 @@ function create() {
     //scoreString = 'Score : '; //original
 	scoreString = 'Points: '; //test
     //scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' }); //original
-	scoreText = game.add.text(10, 10, scoreString + score, { font: '34px', fill: '#000' }); //test
+	scoreText = game.add.text(10, 10, scoreString + score, { font: '34px', fill: '#fff' }); //test
 
 
     //  Lives
