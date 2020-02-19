@@ -342,7 +342,7 @@ function enemyHitsPlayer (player,bullet) {
         game.input.onTap.addOnce(restart,this);
     }
 	
-	//My code --- play player shoot sound
+	//My code --- play player death sound
 	sound = game.add.audio("player_death_sound"); //test
 	sound.play(); //test
 
@@ -402,10 +402,6 @@ function fireBullet () {
             bulletTime = game.time.now + 200;
         }
     }
-	
-	//My code --- play player death sound
-	sound = game.add.audio("player_death_sound"); //test
-	sound.play(); //test
 
 }
 
