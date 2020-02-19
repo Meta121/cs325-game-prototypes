@@ -63,6 +63,9 @@ var livingEnemies = [];
 
 //My new variables ------
 var health = 100; //test
+var healthText; //test
+var healthString = ''; //test
+
 var sound; //test
 var music; //test
 
@@ -120,7 +123,10 @@ function create() {
     lives = game.add.group();
     //game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' }); //original
 	//game.add.text(game.world.width - 100, 10, 'Health: ', { font: '34px', fill: '#fff' }); //test
-	game.add.text(10, 10, 'Health: ' + health, { font: '34px', fill: '#fff' }); //test
+	
+	healthString = 'Health: '; //test
+	//healthText = game.add.text(10, 10, 'Health: ' + health, { font: '34px', fill: '#fff' }); //test
+	healthText = game.add.text(10, 10, healthString + health, { font: '34px', fill: '#fff' }); //test
 
     //  Text
     //stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' }); //original
@@ -329,7 +335,8 @@ function enemyHitsPlayer (player,bullet) {
 	*/
 	
 	//My code---------
-	health -= 50;
+	health -= 50; //test
+	healthText.text = scoreString + score; //test
 
     //  And create an explosion :)
     var explosion = explosions.getFirstExists(false);
