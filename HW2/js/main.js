@@ -275,8 +275,11 @@ function update() {
         }
 
         //  Run collision
-        game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this);
-        game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+        game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this); //original
+        game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this); //original
+		
+		//My code---------
+		game.physics.arcade.overlap(player, aliens enemyBodyHitsPlayer, null, this); //test
     }
 
 }
@@ -371,6 +374,8 @@ function enemyHitsPlayer (player,bullet) {
 
 }
 
+//My code -Make a function that kills player when they touch the enemy.
+//test
 function enemyBodyHitsPlayer (player, invader) {
     
     player.kill(); //test
@@ -414,9 +419,6 @@ function enemyBodyHitsPlayer (player, invader) {
 	sound.play(); //test
 
 }
-
-//My code -Make a function that kills player when they touch the enemy.
-//test
 
 
 function enemyFires () {
