@@ -131,13 +131,15 @@ function create() {
 	//original code --- Where lives are created in original code---------
 	//test //Change this to health points
 	
-    for (var i = 0; i < 3; i++) 
+	/*
+    for (var i = 0; i < 3; i++) //original
     {
-        var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
-        ship.anchor.setTo(0.5, 0.5);
-        ship.angle = 90;
-        ship.alpha = 0.4;
+        var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship'); //original
+        ship.anchor.setTo(0.5, 0.5); //original
+        ship.angle = 90; //original
+        ship.alpha = 0.4; //original
     }
+	*/
 	
 
     //  An explosion pool
@@ -316,12 +318,18 @@ function enemyHitsPlayer (player,bullet) {
     
     bullet.kill();
 
-    live = lives.getFirstAlive();
+	
+    //live = lives.getFirstAlive(); //original
 
-    if (live)
+	/*
+    if (live) //original
     {
-        live.kill();
+        live.kill(); //original
     }
+	*/
+	
+	//My code---------
+	health -= 50;
 
     //  And create an explosion :)
     var explosion = explosions.getFirstExists(false);
@@ -329,7 +337,8 @@ function enemyHitsPlayer (player,bullet) {
     explosion.play('kaboom', 30, false, true);
 
     // When the player dies
-    if (lives.countLiving() < 1)
+    //if (lives.countLiving() < 1) //original
+	if (health < 1) //test
     {
         player.kill();
         enemyBullets.callAll('kill');
@@ -420,7 +429,10 @@ function restart () {
     //  A new level starts
     
     //resets the life count
-    lives.callAll('revive');
+    //lives.callAll('revive'); //original
+	health = 100;
+	
+	
     //  And brings the aliens back from the dead :)
     aliens.removeAll();
     createAliens();
