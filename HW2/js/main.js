@@ -172,7 +172,7 @@ function createAliens () {
         {
             var alien = aliens.create(x * 48, y * 50, 'invader');
             alien.anchor.setTo(0.5, 0.5); 
-            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original
+            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original //creates (or sets) the 'fly' animation
             alien.play('fly'); //original
             alien.body.moves = false;
         }
@@ -351,7 +351,7 @@ function enemyHitsPlayer (player,bullet) {
         enemyBullets.callAll('kill');
 
         //stateText.text=" GAME OVER \n Click to restart"; //original
-		stateText.text=" You Lose\n Click to play again"; //test
+		stateText.text=" You Lose \n Click to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
