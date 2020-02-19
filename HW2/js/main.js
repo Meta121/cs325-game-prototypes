@@ -22,6 +22,12 @@ function preload() {
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
     game.load.image('starfield', 'assets/games/invaders/starfield.png');
     game.load.image('background', 'assets/games/starstruck/background2.png');
+	
+	//My code ---Adding sound effects and background theme ---//test
+	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme'); //test
+	game.load.audio('player_shoot_sound', '1_player_shoot_sound'); //test
+	game.load.audio('enemy_shoot_sound', '5_enemy_shoot_sound'); //test
+	
 
 }
 
@@ -122,8 +128,12 @@ function create() {
 
     //  And some controls to play the game with
     cursors = game.input.keyboard.createCursorKeys();
-    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
-	//add mouse left click here //test
+    //fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+	fireButton = game.input.mousePointer(Phaser.Keyboard.SPACEBAR); //test
+	
+	//My code--- Playing background theme
+	music = game.add.audio("background_theme"); //test
+	music.play('', 0, 1, true); //test
     
 }
 
@@ -134,9 +144,9 @@ function createAliens () {
         for (var x = 0; x < 10; x++)
         {
             var alien = aliens.create(x * 48, y * 50, 'invader');
-            alien.anchor.setTo(0.5, 0.5);
-            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
-            alien.play('fly');
+            alien.anchor.setTo(0.5, 0.5); 
+            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original
+            alien.play('fly'); //original
             alien.body.moves = false;
         }
     }
@@ -225,7 +235,11 @@ function update() {
         //  Firing?
         if (fireButton.isDown)
         {
-            fireBullet();
+            //My code --- play player shoot sound
+			sound = game.add.audio("player_shoot_sound"); //test
+			sound.play(); //test
+			
+			fireBullet();
         }
 
         if (game.time.now > firingTimer)
@@ -316,7 +330,11 @@ function enemyHitsPlayer (player,bullet) {
 
 function enemyFires () {
 
-    //  Grab the first bullet we can from the pool
+    //My code --- play player shoot sound
+	sound = game.add.audio("enemy_shoot_sound"); //test
+	sound.play(); //test
+	
+	//  Grab the first bullet we can from the pool
     enemyBullet = enemyBullets.getFirstExists(false);
 
     livingEnemies.length=0;
