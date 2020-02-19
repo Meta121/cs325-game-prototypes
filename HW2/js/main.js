@@ -19,11 +19,15 @@ function preload() {
     game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png');
     game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
     //game.load.image('ship', 'assets/games/invaders/player.png'); //original
-	game.load.image('ship', 'assets/games/red_boo.png'); //test
+	game.load.image('ship', 'assets/red_boo.png'); //test
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
     game.load.image('starfield', 'assets/games/invaders/starfield.png');
     game.load.image('background', 'assets/games/starstruck/background2.png');
 	
+	
+	
+	//--My Code-------------------
+	game.load.image('blue_plus', 'assets/blue_plus.png'); //test
 	//My code ---Adding sound effects and background theme ---//test
 	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme.m4a'); //test
 	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
