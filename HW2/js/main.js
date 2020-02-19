@@ -483,7 +483,8 @@ function restart () {
     
     //resets the life count
     //lives.callAll('revive'); //original
-	health = 100;
+	health = 100; //test
+	healthText.text = healthString + health; //test
 	
 	
     //  And brings the aliens back from the dead :)
