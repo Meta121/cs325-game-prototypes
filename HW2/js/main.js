@@ -57,9 +57,11 @@ var stateText;
 var livingEnemies = [];
 
 //My new variables ------
-var health; //test
+var health = 100; //test
 var sound; //test
 var music; //test
+
+var blaster_type = 0; //test //0 = Default, 1 = Power up 1
 
 function create() {
 
@@ -110,7 +112,8 @@ function create() {
     //  Lives
     lives = game.add.group();
     //game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' }); //original
-	game.add.text(game.world.width - 100, 10, 'Health: ', { font: '34px', fill: '#fff' }); //test
+	//game.add.text(game.world.width - 100, 10, 'Health: ', { font: '34px', fill: '#fff' }); //test
+	game.add.text(game.world.width - 100, 10, 'Health: ' + health, { font: '34px', fill: '#fff' }); //test
 
     //  Text
     //stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' }); //original
@@ -120,6 +123,7 @@ function create() {
 
 	//original code --- Where lives are created in original code---------
 	//test //Change this to health points
+	
     for (var i = 0; i < 3; i++) 
     {
         var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
@@ -127,6 +131,7 @@ function create() {
         ship.angle = 90;
         ship.alpha = 0.4;
     }
+	
 
     //  An explosion pool
     explosions = game.add.group();
