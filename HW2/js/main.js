@@ -53,6 +53,8 @@ var livingEnemies = [];
 
 //My new variables ------
 var health; //test
+var sound; //test
+var music; //test
 
 function create() {
 
