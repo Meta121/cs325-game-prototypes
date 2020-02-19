@@ -24,9 +24,9 @@ function preload() {
     game.load.image('background', 'assets/games/starstruck/background2.png');
 	
 	//My code ---Adding sound effects and background theme ---//test
-	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme'); //test
-	game.load.audio('player_shoot_sound', '1_player_shoot_sound'); //test
-	game.load.audio('enemy_shoot_sound', '5_enemy_shoot_sound'); //test
+	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme.m4a'); //test
+	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
+	game.load.audio('enemy_shoot_sound', 'sounds/5_enemy_shoot_sound.wav'); //test
 	
 
 }
