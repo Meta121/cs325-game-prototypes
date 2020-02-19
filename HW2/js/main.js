@@ -15,9 +15,12 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
 
 function preload() {
 
-    game.load.image('bullet', 'assets/games/invaders/bullet.png');
-    game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png');
-    game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
+    //game.load.image('bullet', 'assets/games/invaders/bullet.png'); //original
+	game.load.image('bullet', 'assets/player_bullet.png'); //test
+    //game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png'); //original
+	game.load.image('enemyBullet', 'assets/enemy_bullet.png'); //test
+    game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32); //original
+	//game.load.image('invader', 'assets/red_ghost.png'); //test
     //game.load.image('ship', 'assets/games/invaders/player.png'); //original
 	game.load.image('ship', 'assets/red_boo.png'); //test
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
@@ -28,6 +31,7 @@ function preload() {
 	
 	//--My Code-------------------
 	game.load.image('blue_plus', 'assets/blue_plus.png'); //test
+	game.load.image('first_aid', 'assets/firstaid.png'); //test
 	//My code ---Adding sound effects and background theme ---//test
 	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme.m4a'); //test
 	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
@@ -62,6 +66,8 @@ var sound; //test
 var music; //test
 
 var blaster_type = 0; //test //0 = Default, 1 = Power up 1
+var first_aid; //test
+var blue_plus; //test
 
 function create() {
 
