@@ -113,14 +113,14 @@ function create() {
     //scoreString = 'Score : '; //original
 	scoreString = 'Points: '; //test
     //scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' }); //original
-	scoreText = game.add.text(10, 10, scoreString + score, { font: '34px', fill: '#fff' }); //test
+	scoreText = game.add.text(game.world.width - 300, 10, scoreString + score, { font: '34px', fill: '#fff' }); //test
 
 
     //  Lives
     lives = game.add.group();
     //game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' }); //original
 	//game.add.text(game.world.width - 100, 10, 'Health: ', { font: '34px', fill: '#fff' }); //test
-	game.add.text(game.world.width - 100, 10, 'Health: ' + health, { font: '34px', fill: '#fff' }); //test
+	game.add.text(10, 10, 'Health: ' + health, { font: '34px', fill: '#fff' }); //test
 
     //  Text
     //stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' }); //original
