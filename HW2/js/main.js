@@ -402,6 +402,9 @@ function fireBullet () {
             bulletTime = game.time.now + 200;
         }
     }
+	//My code --- play player shoot sound
+	sound = game.add.audio("player_shoot_sound"); //test
+	sound.play(); //test
 
 }
 
