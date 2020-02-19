@@ -366,6 +366,50 @@ function enemyHitsPlayer (player,bullet) {
 
 }
 
+function enemyBodyHitsPlayer (player, invader) {
+    
+    player.kill(); //test
+
+	
+    //live = lives.getFirstAlive(); //original
+
+	/*
+    if (live) //original
+    {
+        live.kill(); //original
+    }
+	*/
+	
+	//My code---------
+	health -= 50; //test
+	healthText.text = healthString + health; //test
+
+    //  And create an explosion :)
+    var explosion = explosions.getFirstExists(false);
+    explosion.reset(player.body.x, player.body.y);
+    explosion.play('kaboom', 30, false, true);
+
+    // When the player dies
+    //if (lives.countLiving() < 1) //original
+	if (health < 1) //test
+    {
+        player.kill();
+        enemyBullets.callAll('kill');
+
+        //stateText.text=" GAME OVER \n Click to restart"; //original
+		stateText.text=" You Lose \n Click to play again"; //test
+        stateText.visible = true;
+
+        //the "click to restart" handler
+        game.input.onTap.addOnce(restart,this);
+    }
+	
+	//My code --- play player death sound
+	sound = game.add.audio("player_death_sound"); //test
+	sound.play(); //test
+
+}
+
 //My code -Make a function that kills player when they touch the enemy.
 //test
 
