@@ -37,6 +37,7 @@ function preload() {
 	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
 	game.load.audio('enemy_shoot_sound', 'sounds/5_enemy_shoot_sound.wav'); //test
 	game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
+	game.load.audio('enemy_death_sound', 'sounds/pacman_death_sound.m4a'); //test
 	
 
 }
@@ -319,6 +320,10 @@ function collisionHandler (bullet, alien) {
         //the "click to restart" handler
         game.input.onTap.addOnce(restart,this);
     }
+	
+	//My code --- play enemy death sound
+	sound = game.add.audio("enemy_death_sound"); //test
+	sound.play(); //test
 
 }
 
@@ -416,7 +421,7 @@ function enemyBodyHitsPlayer (player, invader) {
 
 function enemyFires () {
 
-    //My code --- play player shoot sound
+    //My code --- play enemy shoot sound
 	sound = game.add.audio("enemy_shoot_sound"); //test
 	sound.play(); //test
 	
