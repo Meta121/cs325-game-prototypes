@@ -128,8 +128,8 @@ function create() {
 
     //  And some controls to play the game with
     cursors = game.input.keyboard.createCursorKeys();
-    //fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
-	fireButton = game.input.mousePointer(Phaser.Keyboard.SPACEBAR); //test
+    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+	//fireButton = game.input.mousePointer(Phaser.Keyboard.SPACEBAR); //test
 	
 	//My code--- Playing background theme
 	music = game.add.audio("background_theme"); //test
