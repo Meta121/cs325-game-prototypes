@@ -334,7 +334,7 @@ function enemyHitsPlayer (player,bullet) {
         enemyBullets.callAll('kill');
 
         //stateText.text=" GAME OVER \n Click to restart"; //original
-		stateText.text=" You Lose :( \n Click anything to play again"; //test
+		stateText.text=" You Lose\n Click to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
