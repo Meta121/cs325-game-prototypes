@@ -36,6 +36,7 @@ function preload() {
 	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme.m4a'); //test
 	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
 	game.load.audio('enemy_shoot_sound', 'sounds/5_enemy_shoot_sound.wav'); //test
+	game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
 	
 
 }
@@ -340,6 +341,10 @@ function enemyHitsPlayer (player,bullet) {
         //the "click to restart" handler
         game.input.onTap.addOnce(restart,this);
     }
+	
+	//My code --- play player shoot sound
+	sound = game.add.audio("player_death_sound"); //test
+	sound.play(); //test
 
 }
 
@@ -398,8 +403,8 @@ function fireBullet () {
         }
     }
 	
-	//My code --- play player shoot sound
-	sound = game.add.audio("player_shoot_sound"); //test
+	//My code --- play player death sound
+	sound = game.add.audio("player_death_sound"); //test
 	sound.play(); //test
 
 }
