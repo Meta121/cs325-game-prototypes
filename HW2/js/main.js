@@ -19,8 +19,8 @@ function preload() {
 	game.load.image('bullet', 'assets/player_bullet.png'); //test
     //game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png'); //original
 	game.load.image('enemyBullet', 'assets/enemy_bullet.png'); //test
-    game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32); //original
-	//game.load.image('invader', 'assets/red_ghost.png'); //test
+    //game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32); //original
+	game.load.image('invader', 'assets/red_ghost.png'); //test
     //game.load.image('ship', 'assets/games/invaders/player.png'); //original
 	game.load.image('ship', 'assets/red_boo.png'); //test
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
@@ -170,10 +170,12 @@ function createAliens () {
     {
         for (var x = 0; x < 10; x++)
         {
-            var alien = aliens.create(x * 48, y * 50, 'invader');
+            //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
+			var alien = aliens.create(x * 48, y * 50, 'invader'); //test
+			
             alien.anchor.setTo(0.5, 0.5); 
-            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original //creates (or sets) the 'fly' animation
-            alien.play('fly'); //original
+            //alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original //creates (or sets) the 'fly' animation
+            //alien.play('fly'); //original
             alien.body.moves = false;
         }
     }
@@ -336,7 +338,7 @@ function enemyHitsPlayer (player,bullet) {
 	
 	//My code---------
 	health -= 50; //test
-	healthText.text = scoreString + score; //test
+	healthText.text = healthString + health; //test
 
     //  And create an explosion :)
     var explosion = explosions.getFirstExists(false);
