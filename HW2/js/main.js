@@ -24,9 +24,9 @@ function preload() {
     //game.load.image('ship', 'assets/games/invaders/player.png'); //original
 	game.load.image('ship', 'assets/red_boo.png'); //test
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
-    game.load.image('starfield', 'assets/games/invaders/starfield.png');
-    game.load.image('background', 'assets/games/starstruck/background2.png');
-	
+    //game.load.image('starfield', 'assets/games/invaders/starfield.png'); //original
+	game.load.image('starfield', 'assets/ghost_mansion_background.png'); //test
+    game.load.image('background', 'assets/games/starstruck/background2.png'); //original
 	
 	
 	//--My Code-------------------
@@ -342,6 +342,10 @@ function enemyHitsPlayer (player,bullet) {
     }
 
 }
+
+//My code -Make a function that kills player when they touch the enemy.
+//test
+
 
 function enemyFires () {
 
