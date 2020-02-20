@@ -488,7 +488,7 @@ function enemyBodyHitsPlayer (player, invader) {
         enemyBullets.callAll('kill');
 
         //stateText.text=" GAME OVER \n Click to restart"; //original
-		stateText.text=" You Lose \n Mouse left click /n to play again"; //test
+		stateText.text=" You Lose \n Mouse left click \n to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
