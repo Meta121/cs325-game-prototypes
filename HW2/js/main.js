@@ -389,8 +389,6 @@ function enemyHitsPlayer (player,bullet) {
 //test
 function enemyBodyHitsPlayer (player, invader) {
     
-    player.kill(); //test
-
 	
     //live = lives.getFirstAlive(); //original
 
@@ -401,7 +399,7 @@ function enemyBodyHitsPlayer (player, invader) {
     }
 	*/
 	
-	//My code---------
+	//My code---Made it so you die when you have lower than 1 HP but lose health if you have greater than or equal to 1 health------
 	health -= 50; //test
 	healthText.text = healthString + health; //test
 
@@ -460,8 +458,10 @@ function enemyFires () {
         // And fire the bullet from this enemy
         enemyBullet.reset(shooter.body.x, shooter.body.y);
 
-        game.physics.arcade.moveToObject(enemyBullet,player,120);
-        firingTimer = game.time.now + 2000;
+        //game.physics.arcade.moveToObject(enemyBullet,player,120); //original //API: moveToObject(gameObject, destination [, speed] [, maxTime])
+        game.physics.arcade.moveToObject(enemyBullet,player, 400); //test
+		
+		firingTimer = game.time.now + 2000;
     }
 
 }
