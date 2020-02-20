@@ -387,16 +387,19 @@ function collisionHandler (bullet, alien) {
 
         enemyBullets.callAll('kill',this);
         //stateText.text = " You Won, \n Click to restart"; //original
-		stateText.text = "You Win!. \n Click to play again"; //test
+		stateText.text = " You Win! \n Click to play again"; //test
         stateText.visible = true;
 
         //the "click to restart" handler
         game.input.onTap.addOnce(restart,this);
     }
-	
-	//My code --- play enemy death sound
-	sound = game.add.audio("enemy_death_sound"); //test
-	sound.play(); //test
+	//My extra code-----------------------------------------
+	else{
+		
+		//My code --- play enemy death sound
+		sound = game.add.audio("enemy_death_sound"); //test
+		sound.play(); //test
+	}
 
 }
 
