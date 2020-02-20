@@ -201,7 +201,9 @@ function setupInvader (invader) {
 
 function descend() {
 
-    aliens.y += 10;
+    //aliens.y += 10; //original
+	
+	aliens.y += 1000; //test
 
 }
 
@@ -263,10 +265,19 @@ function update() {
 		
 
         //  Firing?
-        if (fireButton.isDown)
+		
+		//fireBullet(); //original
+		
+        if (fireButton.isDown) //test
         {
-			
-			fireBullet();
+			if (blaster_type == 0)
+			{
+				fireBullet();
+			}
+			else if (blaster_type == 1)
+			{
+				fireThreeBullet();
+			}
         }
 
         if (game.time.now > firingTimer)
@@ -469,6 +480,35 @@ function fireBullet () {
             bullet.reset(player.x, player.y + 8);
             bullet.body.velocity.y = -400;
             bulletTime = game.time.now + 200;
+        }
+    }
+	//My code --- play player shoot sound
+	sound = game.add.audio("player_shoot_sound"); //test
+	sound.play(); //test
+
+}
+
+//--My code----------------------
+function fireThreeBullet () {
+
+    //  To avoid them being allowed to fire too fast we set a time limit
+    if (game.time.now > bulletTime)
+    {
+        //  Grab the first bullet we can from the pool
+        bullet = bullets.getFirstExists(false);
+
+        if (bullet)
+        {
+            //  And fire it
+            bullet.reset(player.x, player.y + 8); //original
+            bullet.body.velocity.y = -400; //original
+            bulletTime = game.time.now + 200; //original
+			
+			bullet.reset(player.x + 20, player.y + 8); //test //Fire 2nd bullet
+            bullet.body.velocity.y = -400; //test
+			
+			bullet.reset(player.x - 20, player.y + 8); //test //Fire 3rd bullet
+            bullet.body.velocity.y = -400; //test
         }
     }
 	//My code --- play player shoot sound
