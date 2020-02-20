@@ -31,7 +31,7 @@ function preload() {
 	
 	//--My Code-------------------
 	game.load.image('blue_plus', 'assets/blue_plus.png'); //test
-	game.load.image('first_aid', 'assets/firstaid.png'); //test
+	game.load.image('heart', 'assets/firstaid.png'); //test
 	//My code ---Adding sound effects and background theme ---//test
 	game.load.audio('background_theme', 'sounds/luigimansionbrawl_theme.m4a'); //test
 	game.load.audio('player_shoot_sound', 'sounds/1_player_shoot_sound.wav'); //test
@@ -66,6 +66,8 @@ var livingEnemies = [];
 var health = 100; //test
 var healthText; //test
 var healthString = ''; //test
+
+var hearts; //test
 
 var sound; //test
 var music; //test
@@ -112,6 +114,11 @@ function create() {
     aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
     createAliens();
+	
+	//My code---The hearts / first aid //test
+	hearts = game.add.group();
+    hearts.enableBody = true;
+    hearts.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  The score
     //scoreString = 'Score : '; //original
@@ -189,6 +196,28 @@ function createAliens () {
 
     //  When the tween loops it calls descend
     tween.onLoop.add(descend, this);
+}
+
+//My code----Creating hearts that give health-----------------
+function createHearts () {
+
+	for (var x = 0; x < 4; x++)
+     {
+        //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
+		var heart = hearts.create(400, 100 + (y * 50), 'heart'); //test
+			
+        heart.anchor.setTo(0.5, 0.5); 
+        heart.body.moves = false;
+    }
+
+    hearts.x = 100;
+    hearts.y = 50;
+
+    //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+    var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true); //original
+
+    //  When the tween loops it calls descend
+    //tween.onLoop.add(descend, this); //original
 }
 
 function setupInvader (invader) {
@@ -291,6 +320,7 @@ function update() {
 		
 		//My code---------
 		game.physics.arcade.overlap(player, aliens, enemyBodyHitsPlayer, null, this); //test
+		game.physics.arcade.overlap(player, hearts, heartHitsPlayer, null, this); //test
     }
 
 }
@@ -426,6 +456,22 @@ function enemyBodyHitsPlayer (player, invader) {
 	//My code --- play player death sound
 	sound = game.add.audio("player_death_sound"); //test
 	sound.play(); //test
+
+}
+
+//My code---Hearts hit player
+function heartHitsPlayer (player, heart) {
+    
+    heart.kill();
+	
+	//My code---------
+	health += 50; //test
+	healthText.text = healthString + health; //test
+
+	
+	//My code --- play recovery sound
+	//sound = game.add.audio("player_death_sound"); //test
+	//sound.play(); //test
 
 }
 
