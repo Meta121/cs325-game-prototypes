@@ -38,7 +38,7 @@ function preload() {
 	game.load.audio('enemy_shoot_sound', 'sounds/5_enemy_shoot_sound.wav'); //test
 	game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
 	game.load.audio('enemy_death_sound', 'sounds/pacman_death_sound.m4a'); //test
-	
+	game.load.audio('power_up_sound', 'sounds/oneup_sound.m4a'); //test
 
 }
 
@@ -511,13 +511,13 @@ function heartHitsPlayer (player, heart) {
 	healthText.text = healthString + health; //test
 
 	
-	//My code --- play recovery sound
-	//sound = game.add.audio("player_death_sound"); //test
-	//sound.play(); //test
+	//My code --- play power up sound
+	sound = game.add.audio("power_up_sound"); //test
+	sound.play(); //test
 
 }
 
-//My code---Hearts hit player
+//My code---blue plus hits player
 function blueplusHitsPlayer (player, blue_plus) {
     
     blue_plus.kill();
@@ -526,9 +526,9 @@ function blueplusHitsPlayer (player, blue_plus) {
 	blaster_type = 1; //test
 
 	
-	//My code --- play recovery sound
-	//sound = game.add.audio("player_death_sound"); //test
-	//sound.play(); //test
+	//My code --- play power up sound
+	sound = game.add.audio("power_up_sound"); //test
+	sound.play(); //test
 
 }
 
