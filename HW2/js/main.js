@@ -202,7 +202,8 @@ function createAliens () {
 //My code----Creating hearts that give health-----------------
 function createHearts () {
 
-	for (var x = 0; x < 4; x++)
+	//for (var x = 0; x < 4; x++) //original
+	for (var x = 0; x < 4; x++) //test
      {
         //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
 		var heart = hearts.create(x * 48, 700, 'heart'); //test
