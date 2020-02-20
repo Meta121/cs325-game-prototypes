@@ -583,9 +583,16 @@ function restart () {
     //  And brings the aliens back from the dead :)
     aliens.removeAll();
     createAliens();
+	
 
     //revives the player
     player.revive();
+	
+	//My code ---Reseting the player to default location when they revive
+	//player.reset(x,y); //test
+	player.reset(400, 500); //test
+	
+	
     //hides the text
     stateText.visible = false;
 
