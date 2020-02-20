@@ -639,6 +639,10 @@ function restart () {
     //lives.callAll('revive'); //original
 	/* -My code----------------
 	*/
+	
+	//  And brings the aliens back from the dead :) //test //Remove all aliens at the very beginning.
+    aliens.removeAll();
+	
 	health = 100; //test
 	healthText.text = healthString + health; //test
 	
@@ -652,10 +656,11 @@ function restart () {
 	//player.reset(x,y); //test
 	player.reset(400, 500); //test
 	
-	
-    //  And brings the aliens back from the dead :)
+	/*
+    //  And brings the aliens back from the dead :) //original
     aliens.removeAll();
     createAliens();
+	*/
 	
 	//My code--- Deleting current items and adding new ones back in.
 	hearts.removeAll(); //test
@@ -677,6 +682,9 @@ function restart () {
 	
     //hides the text
     stateText.visible = false;
+	
+	//My code--- Revive certain things at the very end
+	createAliens(); //test
 
 }
 
