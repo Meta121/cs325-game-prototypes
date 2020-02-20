@@ -185,7 +185,7 @@ function create() {
 function createAliens () {
 
     //for (var y = 0; y < 4; y++) //original
-	for (var y = 0; y < 7; y++) 
+	for (var y = 0; y < 4; y++) 
     {
         //for (var x = 0; x < 10; x++) //original
 		for (var x = 0; x < 20; x++) //test
