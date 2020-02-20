@@ -206,7 +206,7 @@ function createHearts () {
 	for (var x = 1; x < 5; x++) //test
      {
         //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
-		var heart = hearts.create(x * 48, 500, 'heart'); //test
+		var heart = hearts.create((x * 100) + 200, 500, 'heart'); //test
 			
         heart.anchor.setTo(0.5, 0.5); 
         heart.body.moves = false;
@@ -604,6 +604,11 @@ function restart () {
     //  And brings the aliens back from the dead :)
     aliens.removeAll();
     createAliens();
+	
+	//My code--- Deleting current items and adding new ones back in.
+	hearts.removeAll(); //test
+    createHearts(); //test
+	
 	
 	/*
     //revives the player
