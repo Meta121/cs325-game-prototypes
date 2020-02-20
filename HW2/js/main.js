@@ -576,8 +576,13 @@ function restart () {
     
     //resets the life count
     //lives.callAll('revive'); //original
+	/* -My code----------------
+	*/
 	health = 100; //test
 	healthText.text = healthString + health; //test
+	
+	score = 0; //test //Reset the score to 0.
+    scoreText.text = scoreString + score; //test
 	
 	//revives the player
     player.revive();
