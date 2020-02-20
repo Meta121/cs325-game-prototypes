@@ -279,7 +279,7 @@ function update() {
         game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this); //original
 		
 		//My code---------
-		game.physics.arcade.overlap(player, aliens enemyBodyHitsPlayer, null, this); //test
+		game.physics.arcade.overlap(player, aliens, enemyBodyHitsPlayer, null, this); //test
     }
 
 }
