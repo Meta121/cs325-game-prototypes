@@ -113,12 +113,13 @@ function create() {
     aliens.enableBody = true;
     aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
-    createAliens();
+    createAliens(); //original
 	
 	//My code---The hearts / first aid //test
 	hearts = game.add.group();
     hearts.enableBody = true;
     hearts.physicsBodyType = Phaser.Physics.ARCADE;
+	createHearts(); //test
 
     //  The score
     //scoreString = 'Score : '; //original
