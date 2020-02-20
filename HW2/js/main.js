@@ -184,12 +184,14 @@ function create() {
 
 function createAliens () {
 
-    for (var y = 0; y < 4; y++)
+    //for (var y = 0; y < 4; y++) //original
+	for (var y = 0; y < 7; y++) 
     {
-        for (var x = 0; x < 10; x++)
+        //for (var x = 0; x < 10; x++) //original
+		for (var x = 0; x < 20; x++) //test
         {
             //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
-			var alien = aliens.create(x * 48, y * 50, 'invader'); //test
+			var alien = aliens.create(x * 30, y * 50, 'invader'); //test
 			
             alien.anchor.setTo(0.5, 0.5); 
             //alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true); //original //creates (or sets) the 'fly' animation
@@ -203,7 +205,7 @@ function createAliens () {
 
     //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
     //var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true); //original
-	var tween = game.add.tween(aliens).to( { y: 2000 }, 2000, Phaser.Easing.Linear.None, true, -1000, 1000, true);
+	var tween = game.add.tween(aliens).to( { y: 2000 }, 2000, Phaser.Easing.Linear.None, true, -100, 100, true);
 	
     //  When the tween loops it calls descend
     tween.onLoop.add(descend, this);
