@@ -69,6 +69,9 @@ var healthString = ''; //test
 
 var hearts; //test
 
+var blue_plus; //test
+var blue_plus_group; //test
+
 var sound; //test
 var music; //test
 
@@ -120,6 +123,12 @@ function create() {
     hearts.enableBody = true;
     hearts.physicsBodyType = Phaser.Physics.ARCADE;
 	createHearts(); //test
+	
+	//My code---The blue plusses //test
+	blue_plus_group = game.add.group();
+    blue_plus_group.enableBody = true;
+    blue_plus_group.physicsBodyType = Phaser.Physics.ARCADE;
+	createBluePlusGroup(); //test
 
     //  The score
     //scoreString = 'Score : '; //original
@@ -206,7 +215,7 @@ function createHearts () {
 	for (var x = 1; x < 5; x++) //test
      {
         //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
-		var heart = hearts.create((x * 100) + 200, 500, 'heart'); //test
+		var heart = hearts.create((x * 100) + 100, 500, 'heart'); //test
 			
         heart.anchor.setTo(0.5, 0.5); 
         heart.body.moves = false;
@@ -220,6 +229,23 @@ function createHearts () {
 
     //  When the tween loops it calls descend
     //tween.onLoop.add(descend, this); //original
+}
+
+//My code----Blue Plusses that give a power up that changes blaster type-----------------
+function createBluePlusGroup() {
+
+	//for (var x = 0; x < 4; x++) //original
+	for (var x = 1; x < 2; x++) //test
+     {
+        //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
+		var blue_plus = blue_plus_group.create((x * 100) + 100, 400, 'blue_plus'); //test
+			
+        blue_plus.anchor.setTo(0.5, 0.5); 
+        blue_plus.body.moves = false;
+    }
+
+    blue_plus_group.x = 100;
+    blue_plus_group.y = 50;
 }
 
 function setupInvader (invader) {
@@ -323,6 +349,7 @@ function update() {
 		//My code---------
 		game.physics.arcade.overlap(player, aliens, enemyBodyHitsPlayer, null, this); //test
 		game.physics.arcade.overlap(player, hearts, heartHitsPlayer, null, this); //test
+		game.physics.arcade.overlap(player, blue_plus_group, blueplusHitsPlayer, null, this); //test
     }
 
 }
@@ -484,6 +511,21 @@ function heartHitsPlayer (player, heart) {
 
 }
 
+//My code---Hearts hit player
+function blueplusHitsPlayer (player, blue_plus) {
+    
+    blue_plus.kill();
+	
+	//My code---------
+	blaster_type = 1; //test
+
+	
+	//My code --- play recovery sound
+	//sound = game.add.audio("player_death_sound"); //test
+	//sound.play(); //test
+
+}
+
 
 function enemyFires () {
 
@@ -608,6 +650,10 @@ function restart () {
 	//My code--- Deleting current items and adding new ones back in.
 	hearts.removeAll(); //test
     createHearts(); //test
+	
+	blue_plus_group.removeAll();
+    createBluePlusGroup();
+	blaster_type = 0; //test //Reset blaster type back to the default which is 0.
 	
 	
 	/*
