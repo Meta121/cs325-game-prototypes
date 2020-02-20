@@ -205,7 +205,7 @@ function createHearts () {
 	for (var x = 0; x < 4; x++)
      {
         //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
-		var heart = hearts.create(400, 100 + (y * 50), 'heart'); //test
+		var heart = hearts.create(x * 48, 700, 'heart'); //test
 			
         heart.anchor.setTo(0.5, 0.5); 
         heart.body.moves = false;
