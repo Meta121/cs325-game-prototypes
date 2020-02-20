@@ -203,10 +203,10 @@ function createAliens () {
 function createHearts () {
 
 	//for (var x = 0; x < 4; x++) //original
-	for (var x = 0; x < 4; x++) //test
+	for (var x = 1; x < 5; x++) //test
      {
         //var alien = aliens.create(x * 48, y * 50, 'invader'); //original
-		var heart = hearts.create(x * 48, 700, 'heart'); //test
+		var heart = hearts.create(x * 48, 500, 'heart'); //test
 			
         heart.anchor.setTo(0.5, 0.5); 
         heart.body.moves = false;
@@ -430,6 +430,13 @@ function enemyBodyHitsPlayer (player, invader) {
         live.kill(); //original
     }
 	*/
+	
+	//My code---------
+	invader.kill(); //test //Kill invader that was touched
+	//My code -------- Decreasing score
+	score -= 200; //test
+    scoreText.text = scoreString + score; //test
+	
 	
 	//My code---Made it so you die when you have lower than 1 HP but lose health if you have greater than or equal to 1 health------
 	health -= 50; //test
