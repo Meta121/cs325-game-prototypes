@@ -589,8 +589,8 @@ function fireBullet () {
 function fireThreeBullet () {
 
     //  To avoid them being allowed to fire too fast we set a time limit
-    //if (game.time.now > bulletTime)
-    //{
+    if (game.time.now > bulletTime)
+    {
         //  Grab the first bullet we can from the pool
         bullet = bullets.getFirstExists(false);
 
@@ -599,7 +599,7 @@ function fireThreeBullet () {
             //  And fire it
             bullet.reset(player.x, player.y + 8); //original
             bullet.body.velocity.y = -400; //original
-            bulletTime = game.time.now + 200; //original
+            //bulletTime = game.time.now + 200; //original
 			
 			bullet = bullets.getFirstExists(false);
 			bullet.reset(player.x + 20, player.y + 8); //test //Fire 2nd bullet
@@ -608,8 +608,10 @@ function fireThreeBullet () {
 			bullet = bullets.getFirstExists(false);
 			bullet.reset(player.x - 20, player.y + 8); //test //Fire 3rd bullet
             bullet.body.velocity.y = -400; //test
+			
+			bulletTime = game.time.now + 200; //test
         }
-    //}
+    }
 	//My code --- play player shoot sound
 	sound = game.add.audio("player_shoot_sound"); //test
 	sound.play(); //test
