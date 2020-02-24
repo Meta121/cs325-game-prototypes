@@ -132,6 +132,9 @@ function make_main_game_state( game )
 	function restartGame() { //test
 		// Start the 'main' state, which restarts the game
 		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
 	//},
 	}
 
