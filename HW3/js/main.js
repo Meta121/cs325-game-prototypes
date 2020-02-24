@@ -92,7 +92,7 @@ function make_main_game_state( game )
 		
 		game.physics.arcade.overlap(
 		this.bird, this.pipes, this.restartGame, null, this);
-		}
+	}
     
     //------------------------------------------------------------------------------------
 	// Make the bird jump 
