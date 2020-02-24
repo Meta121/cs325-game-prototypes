@@ -137,7 +137,7 @@ function restartGame() { //test
     // Start the 'main' state, which restarts the game
     game.state.start('main');
 //},
-)
+}
 
 //addOnePipe: function(x, y) { //original
 function addOnePipe(x, y) //test
