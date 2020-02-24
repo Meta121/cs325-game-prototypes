@@ -122,7 +122,7 @@ window.onload = function() {
 	
 	
 };
-function create() {
+
 // Make the bird jump 
 //jump: function() { //original
 function jump() { //test
@@ -140,7 +140,7 @@ function restartGame() { //test
 }
 
 //addOnePipe: function(x, y) { //original
-function addOnePipe(x, y) //test
+function addOnePipe(x, y) { //test
     // Create a pipe at the position x and y
     var pipe = game.add.sprite(x, y, 'pipe');
 
