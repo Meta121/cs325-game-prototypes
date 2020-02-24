@@ -56,7 +56,9 @@ function make_main_game_state( game )
 
 		// Call the 'jump' function when the spacekey is hit
 		var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-		spaceKey.onDown.add(this.jump, this); 
+		//spaceKey.onDown.add(this.jump, this); //original
+		spaceKey.onDown.add(jump); //test
+		
 		
 		
 		// Create an empty group
