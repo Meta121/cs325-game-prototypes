@@ -13,11 +13,16 @@ function make_main_game_state( game )
 		// Load the bird sprite
 		game.load.image('bird', 'assets/bird.png'); 
 		game.load.image('pipe', 'assets/pipe.png');
+		
+		
+		
+		
+		game.load.audio('background_theme', 'sounds/initialD_dejavu_background_theme.m4a'); //test
     }
     
     var bouncy;
 	
-	//----
+	//--Variables that I had to make for code to work-------
 	var bird;
 	var jump;
 	var pipes;
@@ -25,6 +30,9 @@ function make_main_game_state( game )
 	var score;
 	var timer;
 	var labelScore;
+	
+	//--My new variables-------
+	var music; //test
 	
 	
     
@@ -80,6 +88,11 @@ function make_main_game_state( game )
 		score = 0;
 		labelScore = game.add.text(20, 20, "0", { font: "30px Arial", fill: "#ffffff" });   
 		
+		
+		//--My code-----------------------------------------
+		//My code--- Playing background theme
+		music = game.add.audio("background_theme"); //test
+		music.play('', 0, 1, true); //test
 	}
     
     function update() {
