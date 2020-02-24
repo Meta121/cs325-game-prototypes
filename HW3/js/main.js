@@ -122,20 +122,25 @@ window.onload = function() {
 	
 	
 };
-
+function create() {
 // Make the bird jump 
-jump: function() {
+//jump: function() { //original
+function jump() { //test
     // Add a vertical velocity to the bird
     this.bird.body.velocity.y = -350;
-},
+//}, original
+} //test
 
 // Restart the game
-restartGame: function() {
+//restartGame: function() { //original
+function restartGame() { //test
     // Start the 'main' state, which restarts the game
     game.state.start('main');
-},
+//},
+)
 
-addOnePipe: function(x, y) {
+//addOnePipe: function(x, y) { //original
+function addOnePipe(x, y) //test
     // Create a pipe at the position x and y
     var pipe = game.add.sprite(x, y, 'pipe');
 
@@ -151,9 +156,11 @@ addOnePipe: function(x, y) {
     // Automatically kill the pipe when it's no longer visible 
     pipe.checkWorldBounds = true;
     pipe.outOfBoundsKill = true;
-},
+//},
+}
 
-addRowOfPipes: function() {
+//addRowOfPipes: function() { //original
+function addRowOfPipes() { //test
     // Randomly pick a number between 1 and 5
     // This will be the hole position
     var hole = Math.floor(Math.random() * 5) + 1;
@@ -166,4 +173,5 @@ addRowOfPipes: function() {
 	
 	this.score += 1;
 	this.labelScore.text = this.score;  
-},
+//},
+}
