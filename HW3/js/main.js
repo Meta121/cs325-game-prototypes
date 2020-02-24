@@ -23,6 +23,7 @@ function make_main_game_state( game )
 	var pipes;
 	//var hole;
 	var score;
+	var timer;
 	
 	
     
