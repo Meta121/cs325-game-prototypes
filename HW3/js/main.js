@@ -24,6 +24,7 @@ function make_main_game_state( game )
 	//var hole;
 	var score;
 	var timer;
+	var labelScore;
 	
 	
     
