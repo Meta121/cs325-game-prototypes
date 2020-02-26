@@ -215,7 +215,7 @@ function make_main_game_state( game )
 	//My code---Walls hit playe
 	function pipeHitsPlayer(player, pipe) {
     
-		pipekill();
+		pipe.kill();
 	
 		//My code---------
 		score -= 10; //test
@@ -322,67 +322,32 @@ window.onload = function() {
     var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
 	//var game = new Phaser.Game(400, 490); //Original given
     
-    game.state.add( "main", make_main_game_state( game ) );
+    game.state.add( "main", make_main_game_state( game ) ); //original
+	
+	//game.state.add( "start", make_main_game_state(game) ); //test
+	//game.state.add( "end", make_main_game_state(game) ); //test
     
-    game.state.start( "main" );
+    game.state.start( "main" ); //original
+	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
+	//game.state.start( "start" ); //test
 	
 	//---------------------------------------------------------------------------------
 	
 	
 };
 
-//Functions
-/*
-// Make the bird jump 
-//jump: function() { //original
-function jump() { //test
-    // Add a vertical velocity to the bird
-    bird.body.velocity.y = -350;
-//}, original
-} //test
-
-// Restart the game
-//restartGame: function() { //original
-function restartGame() { //test
-    // Start the 'main' state, which restarts the game
-    game.state.start('main');
-//},
-}
-
-//addOnePipe: function(x, y) { //original
-function addOnePipe(x, y) { //test
-    // Create a pipe at the position x and y
-    var pipe = game.add.sprite(x, y, 'pipe');
-
-    // Add the pipe to our previously created group
-    pipes.add(pipe);
-
-    // Enable physics on the pipe 
-    game.physics.arcade.enable(pipe);
-
-    // Add velocity to the pipe to make it move left
-    pipe.body.velocity.x = -200; 
-
-    // Automatically kill the pipe when it's no longer visible 
-    pipe.checkWorldBounds = true;
-    pipe.outOfBoundsKill = true;
-//},
-}
-
-//addRowOfPipes: function() { //original
-function addRowOfPipes() { //test
-    // Randomly pick a number between 1 and 5
-    // This will be the hole position
-    var hole = Math.floor(Math.random() * 5) + 1;
-
-    // Add the 6 pipes 
-    // With one big hole at position 'hole' and 'hole + 1'
-    for (var i = 0; i < 8; i++)
-        if (i != hole && i != hole + 1) 
-            addOnePipe(400, i * 60 + 10);   
+//---------------------My code. More functions such as for the start and end state.-----------------------------------------------------------
+function make_start_state(game)
+{
+	//Create function
+	function create() {
+	}
 	
-	score += 1;
-	labelScore.text = score;  
-//},
+	//Update function
+	function update() {
+	}
+	
+	//Start Game function
+	function startGame(pointer) {
+	}
 }
-*/
