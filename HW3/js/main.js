@@ -12,14 +12,14 @@ function make_main_game_state( game )
 		//-------------------------------------------------------------------------
 		// Load the bird sprite
 		//game.load.image('bird', 'assets/bird.png'); //original
-		game.load.image('bird', 'assets/running_man.png'); //test
+		game.load.image('bird', 'assets/player.png'); //test
 		
 		//game.load.image('pipe', 'assets/pipe.png'); //original
-		game.load.image('pipe', 'assets/tabby_cat.png'); //test
+		game.load.image('pipe', 'assets/cat_wall.png'); //test
 		
 		
 		//--My code-----------------------------------------------
-		game.load.image('background_art', 'assets/background_city_street_road.png'); //original
+		game.load.image('background_art', 'assets/background_city_street_road.jpg'); //original
 		
 		
 		
