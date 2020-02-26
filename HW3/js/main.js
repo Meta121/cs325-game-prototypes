@@ -149,7 +149,8 @@ function make_main_game_state( game )
 		
 		// If the bird is out of the screen (too high or too low)
 		// Call the 'restartGame' function
-		if (bird.y < 0 || bird.y > 490) {
+		if (bird.y < 0 || bird.y > 490) { //original
+		//if (bird.y < 0 || bird.y > 800) { //test
 			//restartGame(); //original
 			restartGame();
 		}
@@ -184,14 +185,15 @@ function make_main_game_state( game )
 	//},
 	}
 	
-	//My code---Hearts hit player
+	//My code---Celebrities hit player
 	function celebrityHitsPlayer(player, celebrity) {
     
 		celebrity.kill();
 	
 		//My code---------
 		score += 10; //test
-		scoreText.text = scoreString + score; //test
+		labelScore.text = scoreString + score; //test
+		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
 	
 		//My code --- play power up sound
