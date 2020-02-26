@@ -149,14 +149,23 @@ function make_main_game_state( game )
 		
 		// If the bird is out of the screen (too high or too low)
 		// Call the 'restartGame' function
-		if (bird.y < 0 || bird.y > 490) { //original
-		//if (bird.y < 0 || bird.y > 800) { //test
+		//if (bird.y < 0 || bird.y > 490) { //original
+		if (bird.y < 0 || bird.y > 800) { //test
 			//restartGame(); //original
 			restartGame();
 		}
 		
-		game.physics.arcade.overlap(bird, pipes, restartGame, null); //original
+		//game.physics.arcade.overlap(bird, pipes, restartGame, null); //original
+		game.physics.arcade.overlap(bird, pipes, pipeHitsPlayer, null); //test
 		game.physics.arcade.overlap(bird, celebrities, celebrityHitsPlayer, null); //test
+		
+		//--My code.Checks to see if total score is 500 or greater. If so, go to the end screen.
+		/*
+		if (score >= 500) {
+			
+			//Go to the end screen
+		}
+		*/
 	}
     
     //------------------------------------------------------------------------------------
@@ -164,7 +173,8 @@ function make_main_game_state( game )
 	//jump: function() { //original
 	function jump() { //test
 		// Add a vertical velocity to the bird
-		bird.body.velocity.y = -350;
+		//bird.body.velocity.y = -350; //original
+		bird.body.velocity.y = -300; //original
 		
 		//Playing a sound effect when you jump.
 		//My code --- plays player_jump_sound_effect
@@ -201,6 +211,23 @@ function make_main_game_state( game )
 		//sound.play(); //test
 		
 	}
+	
+	//My code---Walls hit playe
+	function pipeHitsPlayer(player, pipe) {
+    
+		pipekill();
+	
+		//My code---------
+		score -= 10; //test
+		labelScore.text = scoreString + score; //test
+		//scoreText.text = scoreString + score; //test
+		//labelScore.text = score; //test
+	
+		//My code --- play power up sound
+		//sound = game.add.audio("power_up_sound"); //test
+		//sound.play(); //test
+		
+	}
 
 	//addOnePipe: function(x, y) { //original
 	function addOnePipe(x, y) { //test
@@ -214,7 +241,8 @@ function make_main_game_state( game )
 		game.physics.arcade.enable(pipe);
 
 		// Add velocity to the pipe to make it move left
-		pipe.body.velocity.x = -200; 
+		//pipe.body.velocity.x = -200; //original
+		pipe.body.velocity.x = -250; //test
 
 		// Automatically kill the pipe when it's no longer visible 
 		pipe.checkWorldBounds = true;
@@ -238,7 +266,8 @@ function make_main_game_state( game )
 
 		// Add velocity to the pipe to make it move left
 		//pipe.body.velocity.x = -200; //original 
-		celebrity.body.velocity.x = -250; //test
+		//celebrity.body.velocity.x = -250; //test
+		celebrity.body.velocity.x = -300; //test
 
 		// Automatically kill the pipe when it's no longer visible 
 		//pipe.checkWorldBounds = true; //original
@@ -258,7 +287,8 @@ function make_main_game_state( game )
 
 			// Add the 6 pipes 
 		// With one big hole at position 'hole' and 'hole + 1'
-		for (var i = 0; i < 8; i++)
+		//for (var i = 0; i < 8; i++) //original
+		for (var i = 0; i < 9; i++) //test
 			if (i != hole && i != hole + 1) 
 				addOnePipe(400, i * 60 + 10); 
 			//---My added code-----------------------------------------
@@ -266,8 +296,8 @@ function make_main_game_state( game )
 				addOneCelebrity(400, i * 60 + 10); //test
 			}
 		
-		score += 1; //original
-		labelScore.text = score;  
+		//score += 1; //original
+		//labelScore.text = score; //original
 	//},
 	}
 	
