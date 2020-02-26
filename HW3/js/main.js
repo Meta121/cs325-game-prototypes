@@ -19,11 +19,17 @@ function make_main_game_state( game )
 		
 		
 		//--My code-----------------------------------------------
+		game.load.image('celebrity', 'assets/celebrity_collectable.png'); //test
+		
 		game.load.image('background_art', 'assets/background_city_street_road.jpg'); //original
 		
 		
 		
 		game.load.audio('background_theme', 'sounds/initialD_dejavu_background_theme.m4a'); //test
+		game.load.audio('player_jump_sound_effect', 'sounds/quake_jump_sound_effect.m4a'); //test
+		
+		
+		
     }
     
     var bouncy;
@@ -38,6 +44,12 @@ function make_main_game_state( game )
 	var labelScore;
 	
 	//--My new variables-------
+	var celebrity; //test
+	var celebrities; //test
+	
+	var scoreString = ''; //test
+	
+	
 	var music; //test
 	var sound; //test
 	
@@ -96,13 +108,22 @@ function make_main_game_state( game )
 		// Create an empty group
 		pipes = game.add.group(); 
 		
+		//Creating a celebrities group
+		celebrities = game.add.group(); //test
+		
 		timer = game.time.events.loop(1500, addRowOfPipes); 
 		
-		score = 0;
-		labelScore = game.add.text(20, 20, "0", { font: "30px Arial", fill: "#ffffff" });   
+		score = 0; //original
+		scoreString = 'Score: '; //test
+		//labelScore = game.add.text(20, 20, "0", { font: "30px Arial", fill: "#ffffff" }); //original
+		labelScore = game.add.text(20, 30, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
 		
 		
 		//--My code-----------------------------------------
+		
+		
+		
+		
 		//My code--- Playing background theme
 		music = game.add.audio("background_theme"); //test
 		music.play('', 0, 1, true); //test
@@ -122,7 +143,8 @@ function make_main_game_state( game )
 		//--------------------------------------------------------------------------------------------------
 		
 		//  Making the background scroll to the left.
-		background_art.tilePosition.x -= 2; //test
+		//background_art.tilePosition.x -= 2; //test
+		background_art.tilePosition.x -= 10; //test
 		
 		
 		// If the bird is out of the screen (too high or too low)
@@ -132,8 +154,8 @@ function make_main_game_state( game )
 			restartGame();
 		}
 		
-		game.physics.arcade.overlap(
-		bird, pipes, restartGame, null);
+		game.physics.arcade.overlap(bird, pipes, restartGame, null); //original
+		game.physics.arcade.overlap(bird, celebrities, celebrityHitsPlayer, null); //test
 	}
     
     //------------------------------------------------------------------------------------
@@ -144,7 +166,9 @@ function make_main_game_state( game )
 		bird.body.velocity.y = -350;
 		
 		//Playing a sound effect when you jump.
-		
+		//My code --- plays player_jump_sound_effect
+		sound = game.add.audio("player_jump_sound_effect"); //test
+		sound.play(); //test
 		
 	//}, original
 	} //test
@@ -158,6 +182,22 @@ function make_main_game_state( game )
 		// My added code ---------------------
 		game.sound.stopAll();//test
 	//},
+	}
+	
+	//My code---Hearts hit player
+	function celebrityHitsPlayer(player, celebrity) {
+    
+		celebrity.kill();
+	
+		//My code---------
+		score += 10; //test
+		scoreText.text = scoreString + score; //test
+		//labelScore.text = score; //test
+	
+		//My code --- play power up sound
+		//sound = game.add.audio("power_up_sound"); //test
+		//sound.play(); //test
+		
 	}
 
 	//addOnePipe: function(x, y) { //original
@@ -179,6 +219,34 @@ function make_main_game_state( game )
 		pipe.outOfBoundsKill = true;
 	//},
 	}
+	
+	//---My code-----------------------------------------
+	function addOneCelebrity(x, y) { //test
+		// Create a pipe at the position x and y
+		//var pipe = game.add.sprite(x, y, 'pipe'); //original
+		celebrity = game.add.sprite(x, y, 'celebrity'); //test
+
+		// Add the pipe to our previously created group
+		//pipes.add(pipe); //original
+		celebrities.add(celebrity); //test
+
+		// Enable physics on the pipe 
+		//game.physics.arcade.enable(pipe); //oringinal
+		game.physics.arcade.enable(celebrity); //test
+
+		// Add velocity to the pipe to make it move left
+		//pipe.body.velocity.x = -200; //original 
+		celebrity.body.velocity.x = -250; //test
+
+		// Automatically kill the pipe when it's no longer visible 
+		//pipe.checkWorldBounds = true; //original
+		//pipe.outOfBoundsKill = true; //original
+		celebrity.checkWorldBounds = true; //test
+		celebrity.outOfBoundsKill = true; //test
+		
+		
+	//},
+	}
 
 //addRowOfPipes: function() { //original
 	function addRowOfPipes() { //test
@@ -190,7 +258,11 @@ function make_main_game_state( game )
 		// With one big hole at position 'hole' and 'hole + 1'
 		for (var i = 0; i < 8; i++)
 			if (i != hole && i != hole + 1) 
-				addOnePipe(400, i * 60 + 10);   
+				addOnePipe(400, i * 60 + 10); 
+			//---My added code-----------------------------------------
+			else { //test
+				addOneCelebrity(400, i * 60 + 10); //test
+			}
 		
 		score += 1; //original
 		labelScore.text = score;  
