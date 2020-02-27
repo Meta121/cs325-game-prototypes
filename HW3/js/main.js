@@ -55,6 +55,8 @@ function make_main_game_state( game )
 	
 	var background_art; //test
 	
+	var leftClickMouse; //test
+	
 	
     
     function create() {
@@ -101,7 +103,7 @@ function make_main_game_state( game )
 		// Call the 'jump' function when the spacekey is hit
 		//var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
 		//var spaceKey = game.input.activePointer.isDown; //test
-		var leftClickMouse = game.input.activePointer.leftButton.isDown; //test
+		//leftClickMouse = game.input.activePointer.leftButton.isDown; //test
 		
 		
 		//spaceKey.onDown.add(jump, this); //original
@@ -183,6 +185,7 @@ function make_main_game_state( game )
 			game.state.start('victory_end'); //test
 		}
 		
+		leftClickMouse = game.input.activePointer.leftButton.isDown; //test
 		if (leftClickMouse == true) //test
 		{
 			jump(); //test
