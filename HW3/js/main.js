@@ -21,7 +21,7 @@ function make_main_game_state( game )
 		//--My code-----------------------------------------------
 		game.load.image('celebrity', 'assets/celebrity_collectable.png'); //test
 		
-		game.load.image('background_art', 'assets/background_city_street_road.jpg'); //original
+		game.load.image('background_art', 'assets/background_city_street_road.jpg'); //test
 		
 		
 		
@@ -160,12 +160,13 @@ function make_main_game_state( game )
 		game.physics.arcade.overlap(bird, celebrities, celebrityHitsPlayer, null); //test
 		
 		//--My code.Checks to see if total score is 500 or greater. If so, go to the end screen.
-		/*
+		
 		if (score >= 500) {
 			
 			//Go to the end screen
+			game.state.start('end'); //test
 		}
-		*/
+		
 	}
     
     //------------------------------------------------------------------------------------
@@ -324,8 +325,8 @@ window.onload = function() {
     
     game.state.add( "main", make_main_game_state( game ) ); //original
 	
-	//game.state.add( "start", make_main_game_state(game) ); //test
-	//game.state.add( "end", make_main_game_state(game) ); //test
+	//game.state.add( "start", make_start_state(game) ); //test
+	game.state.add( "end", make_end_state(game) ); //test
     
     game.state.start( "main" ); //original
 	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
@@ -341,6 +342,19 @@ function make_start_state(game)
 {
 	//Create function
 	function create() {
+		
+		this.music = null;
+		this.playButton = null;
+		//------------------------
+		
+		//this.music = this.add.audio('titleMusic'); //original
+		this.music = this.add.audio('title_theme'); //test
+		this.music.play();
+
+		this.add.sprite(0, 0, 'titlepage'); //original
+		//this.add.sprite(0, 0, 'title_screen'); //test
+
+		this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
 	}
 	
 	//Update function
@@ -349,5 +363,27 @@ function make_start_state(game)
 	
 	//Start Game function
 	function startGame(pointer) {
+		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
+		this.music.stop();
+
+		//	And start the actual game
+		//this.state.start('Game'); //original
+		this.state.start('main'); //test
 	}
+}
+
+function make_end_state(game)
+{
+	function preload() {
+		game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
+	}
+	
+	function create() {
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'game_over_screen'); //test
+	}
+	
+	function update() {
+	}
+	
 }
