@@ -169,7 +169,7 @@ function make_main_game_state( game )
 			
 			//Go to the end screen
 			game.sound.stopAll(); //test
-			game.state.start('end'); //test
+			game.state.start('victory_end'); //test
 		}
 		
 	}
@@ -333,7 +333,9 @@ window.onload = function() {
 	
 	//game.state.add( "start", make_start_state(game) ); //test
 	game.state.add( "end", make_end_state(game) ); //test
-    
+    game.state.add( "victory_end", make_victory_end_state(game) ); //test
+	
+	
     game.state.start( "main" ); //original
 	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
 	//game.state.start( "start" ); //test
@@ -390,6 +392,25 @@ function make_end_state(game)
 	function preload() {
 		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
 		game.load.image('game_over_screen', 'assets/game_over_screen.jpg'); //test
+	}
+	
+	function create() {
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'game_over_screen'); //test
+	}
+	
+	function update() {
+	}
+	
+	return { "preload": preload, "create": create, "update": update}; //Prof. given code
+	
+}
+
+function make_victory_end_state(game)
+{
+	function preload() {
+		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
+		game.load.image('victory_screen', 'assets/victory_screen.jpg'); //test
 	}
 	
 	function create() {
