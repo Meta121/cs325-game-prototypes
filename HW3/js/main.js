@@ -384,6 +384,7 @@ function make_start_state(game)
 	
 	var background_art; //test
 	var startButton; //test
+	var leftClickMouse; //test
 	
 	//Create function
 	function create() {
@@ -391,12 +392,12 @@ function make_start_state(game)
 		//this.music = null; //og
 		//this.playButton = null; //og
 		this.startButton = null; //test
-		
+		this.leftClickMouse = null; ///test
 		
 		//Adding the background art
 		background_art = game.add.tileSprite(0, 0, 800, 600, 'title_screen'); //test
 		
-		startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+		//startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
 		
 		
 		//------------------------
@@ -414,13 +415,25 @@ function make_start_state(game)
 	//Update function
 	function update() {
 		
+		//-My code. Using Space Bar key to start the game----
 		//if (startButton.isDown) //test
+		/*
 		if (startButton.isDown == true) //test
         {
 			//Go to the main scene. The main part of the game.
 			game.sound.stopAll(); //test
 			game.state.start('main'); //test
         }
+		*/
+		
+		//-My code. Using Mouse Left Click to start the game----
+		leftClickMouse = game.input.activePointer.leftButton.isDown; //test
+		if (leftClickMouse == true) //test
+		{
+			//Go to the main scene. The main part of the game.
+			game.sound.stopAll(); //test
+			game.state.start('main'); //test
+		}
 	}
 	
 	//Start Game function
