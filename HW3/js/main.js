@@ -353,6 +353,9 @@ function make_start_state(game)
 		game.load.image('titlepage', 'assets/game_over_screen.jpg'); //test
 	}
 	
+	
+	var background_art; //test
+	
 	//Create function
 	function create() {
 		
@@ -389,6 +392,11 @@ function make_start_state(game)
 
 function make_end_state(game)
 {
+	
+	
+	var background_art; //test
+	
+	
 	function preload() {
 		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
 		game.load.image('game_over_screen', 'assets/game_over_screen.jpg'); //test
@@ -408,6 +416,9 @@ function make_end_state(game)
 
 function make_victory_end_state(game)
 {
+	
+	var background_art; //test
+	
 	function preload() {
 		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
 		game.load.image('victory_screen', 'assets/victory_screen.jpg'); //test
