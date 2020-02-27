@@ -99,10 +99,17 @@ function make_main_game_state( game )
 		bird.body.gravity.y = 1000;  
 
 		// Call the 'jump' function when the spacekey is hit
-		var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-		//spaceKey.onDown.add(jump, this); //original
-		spaceKey.onDown.add(jump); //test
+		//var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+		//var spaceKey = game.input.activePointer.isDown; //test
+		var leftClickMouse = game.input.activePointer.isDown; //test
 		
+		
+		//spaceKey.onDown.add(jump, this); //original
+		//spaceKey.onDown.add(jump); //test
+		if (leftClickMouse == true) //test
+		{
+			jump(); //test
+		}
 		
 		
 		// Create an empty group
