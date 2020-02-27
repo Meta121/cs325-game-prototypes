@@ -460,6 +460,18 @@ function make_end_state(game)
 		
 	}
 	
+	// Restart the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
+	
+	
 	return { "preload": preload, "create": create, "update": update}; //Prof. given code
 	
 }
@@ -488,6 +500,18 @@ function make_victory_end_state(game)
 	function update() {
 		
 	}
+	
+	// Restart the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
+	
 	
 	return { "preload": preload, "create": create, "update": update}; //Prof. given code
 	
