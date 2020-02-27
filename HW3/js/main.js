@@ -153,6 +153,9 @@ function make_main_game_state( game )
 		if (bird.y < 0 || bird.y > 700) { //test
 			//restartGame(); //original
 			//restartGame(); //test
+			
+			
+			game.sound.stopAll(); //test
 			game.state.start('end'); //test
 		}
 		
@@ -165,6 +168,7 @@ function make_main_game_state( game )
 		if (score >= 500) {
 			
 			//Go to the end screen
+			game.sound.stopAll(); //test
 			game.state.start('end'); //test
 		}
 		
@@ -384,7 +388,8 @@ function make_start_state(game)
 function make_end_state(game)
 {
 	function preload() {
-		game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
+		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
+		game.load.image('game_over_screen', 'assets/game_over_screen.jpg'); //test
 	}
 	
 	function create() {
