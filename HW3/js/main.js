@@ -106,10 +106,12 @@ function make_main_game_state( game )
 		
 		//spaceKey.onDown.add(jump, this); //original
 		//spaceKey.onDown.add(jump); //test
-		if (leftClickMouse == true) //test
+		/*
+		if (leftClickMouse == true) //test //moved
 		{
 			jump(); //test
 		}
+		*/
 		
 		
 		// Create an empty group
@@ -166,6 +168,8 @@ function make_main_game_state( game )
 			game.state.start('end'); //test
 		}
 		
+		
+		
 		//game.physics.arcade.overlap(bird, pipes, restartGame, null); //original
 		game.physics.arcade.overlap(bird, pipes, pipeHitsPlayer, null); //test
 		game.physics.arcade.overlap(bird, celebrities, celebrityHitsPlayer, null); //test
@@ -177,6 +181,11 @@ function make_main_game_state( game )
 			//Go to the end screen
 			game.sound.stopAll(); //test
 			game.state.start('victory_end'); //test
+		}
+		
+		if (leftClickMouse == true) //test
+		{
+			jump(); //test
 		}
 		
 	}
