@@ -56,6 +56,7 @@ function make_main_game_state( game )
 	var background_art; //test
 	
 	var leftClickMouse; //test
+	var restartButton; //test
 	
 	
     
@@ -115,6 +116,9 @@ function make_main_game_state( game )
 		}
 		*/
 		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
 		
 		// Create an empty group
 		pipes = game.add.group(); 
@@ -190,6 +194,8 @@ function make_main_game_state( game )
 		{
 			jump(); //test
 		}
+		
+		
 		
 	}
     
