@@ -349,7 +349,7 @@ function make_start_state(game)
 {
 	//preload function
 	function preload() {
-		game.load.image('title_screen', 'assets/title_screen_2.jpg'); //test
+		game.load.image('title_screen', 'assets/title_screen_2.png'); //test
 	}
 	
 	
