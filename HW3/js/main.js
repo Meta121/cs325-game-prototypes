@@ -150,7 +150,7 @@ function make_main_game_state( game )
 		// If the bird is out of the screen (too high or too low)
 		// Call the 'restartGame' function
 		//if (bird.y < 0 || bird.y > 490) { //original
-		if (bird.y < 0 || bird.y > 700) { //test
+		if (bird.y < 0 || bird.y > 600) { //test
 			//restartGame(); //original
 			//restartGame(); //test
 			
