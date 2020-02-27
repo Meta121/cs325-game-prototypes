@@ -329,17 +329,15 @@ window.onload = function() {
     var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
 	//var game = new Phaser.Game(400, 490); //Original given
     
-    //game.state.add( "main", make_main_game_state( game ) ); //original
-	game.state.add( "start", make_main_game_state( game ) ); //test //Starting game at the start scene.
-	
+    game.state.add( "main", make_main_game_state( game ) ); //original
 	game.state.add( "start", make_start_state(game) ); //test
 	game.state.add( "end", make_end_state(game) ); //test
     game.state.add( "victory_end", make_victory_end_state(game) ); //test
 	
 	
-    game.state.start( "main" ); //original
+   // game.state.start( "main" ); //original
 	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
-	//game.state.start( "start" ); //test
+	game.state.start( "start" ); //test
 	
 	//---------------------------------------------------------------------------------
 	
