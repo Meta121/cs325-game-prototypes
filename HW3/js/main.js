@@ -101,7 +101,7 @@ function make_main_game_state( game )
 		// Call the 'jump' function when the spacekey is hit
 		//var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
 		//var spaceKey = game.input.activePointer.isDown; //test
-		var leftClickMouse = game.input.activePointer.isDown; //test
+		var leftClickMouse = game.input.activePointer.leftButton.isDown; //test
 		
 		
 		//spaceKey.onDown.add(jump, this); //original
