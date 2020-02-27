@@ -254,7 +254,11 @@ function make_main_game_state( game )
 		labelScore.text = scoreString + score; //test
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
-	
+		
+		//Makes the player go upwards after hitting a wall.
+		bird.body.velocity.y = -600; //test
+		
+		
 		//My code --- play power up sound
 		//sound = game.add.audio("power_up_sound"); //test
 		//sound.play(); //test
@@ -374,7 +378,7 @@ function make_start_state(game)
 {
 	//preload function
 	function preload() {
-		game.load.image('title_screen', 'assets/title_screen_2.png'); //test
+		game.load.image('title_screen', 'assets/title_screen_3.png'); //test
 	}
 	
 	
