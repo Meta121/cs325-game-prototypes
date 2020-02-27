@@ -415,7 +415,7 @@ function make_victory_end_state(game)
 	
 	function create() {
 		//Adding the background art
-		background_art = game.add.tileSprite(0, 0, 800, 600, 'game_over_screen'); //test
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'gvictory_screen'); //test
 	}
 	
 	function update() {
