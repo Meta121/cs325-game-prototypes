@@ -150,9 +150,10 @@ function make_main_game_state( game )
 		// If the bird is out of the screen (too high or too low)
 		// Call the 'restartGame' function
 		//if (bird.y < 0 || bird.y > 490) { //original
-		if (bird.y < 0 || bird.y > 800) { //test
+		if (bird.y < 0 || bird.y > 700) { //test
 			//restartGame(); //original
-			restartGame();
+			//restartGame(); //test
+			game.state.start('end'); //test
 		}
 		
 		//game.physics.arcade.overlap(bird, pipes, restartGame, null); //original
