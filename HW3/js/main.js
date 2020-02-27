@@ -27,7 +27,8 @@ function make_main_game_state( game )
 		
 		game.load.audio('background_theme', 'sounds/initialD_dejavu_background_theme.m4a'); //test
 		game.load.audio('player_jump_sound_effect', 'sounds/quake_jump_sound_effect.m4a'); //test
-		
+		game.load.audio('player_cat_collision_sound_effect', 'sounds/robolox_off_sound_effect.m4a'); //test
+		game.load.audio('celebrity_sound_effect', 'sounds/celebrity_thankyou.m4a'); //test
 		
 		
     }
@@ -238,9 +239,9 @@ function make_main_game_state( game )
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
 	
-		//My code --- play power up sound
-		//sound = game.add.audio("power_up_sound"); //test
-		//sound.play(); //test
+		//My code --- plays...
+		sound = game.add.audio("celebrity_sound_effect"); //test
+		sound.play(); //test
 		
 	}
 	
@@ -259,9 +260,9 @@ function make_main_game_state( game )
 		bird.body.velocity.y = -600; //test
 		
 		
-		//My code --- play power up sound
-		//sound = game.add.audio("power_up_sound"); //test
-		//sound.play(); //test
+		//My code ---
+		sound = game.add.audio("player_cat_collision_sound_effect"); //test
+		sound.play(); //test
 		
 	}
 
@@ -383,6 +384,10 @@ function make_start_state(game)
 	
 	
 	var background_art; //test
+	
+	var music; //test
+	var sound; //test
+	
 	var startButton; //test
 	var leftClickMouse; //test
 	
@@ -455,6 +460,9 @@ function make_end_state(game)
 	
 	var background_art; //test
 	
+	var music; //test
+	var sound; //test
+	
 	var restartButton; //test
 	
 	
@@ -497,6 +505,9 @@ function make_victory_end_state(game)
 {
 	
 	var background_art; //test
+	
+	var music; //test
+	var sound; //test
 	
 	var restartButton; //test
 	
