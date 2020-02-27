@@ -207,8 +207,8 @@ function make_main_game_state( game )
 		celebrity.kill();
 	
 		//My code---------
-		//score += 10; //test
-		score += 700; //test
+		score += 10; //test
+		//score += 700; //test //For testing the victory end scene fast.
 		labelScore.text = scoreString + score; //test
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
