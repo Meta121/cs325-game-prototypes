@@ -235,8 +235,8 @@ function make_main_game_state( game )
 		celebrity.kill();
 	
 		//My code---------
-		//score += 10; //test
-		score += 700; //test //For testing the victory end scene fast.
+		score += 10; //test
+		//score += 700; //test //For testing the victory end scene fast.
 		labelScore.text = scoreString + score; //test
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
@@ -382,6 +382,8 @@ function make_start_state(game)
 	//preload function
 	function preload() {
 		game.load.image('title_screen', 'assets/title_screen_3.png'); //test
+		
+		game.load.audio('start_scene_theme', 'sounds/initialD_runninginthe90s_background_theme.m4a'); //test
 	}
 	
 	
