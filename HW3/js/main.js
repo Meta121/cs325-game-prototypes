@@ -202,7 +202,8 @@ function make_main_game_state( game )
 		celebrity.kill();
 	
 		//My code---------
-		score += 10; //test
+		//score += 10; //test
+		score += 700; //test
 		labelScore.text = scoreString + score; //test
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
@@ -340,6 +341,11 @@ window.onload = function() {
 //---------------------My code. More functions such as for the start and end state.-----------------------------------------------------------
 function make_start_state(game)
 {
+	//preload function
+	function preload() {
+		game.load.image('titlepage', 'assets/game_over_screen.jpg'); //test
+	}
+	
 	//Create function
 	function create() {
 		
@@ -348,13 +354,13 @@ function make_start_state(game)
 		//------------------------
 		
 		//this.music = this.add.audio('titleMusic'); //original
-		this.music = this.add.audio('title_theme'); //test
-		this.music.play();
+		//this.music = this.add.audio('title_theme'); //test
+		//this.music.play(); //original
 
-		this.add.sprite(0, 0, 'titlepage'); //original
+		//this.add.sprite(0, 0, 'titlepage'); //original
 		//this.add.sprite(0, 0, 'title_screen'); //test
 
-		this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
+		//this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
 	}
 	
 	//Update function
@@ -364,12 +370,14 @@ function make_start_state(game)
 	//Start Game function
 	function startGame(pointer) {
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		this.music.stop();
+		//this.music.stop(); //original
 
 		//	And start the actual game
 		//this.state.start('Game'); //original
-		this.state.start('main'); //test
+		//this.state.start('main'); //test
 	}
+	
+	return { "preload": preload, "create": create, "update": update, "startGame": startGame}; //test //Prof. given code
 }
 
 function make_end_state(game)
@@ -385,5 +393,7 @@ function make_end_state(game)
 	
 	function update() {
 	}
+	
+	return { "preload": preload, "create": create, "update": update}; //Prof. given code
 	
 }
