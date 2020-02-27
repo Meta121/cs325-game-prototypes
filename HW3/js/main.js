@@ -354,16 +354,20 @@ function make_start_state(game)
 	
 	
 	var background_art; //test
+	var startButton; //test
 	
 	//Create function
 	function create() {
 		
-		this.music = null;
-		this.playButton = null;
+		//this.music = null; //og
+		//this.playButton = null; //og
+		this.startButton = null; //test
 		
 		
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'title_screen'); //test
 		
-		var startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+		startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
 		
 		
 		//------------------------
