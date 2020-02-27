@@ -438,6 +438,8 @@ function make_end_state(game)
 	
 	var background_art; //test
 	
+	var restartButton; //test
+	
 	
 	function preload() {
 		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
@@ -447,9 +449,15 @@ function make_end_state(game)
 	function create() {
 		//Adding the background art
 		background_art = game.add.tileSprite(0, 0, 800, 600, 'game_over_screen'); //test
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
 	}
 	
 	function update() {
+		
+		
 	}
 	
 	return { "preload": preload, "create": create, "update": update}; //Prof. given code
@@ -461,6 +469,8 @@ function make_victory_end_state(game)
 	
 	var background_art; //test
 	
+	var restartButton; //test
+	
 	function preload() {
 		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
 		game.load.image('victory_screen', 'assets/victory_screen.jpg'); //test
@@ -469,9 +479,14 @@ function make_victory_end_state(game)
 	function create() {
 		//Adding the background art
 		background_art = game.add.tileSprite(0, 0, 800, 600, 'victory_screen'); //test
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
 	}
 	
 	function update() {
+		
 	}
 	
 	return { "preload": preload, "create": create, "update": update}; //Prof. given code
