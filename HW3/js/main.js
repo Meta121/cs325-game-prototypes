@@ -25,7 +25,9 @@ function make_main_game_state( game )
 		
 		
 		
+		game.load.audio('start_scene_theme', 'sounds/initialD_runninginthe90s_background_theme.m4a'); //test
 		game.load.audio('background_theme', 'sounds/initialD_dejavu_background_theme.m4a'); //test
+		game.load.audio('end_scene_theme', 'sounds/initialD_nightoffire_background_theme.m4a'); //test
 		game.load.audio('player_jump_sound_effect', 'sounds/quake_jump_sound_effect.m4a'); //test
 		game.load.audio('player_cat_collision_sound_effect', 'sounds/robolox_off_sound_effect.m4a'); //test
 		game.load.audio('celebrity_sound_effect', 'sounds/celebrity_thankyou.m4a'); //test
@@ -233,8 +235,8 @@ function make_main_game_state( game )
 		celebrity.kill();
 	
 		//My code---------
-		score += 10; //test
-		//score += 700; //test //For testing the victory end scene fast.
+		//score += 10; //test
+		score += 700; //test //For testing the victory end scene fast.
 		labelScore.text = scoreString + score; //test
 		//scoreText.text = scoreString + score; //test
 		//labelScore.text = score; //test
@@ -415,6 +417,10 @@ function make_start_state(game)
 		//this.add.sprite(0, 0, 'title_screen'); //test
 
 		//this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
+		
+		//My code--- Playing theme
+		music = game.add.audio("start_scene_theme"); //test
+		music.play('', 0, 1, true); //test
 	}
 	
 	//Update function
@@ -523,6 +529,10 @@ function make_victory_end_state(game)
 		//-My code. Adding a restart button.
 		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
 		restartButton.onDown.add(restartGame); //test
+		
+		//My code--- Playing theme
+		music = game.add.audio("end_scene_theme"); //test
+		music.play('', 0, 1, true); //test
 	}
 	
 	function update() {
