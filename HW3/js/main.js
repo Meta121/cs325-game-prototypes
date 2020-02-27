@@ -329,9 +329,10 @@ window.onload = function() {
     var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
 	//var game = new Phaser.Game(400, 490); //Original given
     
-    game.state.add( "main", make_main_game_state( game ) ); //original
+    //game.state.add( "main", make_main_game_state( game ) ); //original
+	game.state.add( "start", make_main_game_state( game ) ); //test //Starting game at the start scene.
 	
-	//game.state.add( "start", make_start_state(game) ); //test
+	game.state.add( "start", make_start_state(game) ); //test
 	game.state.add( "end", make_end_state(game) ); //test
     game.state.add( "victory_end", make_victory_end_state(game) ); //test
 	
@@ -350,7 +351,7 @@ function make_start_state(game)
 {
 	//preload function
 	function preload() {
-		game.load.image('titlepage', 'assets/game_over_screen.jpg'); //test
+		game.load.image('title_screen', 'assets/title_screen_2.jpg'); //test
 	}
 	
 	
@@ -361,6 +362,12 @@ function make_start_state(game)
 		
 		this.music = null;
 		this.playButton = null;
+		
+		
+		
+		var startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+		
+		
 		//------------------------
 		
 		//this.music = this.add.audio('titleMusic'); //original
@@ -375,6 +382,14 @@ function make_start_state(game)
 	
 	//Update function
 	function update() {
+		
+		//if (startButton.isDown) //test
+		if (startButton.isDown == true) //test
+        {
+			//Go to the main scene. The main part of the game.
+			game.sound.stopAll(); //test
+			game.state.start('main'); //test
+        }
 	}
 	
 	//Start Game function
