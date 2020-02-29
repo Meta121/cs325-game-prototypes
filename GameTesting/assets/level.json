@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"csv",
+         "target":"level.csv"
+        }
+    },
  "height":10,
  "infinite":false,
  "layers":[
