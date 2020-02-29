@@ -7,7 +7,8 @@ function make_main_game_state( game )
 		//game.load.spritesheet('dude', 'assets/dude.png', 32, 48); //original from Phaser 2 Tutorial
 		this.game.load.spritesheet('player', 'assets/dude.png', 32, 48);
         this.game.load.tilemap('tilemap', 'assets/level.json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('tiles', 'assets/tutorial2_tm.png');
+        //this.game.load.image('tiles', 'assets/tutorial2_tm.png'); //test
+		this.game.load.image('tiles', 'assets/simples_pimples.png');
 		
 
     }
