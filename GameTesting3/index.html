@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>The Great Celebrity Catastrophe</title>
+    <script src="js/phaser.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>The Great Celebrity Catastrophe</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+In this 3rd person point of view 2D side scrolling game you are automatically moving with the screen to the right and can press the left mouse key to jump while you attempt to collide with the celebrities to increase your score and
+cats spawn that lower your score and send you upwards.
+The game uniquely uses the borders of the screen as obstacles that automatically end the game for the player when collided with. 
+Colliding with cats make the player go upwards which may launch them into the borders of the screen and cause a game over.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The game is able to create multiple objects that uniquely intereact with other objects within the game. 
+The game has multiple scenes such as the start, main game, and end scenes which all have their individual purposes such as to introduce the game, let the player play the gameplay of the game, and to end the game.
+The game uses the border of the game as a key part of the game as an obstacle that automatically ends the game in a game over for the player.
+The game features an in-game restart feature by click R at the main game scene or any of the ending scenes.
+The cats are deleted when they reach the border of the screen.
+The game is able to keep track of variables such as the current score the player has.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+What I learned from this prototype is how to use Phaser 2 to make the scene with individual unique traits and how to put multiple scenes together to make a game that has a start scene, main game scene, and end scene.
+
+The hardest part in making this prototype was figuring out how to start making different scenes.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+<li><strong>Sources -</strong>
+I made some assets but also borrowed assets from the following sources.
+<ul>
+<li>Phaser 2 Flappy Bird Example: <a href="http://www.lessmilk.com/tutorial/flappy-bird-phaser-1">How to Make Flappy Bird in HTML5 With Phaser</a></li>
+<li>Start Scene Background Theme: <a href="https://www.youtube.com/watch?v=XCiDuy4mrWU">Initial D - Running in The 90s</a></li>
+<li>Main Game Background Theme: <a href="https://www.youtube.com/watch?v=dv13gl0a-FA">Initial D - Deja Vu</a></li>
+<li>Victory Screen End Scene Background Theme: <a href="https://www.youtube.com/watch?v=Sw-2EiWZ-QU">Initial D - Night Of Fire</a></li>
+<li>Main Game City Background: <a href="https://www.colourbox.com/vector/city-street-with-road-and-city-buildings-summer-landscape-modern-urban-background-vector-illustration-vector-30838238">city-street-with-road-and-city-buildings-summer-landscape-modern-urban-background-vector-illustration-vector</a></li>
+<li>Player Jump Sound Effect: <a href="https://www.youtube.com/watch?v=H6qMQjTLtj4">Quake Jump Sound Effect</a></li>
+<li>Player Cat Collision Sound Effect: <a href="https://www.youtube.com/watch?v=3w-2gUSus34">Roblox Death Sound - Sound Effect (HD)</a></li>
+<li>Collecting Celebrity Sound Effect: <a href="https://www.youtube.com/watch?v=msMkeJTEGuU">Super Mario 64 - Thank you so much a-for-to playing my game</a></li>
+<li>Player Sprite: <a href="http://clipartmag.com/running-person-clipart">Running-person-clipart</a></li>
+<li>Game Over Screen Background: <a href="https://www.pinterest.com/pin/566749934337751977/">Game Over Screen</a></li>
+<li>Victory Screen: <a href="https://www.shutterstock.com/video/clip-1023524665-80s-90s-videogame-animated-you-win-screen">80s 90s videogame animated you win screen with glitch art dynamic interference for retro futurism style footage with old tv noise effects</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+<li>
+The game that most closely resembles my game and that I also borrowed code from is:
+<ul>
+<li>Example game on phaser.io: <a href="https://phaser.io/examples/v3/view/games/defenda/test">Defenda Test</a></li>
+
+<li>I also borrowed code and assets from a Flappy Bird Phaser 2 tutorial: <a href="http://www.lessmilk.com/tutorial/flappy-bird-phaser-1">Flappy Bird Phaser 2 tutorial Phaser Code and Assets</a></li>
+<li>I also borrowed code and assets from the given template link from the Professor: <a href="https://github.com/photonstorm/phaser/tree/v2.6.2/resources/Project%20Templates/Basic">Phaser Code</a></li>
+</ul>
+</li>
+</li>
+
+<li><strong>High Concept:</strong>
+The game "The Great Celebrity Catastrophe" is a 3rd person point of view, 2D, side scrolling video game where the player seeks to obtain 500 points by collecting celebrities which increase the score of the player 
+while avoiding the screen borders that cause a game over if the player touches them and avoiding cats that decrease the score of the player and sends the player upwards towards the top screen border.
+</li>
+
+<li><strong>Theme:</strong>
+
+The storymatic themes I used are 1. "person with lots and lots of cats" and 2. "celebrity sighting" from what the storymatic cards that were picked out.
+</li>
+
+<li><strong>Mandated Variety:</strong>
+For input, I used "indirect" and "mouse" in this prototype. 
+For randomness, I used "a lot of randomness" for this prototype. 
+For genre I used "side scroller", "2D", and "3rd person point" of view in this prototype. 
+For playstyle I used "achiever", "joker", and "performer" for this prototype. 
+</li>
+
+<li><strong>Prototype Goal:</strong>
+The game mechanics that this protype is evaluating are indirect movement of the player using the physics engine of Phaser 2, 
+different forms of object to object interations, having random elements within the game, 
+enemy AI, screen border interaction, animated background visuals, sound effects for specific events, and different sounds starting and ending in different scenes.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+
+I want the player to feel cautious when they make the character jump to avoid obstacles such as the screen borders and cats. 
+I want the player to feel accomplished when they obtain 500 points to win the game. 
+I want the player to feel more happy when they collect a celebrity that increases the score of the player. 
+I want the player to feel like they want to play the game again when they lose by having a fast defeat screen, a fast victory screen, and a fast in-game restart feature which is to click the R key to restart the main game.
+
+</li>
+
+<li><strong>Gameplay:</strong>
+
+<ul>
+<li> 
+Press the left mouse button to start the game.
+Press the left mouse button to make the player character Rob jump.
+Press the R key to restart the game to the main part of the game when in the main game scene or any of the ending scenes. 
+The player colliding with a celebrity will give the player 10 score points and delete the celebrity.
+The player colliding with a cat will decrease the player score by 20 points and bounce the player upwards.
+The following are the Core Mechanics of the game.
+The player has to maneuver around the level space while avoiding obstacles but seek to collide with collectibles.
+The player has to obtain 500 score points in total to win the game.
+The player has to avoid colliding with cats to not lose points and to not be sent upwards.
+The player has to avoid colliding with the screen borders because they cause an instant Game Over.
+</li>
+
+</ul>
+
+</li>
+
+<li><strong>Strategies:</strong>
+Take as much time as possible gather score points to reach 500 points because there is no timer. 
+Avoid colliding with cats to not lose score points and to not be sent upwards into possibly even more cats that would cause you to be knocked into the top screen border.
+Stay as close as possible to the bottom if having trouble with the game to avoid being sent upwards into the top border of the screen by just colliding with 1 cat as if you were at the top of the screen.
+Avoid colliding with cats that have other cats above it to avoid being combo'ed into another cat after colliding with 1 cat.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+
+The world of the game "The Great Celebrity Catastrophe" takes place on the planet Earth where cat lover Rob who is a person with a lot of cats is celebrity sighting a prestigious celebrity family who all look alike when all of a sudden there is little to no gravity and everyone is raised to the skies.
+Rob realizes that his cat always land safely on their feet as they get used to the low gravity but the celebrities are in danger as they are stuck floating in the air and need help to survive the sudden low gravity of Earth.
+Rob decides that he must maneuver through his cats who would push him upwards into the sky and eventually space to save the celebrities before Rob gets himself into trouble by going too far up to space or hiting the ground in an unsafe manner.
+Luckily Rob has learned to jump while in the air while in the new lower gravity so he can more effectively move to where the celebrities are and help them.
+
+The game world and occupants are unique because the of the new low gravitythat allows a normal person Rob who has a lot of cats to jump while in the air to save celebrities who are stuck in the air and could not obtain the ability to jump in the air while in low gravity.
+The dramatic tension interact with the gameplay tension by making the primary goal of the player character Rob be what the player wants to do in the game which is to save the celebrities while avoiding colliding with Rob's cats and going to upwards into space or hitting the surface which would cause a game over.
+</li>
+
+<li><strong>Target Audience:</strong>
+The demographic the game "The Great Celebrity Catastrophe" is trying to reach 
+are people of all ages but prioritizing teens who would like to buy a simple fast 2D side scrolling game that features cats and celebrities.
+
+</li>
+
+<li><strong>Play Time:</strong>
+Around 40 seconds to 2 minutes of play time.
+</li>
+
+</ul>
+</div>
+</body>
+</html>
