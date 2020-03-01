@@ -36,6 +36,12 @@ function make_main_game_state( game )
         // new trajectory.
         bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
     }
+	
+	//--My code. More functions, etc. for this state/scene.-------------------------------------------------
+	
+	
+	
+	//--End of more of my code. -----------------------------------------------------------------------------------------
     
     return { "preload": preload, "create": create, "update": update };
 }
@@ -54,17 +60,17 @@ window.onload = function() {
     // loading functions to reflect where you are putting the assets.
     // All loading functions will typically all be found inside "preload()".
     
-    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
+    //var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
     
-    game.state.add( "main", make_main_game_state( game ) ); //original
+    //game.state.add( "main", make_main_game_state( game ) ); //original
 	//game.state.add( "Boot", make_boot_game_state( game ) ); //test
 	//game.state.add( "PreLoader", make_preloader_game_state( game ) ); //test
 	//game.state.add( "MainMenu", make_main_menu_game_state( game ) ); //test
 	//game.state.add( "Level1", make_level_1_game_state( game ) ); //test
     
-    game.state.start( "main" );
+    //game.state.start( "main" ); //progoma;
 	
-	//--My code from Digital Assignment 3 reused---------------------------
+	//-----------My code from Digital Assignment 3 reused----------------------------------
 	var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
 	//var game = new Phaser.Game(400, 490); //Original given
     
