@@ -3,43 +3,303 @@
 function make_main_game_state( game )
 {
     function preload() {
-        // Load an image and call it 'logo'.
-        game.load.image( 'logo', 'assets/phaser.png' );
+        //Original code
+		//game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71); //original
+		//game.load.image('background','assets/misc/starfield.jpg'); //original
+		//game.load.spritesheet('button', 'assetsP2E/buttons/button_sprite_sheet.png', 193, 71); //test
+		//game.load.image('background','assetsP2E/misc/starfield.jpg'); //test
+		
+		//--My code-------------------------------------------
+		//game.load.image('background_art', 'assets/battle_background.png'); //test
+		game.load.image('background_art', 'assets/battle_background_2.jpg'); //test
+		
+		game.load.image('attack_button', 'assets/attackBox_template.png'); //test
+		game.load.image('defend_button', 'assets/defendBox_template.png'); //test
+		game.load.image('special_button', 'assets/specialBox_template.png'); //test
+		game.load.image('heal_button', 'assets/healBox_template.png'); //test
+		
+		game.load.audio('background_theme', 'sounds/umvci_vergil_theme.m4a'); //test
+		game.load.audio('button_click_sound_effect', 'sounds/Blip_Select.mp3'); //test
+		
     }
     
-    var bouncy;
-    
+    //var bouncy;
+    //-Testing Code---------
+	//var button; //original
+	//var background; //original
+	//--My code------
+	var score; //test
+	var scoreString = ''; //test
+	var labelScore; //test
+	
+	//var battle_background; //test
+	var background_art; //test
+	var music; //test
+	var sound; //test
+	
+	var player; //test
+	var enemy; //test
+	var enemies; //test
+	
+	var playerHealth = 0; //test
+	var playerHealthString = ''; //test
+	var labelPlayerHealth; //test
+	
+	var enemyHealth = 0; //test
+	var enemyHealthString = ''; //test
+	var labelEnemyHealth; //test
+	
+	var playerPotionAmount = 1; //test
+	var playerPotionAmountString = ''; //test
+	var labelPlayerPotionAmount; //test
+	
+	var specialMeter = 0; //test
+	var specialMeterString = ''; //test
+	var labelSpecialMeter; //test
+	
+	var move; //test
+	var playerDecision; //test
+	var enemyDecision; //test
+	
+	var attack_button; //test
+	var defend_button; //test
+	var special_button; //test
+	var heal_button; //test
+	
+	var restartButton; //test
+	
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        bouncy.anchor.setTo( 0.5, 0.5 );
-        
-        // Turn on the arcade physics engine for this sprite.
-        game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        // Make it bounce off of the world bounds.
-        bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        var text = game.add.text( game.world.centerX, 15, "Build something amazing.", style );
-        text.anchor.setTo( 0.5, 0.0 );
+        //-Phaser 2 Example code-------------------------------------------
+		/*
+		game.stage.backgroundColor = '#182d3b';
+
+		background = game.add.tileSprite(0, 0, 800, 600, 'background');
+
+		button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
+
+		button.onInputOver.add(over, this);
+		button.onInputOut.add(out, this);
+		button.onInputUp.add(up, this);
+		*/
+		//-Phaser 2 Example code End ---------------------------------------------
+		
+		//--My code. Start. ------------------------------------------------------------------
+		
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'background_art'); //test
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
+		
+		// Create an empty group
+		enemies = game.add.group(); 
+		
+		//Creating and setting score
+		score = 0; //original
+		scoreString = 'Score: '; //test
+		//labelScore = game.add.text(20, 30, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
+		labelScore = game.add.text(325, 0, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
+		
+		//Creating and setting Player Health on the screen
+		//playerHealth = 1500; //test
+		playerHealth = 3000; //test
+		playerHealthString= 'Player Health: \n'; //test 
+		labelPlayerHealth = game.add.text(0, 0, playerHealthString + playerHealth, { font: "40px", fill: "#00FF00" }); //test 
+		
+		//Creating and setting Player Health on the screen
+		//enemyHealth = 2000; //test
+		enemyHealth = 5000; //test
+		enemyHealthString= 'Enemy Health: \n'; //test 
+		labelEnemyHealth = game.add.text(550, 0, enemyHealthString + enemyHealth, { font: "40px", fill: "#FF0000" }); //test 
+		
+		//Creating and setting up the Special Meter. At 100, can use special move.
+		specialMeter = 0; //test
+		specialMeterString = 'Special Meter: '; //test 
+		labelSpecialMeter = game.add.text(0, 100, specialMeterString + specialMeter, { font: "30px", fill: "#FF00FF" }); //test 
+		
+		//Creating and setting up the potion amount.
+		playerPotionAmount = 1; //test
+		playerPotionAmountString = 'Potions: '; //test 
+		labelPlayerPotionAmount = game.add.text(0, 135, playerPotionAmountString + playerPotionAmount, { font: "30px", fill: "#000000" }); //test 
+		
+		//My code--- Playing background theme
+		music = game.add.audio("background_theme"); //test
+		music.play('', 0, 1, true); //test
+		
+		//Adding the buttons/button_sprite_sheet
+		//button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0); //original
+		attack_button = game.add.button(0, 500, 'attack_button', playerAttackActionOnClick, this); //test
+		defend_button = game.add.button(200, 500, 'defend_button', playerDefendActionOnClick, this); //test
+		special_button = game.add.button(400, 500, 'special_button', playerSpecialActionOnClick, this); //test
+		heal_button = game.add.button(600, 500, 'heal_button', playerHealActionOnClick, this); //test
+		//--My code. End. ------------------------------------------------------------------
     }
     
     function update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
+       
+	   
+	   //Game Over occurs when player has 0 health.
+	   if (playerHealth <= 0)
+	   {
+			game.sound.stopAll(); //test
+			game.state.start('end'); //test
+	   }
+	   
+	   //Goes to victory screen when the player wins when enemy health is 0 or less.
+	   if (enemyHealth <= 0) {
+			//Go to the end screen
+			game.sound.stopAll(); //test
+			game.state.start('victory_end'); //test
+		}
     }
 	
 	//--My code. More functions, etc. for this state/scene.-------------------------------------------------
+	//Original code
+	/*
+	function up() {
+		console.log('button up', arguments);
+	}
+
+	function over() {
+		console.log('button over');
+	}
+
+	function out() {
+		console.log('button out');
+	}
 	
+	function actionOnClick () {
+
+		background.visible =! background.visible;
+
+	}
+	*/
 	
+	/*
+	* What happens when the player clicks the attack action button
+	*/
+	function playerAttackActionOnClick () {
+		
+		//My code---------
+		score += 10; //test
+		labelScore.text = scoreString + score; //test
+		
+		//enemyHealth -= 175; //test
+		enemyHealth -= 200; //test
+		labelEnemyHealth.text = enemyHealthString + enemyHealth; //test
+		
+		specialMeter += 15; //test
+		labelSpecialMeter.text = specialMeterString + specialMeter; //test
+	
+		
+		//--Testing enemy damage-----
+		playerHealth -= 200; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		
+		
+		//My code --- plays...
+		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+	}
+	
+	function playerDefendActionOnClick () {
+		
+		//My code---------
+		score += 20; //test
+		labelScore.text = scoreString + score; //test
+		
+		enemyHealth -= 0; //test //You deal no damage to the enemy
+		labelEnemyHealth.text = enemyHealthString + enemyHealth; //test
+		
+		specialMeter += 30; //test //You gain more special meter when you defend
+		labelSpecialMeter.text = specialMeterString + specialMeter; //test
+		
+		//--Testing enemy damage-----
+		playerHealth -= 100; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		
+		
+		//My code --- plays button click sound effect
+		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+	}
+	
+	function playerSpecialActionOnClick () {
+		
+		if (specialMeter >= 100)
+		{
+			//My code---------
+			score += 100; //test
+			labelScore.text = scoreString + score; //test
+		
+			//enemyHealth -= 800; //test
+			enemyHealth -= 950; //test
+			labelEnemyHealth.text = enemyHealthString + enemyHealth; //test
+		
+			specialMeter -= 100; //test //Decrease the special meter by 100 when a special move is used.
+			labelSpecialMeter.text = specialMeterString + specialMeter; //test
+		}
+		else
+		{
+		}
+		
+		//--Testing enemy damage-----
+		playerHealth -= 300; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		
+		//My code --- plays...
+		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+	}
+	
+	function playerHealActionOnClick () {
+		
+		//My code---------
+		
+		//If the player has 1 or more potions, then they can heal.
+		if (playerPotionAmount >= 1)
+		{
+			score -= 50; //test //You lose score when you heal
+			labelScore.text = scoreString + score; //test
+		
+			playerHealth += 500; //test //Healing the player by a set amount of health when they use a potion.
+			labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		
+			enemyHealth -= 0; //test
+			labelEnemyHealth.text = enemyHealthString + enemyHealth; //test
+		
+			specialMeter += 10; //test //You can some special meter when you heal
+			labelSpecialMeter.text = specialMeterString + specialMeter; //test
+		
+			playerPotionAmount -= 1; //test //You lose 1 potion when you heal/
+			labelPlayerPotionAmount.text = playerPotionAmountString + playerPotionAmount; //test
+		}
+		else
+		{
+		}
+		
+		//--Testing enemy damage-----
+		playerHealth -= 200; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		
+		
+		//My code --- plays button click sound effect
+		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+	}
+
+	
+	//Function that restarts the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
 	
 	//--End of more of my code. -----------------------------------------------------------------------------------------
     
