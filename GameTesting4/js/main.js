@@ -20,6 +20,11 @@ function make_main_game_state( game )
 		
 		game.load.audio('background_theme', 'sounds/umvci_vergil_theme.m4a'); //test
 		game.load.audio('button_click_sound_effect', 'sounds/Blip_Select.mp3'); //test
+		game.load.audio('player_got_hit_sound_effect', 'sounds/robolox_off_sound_effect.m4a'); //test
+		game.load.audio('player_sword_attack_sound_effect', 'sounds/sword_slash_sound_effect.m4a'); //test
+		game.load.audio('player_defend_sound_effect', 'sounds/ssbu_perfect_shield_sound_effect.m4a'); //test
+		game.load.audio('player_special_move_sound_effect', 'sounds/dbz_special_move_sound_effect.m4a'); //test
+		game.load.audio('player_drinks_potion_sound_effect', 'sounds/minecraft_potion_drink_sound_effect.m4a'); //test
 		
     }
     
@@ -198,9 +203,18 @@ function make_main_game_state( game )
 		labelPlayerHealth.text = playerHealthString + playerHealth; //test
 		
 		
-		//My code --- plays...
+		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
 		sound.play(); //test
+		
+		//My code --- plays player sword attack sound effect
+		sound = game.add.audio("player_sword_attack_sound_effect"); //test
+		sound.play(); //test
+		
+		//My code --- plays player got hit sound effect.
+		sound = game.add.audio("player_got_hit_sound_effect"); //test
+		sound.play(); //test
+		
 	}
 	
 	function playerDefendActionOnClick () {
@@ -223,6 +237,14 @@ function make_main_game_state( game )
 		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
 		sound.play(); //test
+		
+		//My code --- plays player defend sound effect.
+		sound = game.add.audio("player_defend_sound_effect"); //test
+		sound.play(); //test
+		
+		//My code --- plays player got hit sound effect.
+		//sound = game.add.audio("player_got_hit_sound_effect"); //test
+		//sound.play(); //test
 	}
 	
 	function playerSpecialActionOnClick () {
@@ -239,6 +261,10 @@ function make_main_game_state( game )
 		
 			specialMeter -= 100; //test //Decrease the special meter by 100 when a special move is used.
 			labelSpecialMeter.text = specialMeterString + specialMeter; //test
+			
+			//My code --- plays player using special move sound effect
+			sound = game.add.audio("player_special_move_sound_effect"); //test
+			sound.play(); //test
 		}
 		else
 		{
@@ -250,6 +276,10 @@ function make_main_game_state( game )
 		
 		//My code --- plays...
 		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+		
+		//My code --- plays player got hit sound effect.
+		sound = game.add.audio("player_got_hit_sound_effect"); //test
 		sound.play(); //test
 	}
 	
@@ -274,6 +304,10 @@ function make_main_game_state( game )
 		
 			playerPotionAmount -= 1; //test //You lose 1 potion when you heal/
 			labelPlayerPotionAmount.text = playerPotionAmountString + playerPotionAmount; //test
+			
+			//My code --- plays player drinks potion sound effect.
+			sound = game.add.audio("player_drinks_potion_sound_effect"); //test
+			sound.play(); //test
 		}
 		else
 		{
@@ -286,6 +320,11 @@ function make_main_game_state( game )
 		
 		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
+		
+		
+		//My code --- plays player got hit sound effect.
+		sound = game.add.audio("player_got_hit_sound_effect"); //test
 		sound.play(); //test
 	}
 
