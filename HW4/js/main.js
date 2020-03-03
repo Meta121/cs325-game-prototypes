@@ -13,10 +13,18 @@ function make_main_game_state( game )
 		//game.load.image('background_art', 'assets/battle_background.png'); //test
 		game.load.image('background_art', 'assets/battle_background_2.jpg'); //test
 		
+		//game.load.spritesheet('player', 'assets/ff4_cecil_spritesheet_V2_draft_1.png', 28, 26); //test
+		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt1.png', 32, 32); //test
+		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_2.png', 320, 320); //test
+		game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_3.png', 160, 160); //tes
+		
+		game.load.image('enemy', 'assets/big_chicken_1.png'); //test
+		
 		game.load.image('attack_button', 'assets/attackBox_template.png'); //test
 		game.load.image('defend_button', 'assets/defendBox_template.png'); //test
 		game.load.image('special_button', 'assets/specialBox_template.png'); //test
 		game.load.image('heal_button', 'assets/healBox_template.png'); //test
+		
 		
 		game.load.audio('background_theme', 'sounds/umvci_vergil_theme.m4a'); //test
 		game.load.audio('button_click_sound_effect', 'sounds/Blip_Select.mp3'); //test
@@ -48,6 +56,10 @@ function make_main_game_state( game )
 	
 	var playerHealth = 0; //test
 	var playerHealthString = ''; //test
+	var labelPlayerHealth; //test
+	
+	var playerMaxHealth; //test
+	var playerMaxHealthString = ''; //test
 	var labelPlayerHealth; //test
 	
 	var enemyHealth = 0; //test
@@ -100,6 +112,21 @@ function make_main_game_state( game )
 		// Create an empty group
 		enemies = game.add.group(); 
 		
+		//Creating the enemy
+		enemy = game.add.sprite(350, 100, 'enemy'); //test
+		
+		//Creating the player
+		//player = game.add.sprite(400, 300, 'player'); //test
+		player = game.add.sprite(100, 300, 'player'); //test
+		
+		//Setting the player animations
+		player.animations.add('player_neutral', [0], 0, true); //test
+		player.animations.add('player_attack', [1], 0, true); //test
+		player.animations.add('player_defend', [2], 0, true); //test
+		player.animations.add('player_special', [3], 0, true); //test
+		player.animations.add('player_heal', [4], 0, true); //test
+		//player.animations.add('right', [5, 6, 7, 8], 0, true); //original
+		
 		//Creating and setting score
 		score = 0; //original
 		scoreString = 'Score: '; //test
@@ -109,8 +136,11 @@ function make_main_game_state( game )
 		//Creating and setting Player Health on the screen
 		//playerHealth = 1500; //test
 		playerHealth = 3000; //test
-		playerHealthString= 'Player Health: \n'; //test 
-		labelPlayerHealth = game.add.text(0, 0, playerHealthString + playerHealth, { font: "40px", fill: "#00FF00" }); //test 
+		playerHealthString = 'Player Health: \n'; //test 
+		playerMaxHealth = 3000;
+		playerMaxHealthString = '/'; //test 
+		labelPlayerHealth = game.add.text(0, 0, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "40px", fill: "#00FF00" }); //test 
+		
 		
 		//Creating and setting Player Health on the screen
 		//enemyHealth = 2000; //test
@@ -124,7 +154,7 @@ function make_main_game_state( game )
 		labelSpecialMeter = game.add.text(0, 100, specialMeterString + specialMeter, { font: "30px", fill: "#FF00FF" }); //test 
 		
 		//Creating and setting up the potion amount.
-		playerPotionAmount = 1; //test
+		playerPotionAmount = 2; //test
 		playerPotionAmountString = 'Potions: '; //test 
 		labelPlayerPotionAmount = game.add.text(0, 135, playerPotionAmountString + playerPotionAmount, { font: "30px", fill: "#000000" }); //test 
 		
@@ -143,6 +173,12 @@ function make_main_game_state( game )
     
     function update() {
        
+	   //If the player health is ever greater than the max possible player health. Set the player health to what the maximum player health can be.
+	   if (playerHealth > playerMaxHealth)
+	   {
+			playerHealth = playerMaxHealth; //test
+			labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
+	   }
 	   
 	   //Game Over occurs when player has 0 health.
 	   if (playerHealth <= 0)
@@ -157,6 +193,12 @@ function make_main_game_state( game )
 			game.sound.stopAll(); //test
 			game.state.start('victory_end'); //test
 		}
+		
+		
+		
+		//Playing player animation for this action
+		//player.animations.play('player_neutral'); //test
+		
     }
 	
 	//--My code. More functions, etc. for this state/scene.-------------------------------------------------
@@ -200,8 +242,11 @@ function make_main_game_state( game )
 		
 		//--Testing enemy damage-----
 		playerHealth -= 200; //test
-		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		//labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
 		
+		//Playing player animation for this action
+		player.animations.play('player_attack'); //test
 		
 		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
@@ -231,8 +276,11 @@ function make_main_game_state( game )
 		
 		//--Testing enemy damage-----
 		playerHealth -= 100; //test
-		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		//labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
 		
+		//Playing player animation for this action
+		player.animations.play('player_defend'); //test
 		
 		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
@@ -262,17 +310,23 @@ function make_main_game_state( game )
 			specialMeter -= 100; //test //Decrease the special meter by 100 when a special move is used.
 			labelSpecialMeter.text = specialMeterString + specialMeter; //test
 			
+			//Playing player animation for this action
+			player.animations.play('player_special'); //test
+		
 			//My code --- plays player using special move sound effect
 			sound = game.add.audio("player_special_move_sound_effect"); //test
 			sound.play(); //test
 		}
 		else
 		{
+			//Playing player animation for this action
+			player.animations.play('player_neutral'); //test
 		}
 		
 		//--Testing enemy damage-----
 		playerHealth -= 300; //test
-		labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		//labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
 		
 		//My code --- plays...
 		sound = game.add.audio("button_click_sound_effect"); //test
@@ -294,8 +348,9 @@ function make_main_game_state( game )
 			labelScore.text = scoreString + score; //test
 		
 			playerHealth += 500; //test //Healing the player by a set amount of health when they use a potion.
-			labelPlayerHealth.text = playerHealthString + playerHealth; //test
-		
+			//labelPlayerHealth.text = playerHealthString + playerHealth; //test
+			labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
+			
 			enemyHealth -= 0; //test
 			labelEnemyHealth.text = enemyHealthString + enemyHealth; //test
 		
@@ -305,18 +360,23 @@ function make_main_game_state( game )
 			playerPotionAmount -= 1; //test //You lose 1 potion when you heal/
 			labelPlayerPotionAmount.text = playerPotionAmountString + playerPotionAmount; //test
 			
+			//Playing player animation for this action
+			player.animations.play('player_heal'); //test
+			
 			//My code --- plays player drinks potion sound effect.
 			sound = game.add.audio("player_drinks_potion_sound_effect"); //test
 			sound.play(); //test
 		}
 		else
 		{
+			//Playing player animation for this action
+			player.animations.play('player_neutral'); //test
 		}
 		
 		//--Testing enemy damage-----
 		playerHealth -= 200; //test
-		labelPlayerHealth.text = playerHealthString + playerHealth; //test
-		
+		//labelPlayerHealth.text = playerHealthString + playerHealth; //test
+		labelPlayerHealth.text = playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth; //test
 		
 		//My code --- plays button click sound effect
 		sound = game.add.audio("button_click_sound_effect"); //test
