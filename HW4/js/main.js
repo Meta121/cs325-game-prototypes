@@ -18,7 +18,8 @@ function make_main_game_state( game )
 		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_2.png', 320, 320); //test
 		game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_3.png', 160, 160); //tes
 		
-		game.load.image('enemy', 'assets/big_chicken_1.png'); //test
+		//game.load.image('enemy', 'assets/big_chicken_1.png'); //test
+		game.load.spritesheet('enemy', 'assets/da4_piskel_custom_chicken_sprite_draft_3_attempt_1.png', 448, 448); //tes
 		
 		game.load.image('attack_button', 'assets/attackBox_template.png'); //test
 		game.load.image('defend_button', 'assets/defendBox_template.png'); //test
@@ -65,6 +66,8 @@ function make_main_game_state( game )
 	var enemyHealth = 0; //test
 	var enemyHealthString = ''; //test
 	var labelEnemyHealth; //test
+	
+	var enemyMaxHealth = 0;
 	
 	var playerPotionAmount = 1; //test
 	var playerPotionAmountString = ''; //test
@@ -113,7 +116,8 @@ function make_main_game_state( game )
 		enemies = game.add.group(); 
 		
 		//Creating the enemy
-		enemy = game.add.sprite(350, 100, 'enemy'); //test
+		//enemy = game.add.sprite(350, 100, 'enemy'); //test
+		enemy = game.add.sprite(350, 70, 'enemy'); //test
 		
 		//Creating the player
 		//player = game.add.sprite(400, 300, 'player'); //test
@@ -126,6 +130,15 @@ function make_main_game_state( game )
 		player.animations.add('player_special', [3], 0, true); //test
 		player.animations.add('player_heal', [4], 0, true); //test
 		//player.animations.add('right', [5, 6, 7, 8], 0, true); //original
+		
+		//Setting the enemy animations
+		enemy.animations.add('enemy_chicken_normal_neutral', [0], 0, true); //test
+		enemy.animations.add('enemy_chicken_super_neutral', [1, 2], 0, true); //test
+		//enemy.animations.add('enemy_chicken_super_enraged', [2], 0, true); //test
+		enemy.animations.add('enemy_chicken_super_defeated', [3], 0, true); //test
+		
+		//Setting the first animation of the enemy
+		enemy.animations.play('enemy_chicken_normal_neutral'); //test
 		
 		//Creating and setting score
 		score = 0; //original
@@ -143,8 +156,9 @@ function make_main_game_state( game )
 		
 		
 		//Creating and setting Player Health on the screen
+		enemyMaxHealth = 5000; //test
 		//enemyHealth = 2000; //test
-		enemyHealth = 5000; //test
+		enemyHealth = enemyMaxHealth; //test
 		enemyHealthString= 'Enemy Health: \n'; //test 
 		labelEnemyHealth = game.add.text(550, 0, enemyHealthString + enemyHealth, { font: "40px", fill: "#FF0000" }); //test 
 		
@@ -194,6 +208,10 @@ function make_main_game_state( game )
 			game.state.start('victory_end'); //test
 		}
 		
+		//When enemy chicken is at half health or less, it goes into it's super form
+		if (enemyHealth <= (enemyMaxHealth / 2) ) {
+			enemy.animations.play('enemy_chicken_super_neutral'); //test
+		}
 		
 		
 		//Playing player animation for this action
