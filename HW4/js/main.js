@@ -764,6 +764,8 @@ function make_overworld_state(game)
 		
 		game.load.audio('overworld_theme', 'sounds/legend_of_zelda_overworld_theme.m4a'); //test
 		
+		game.load.audio('button_click_sound_effect', 'sounds/Blip_Select.mp3'); //test
+		
 		
 	}
 	
@@ -863,6 +865,10 @@ function make_overworld_state(game)
 	}
 	
 	function enemyBodyHitsPlayer (player, enemy) {
+		
+		//My code --- plays a sound effect when the player character Claude touches the enemy Chickenzila in the overworld
+		sound = game.add.audio("button_click_sound_effect"); //test
+		sound.play(); //test
 		
 		// Starts the 'main' state, which is where the player battles the chicken
 		game.state.start('main');

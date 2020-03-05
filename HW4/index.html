@@ -27,28 +27,28 @@ body
 <ul>
 <li><strong>Originality:</strong>
 In this 3rd person point of view 2D role-playing game (RPG), you have to navigate through an initial overworld to fight against the enemy.
-Once the player collides with the enemy in the overworld, the main game battle system begins where the player has health, special meter, and potions to manage while deciding which action to do.
-The game features a unique battle system where the player decides on what action he or she wants to do and then faces the consequences of those actions in retaliation by the enemy in a certain manner depending on what the player chooses.
-The game uniquely gives the player 4 buttons to do 4 options which effect how the player and enemy interact with each other.
-The player can only do the special move when his or her special meter is greater than or equal to 100.
+Once the player collides with the enemy in the overworld, the main game battle system begins where the player has health, special meter, and potions to manage while deciding what clickable button to click to perform specific actions.
+The game features a unique turn based battle system where the player decides on what action he or she wants to do and then faces the consequences of those actions in retaliation by the enemy in a certain manner depending on what the player chooses.
+The game uniquely gives the player 4 buttons to do 4 options which effect how the player Claude and enemy Chickenzilla interact with each other.
+The player can only do the special move when Claude's special meter is greater than or equal to 100.
 The player can also heal with potions but cannot when they have 0 potions.
-The game uniquely keeps track of a score of the player that increases or decreases depending on what action the player takes.
+The game uniquely keeps track of a score of the player that increases or decreases depending on what action the player decides to do.
 The game has unique animations and sound effects depending on what action the player does.
 The game has a lot of original art but also some borrowed art.
-If a certain event happens, the game will change states.
+Depending on ff a certain events happen and prerequisites are fulfilled, then the game will change states.
 </li>
 
 <li><strong>Technical Merit:</strong>
 The game is able to create multiple objects that uniquely intereact with other objects within the game. 
-The game has multiple scenes such as the start, overworld, main game, and end scenes which all have their individual purposes such as to introduce the game, to allow the player to explore an overworld, to let the player play battle system of the game, and to end the game.
+The game has multiple scenes such as the start, overworld, main game, and end scenes which all have their individual purposes such as to introduce the game, to allow the player to explore an overworld, to let the player play the main battle system of the game, and to end the game.
 The game keeps track of variables that determine what occurs in the battle between the player and the enemy such the player resources like potions and what the current form of the chicken is.
-The game features an in-game restart feature by clicking R at the main game scene or any of the ending scenes to retry at the very start of the battle between the player and the enemy chicken.
+The game features an in-game restart feature by clicking R at the main game scene or any of the ending scenes to retry at the very start of the battle between the player Claude and the enemy Chickenzilla.
 The game decides what occurs in the game depending on what the player decides to do.
 The game has unique animations and sound effects that change and occur depending on how the player interacts with the game.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What I learned from this prototype is how to use Phaser 2 to have clickable buttons that when clicked perform specific actions.
+What I learned from this prototype is how to use Phaser 2 to have clickable buttons that when clicked perform specific actions and how to hide and reveal assets that are layered over each other.
 
 The hardest part in making this prototype was making most of the assets by myself which took a longer amount of time than what I expected.
 </li>
@@ -89,9 +89,10 @@ The game that most closely resembles my game and that I also borrowed code from 
 </li>
 
 <li><strong>High Concept:</strong>
-The game "Revenge on Chickenzilla" is a 3rd person point of view 2D role-playing game (RPG) where the player must navigage through an overworld to go to an enemy chicken so the player can battle the chicken in a turn based manner 
-while seeking to defeat the chicken by setting it's health to 0 and to obtain the most points he or she can
-while avoiding losing all of the health the player has which will cause a game over.
+The game "Revenge on Chickenzilla" is a 3rd person point of view 2D role-playing game (RPG) where the player playing as Claude an adventurer who is seeking revenge on Chickenzilla for destroying his home village must navigage through an overworld to go to the enemy Chickenzilla 
+so Claude can battle the Chickenzilla in a turn based manner 
+while seeking to defeat Chickenzilla by dropping it's health to 0 and to obtain the most amount of score points possible that the player can manage 
+while avoiding losing all of the health of Claude has which will cause a game over.
 </li>
 
 <li><strong>Theme:</strong>
@@ -114,6 +115,7 @@ different forms of object to object interations,
 having an overworld map to explore, 
 enemy AI, 
 having different variables keeping track of specific data that updates and displaying them for the player to see, 
+hiding and then revealing assets when needed, 
 having animations for the player and enemies, 
 sound effects for specific events, 
 having different game scenes that go to another game scene in a specific order, 
@@ -122,10 +124,11 @@ and different sounds starting and ending in different scenes.
 
 <li><strong>Player Experience Goals:</strong>
 I want the player to feel overwhelmed at first when they see the overworld and wonder what to do for a while. 
+I want the player to feel certain when they see Chickenzilla on the overworld that they have to collide with it.
 I want the player to feel as if they are in control when they are deciding what actions to perform each turn.
 I want the player to feel powerful when they use the special attack.
 I want the player to feel fear when the giant enemy chicken transforms into different forms.
-I want the player to feel accomplished when they win the game by defeating the enemy chicken. 
+I want the player to feel accomplished when they win the game by defeating Chickenzilla. 
 I want the player to feel happiness they accumulate a large score.
 I want the player to feel like they want to play the game again when they lose by having a fast defeat screen, a fast victory screen, and a fast in-game restart feature which is to click the R key to restart the main game.
 </li>
@@ -153,7 +156,7 @@ These are the gameplay elements of the overworld part of the game.
 <li>Press the down arrow key to move Claude down.</a></li>
 <li>Press the down and left arrow key to move Claude down and left.</a></li>
 <li>Press the down and right arrow key to move Claude down and right.</a></li>
-<li>Make Claude touch Chickenzilla on the overworld to start the battle between him and Chickenzilla.</a></li>
+<li>Make Claude touch/collide with Chickenzilla on the overworld to start the turn based battle system main fight between him and Chickenzilla.</a></li>
 <li>Press the R key to restart the game to the Claude vs. Chickenzilla of the game when in any scene besides the start scene.</a></li>
 
 </ul>
@@ -178,19 +181,19 @@ These are the gameplay elements of the player vs. Chickenzilla part of the game.
 <li><strong>Strategies:</strong>
 Take as much time as possible to defeat Chickenzilla because there is no time limit to complete the game in. 
 Avoid using potions immediately and only use them when needed to obtain the most amount of score possible because using a potion lowers the amount of score the player has.
+Don't constantly spam the "Attack button" expecting to win by only using the regular attack.
 Use the "Defend" button more than the "Attack" button to charge up the special meter to save more health while being able to use more special moves than if the player just kept on clicking the "Attack" button.
 Only use potions when the player is significantly not at max health because the health of the player cannot be increased pass the max health of the player.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
 
-The world of the game "Revenge on Chickenzilla" takes place on the continent of Toghto where an adventurer named Claude has just witnessed his home village and villagers being entirely destroyed and killed by Chickenzilla and seeks revenge by killing Chickenzilla.
-Claude must make his way to the home of Chickenzilla to kill it to avenge his village and then defeat it in battle using his skill in swordplay, shield wielding, magic, and item usage.
+The world of the game "Revenge on Chickenzilla" takes place on the continent of Toghto where the tragic tale begins. 
+An adventurer named Claude has just witnessed his home village and villagers being entirely destroyed and killed by Chickenzilla and seeks revenge by killing Chickenzilla.
+Claude must make his way to the home of Chickenzilla to kill it to avenge his home village and then defeat it in battle using his skills in swordplay, shield defense, magic, and item usage.
 Avenging his village by defeating Chickenzilla is how Claude feels he can repent for not being there when his home village needed a protector the most.
 
-The game world and occupants are unique because of the fantasy like skills Claude has and the fact that abnormal creatures such as Chickenzilla who is a giant chicken that can control mana and change forms exists.
+The game world and occupants are unique because of the fantasy like skills Claude has and the fact that abnormal magical creatures such as Chickenzilla who is a giant chicken that can control mana and change forms exists.
 The dramatic tension will interact with the gameplay tension by making the primary goal of the player be what the player character Claud wants to do in the game which is to navigate to Chickenzilla and then defeat it in battle to avenge his home village and villagers.
 </li>
 
