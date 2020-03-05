@@ -12,6 +12,7 @@ function make_main_game_state( game )
 		//--My code-------------------------------------------
 		//game.load.image('background_art', 'assets/battle_background.png'); //test
 		game.load.image('background_art', 'assets/battle_background_2.jpg'); //test
+		game.load.image('background_art_2', 'assets/space_background.jpg'); //test
 		
 		//game.load.spritesheet('player', 'assets/ff4_cecil_spritesheet_V2_draft_1.png', 28, 26); //test
 		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt1.png', 32, 32); //test
@@ -36,7 +37,13 @@ function make_main_game_state( game )
 		game.load.audio('player_special_move_sound_effect', 'sounds/dbz_special_move_sound_effect.m4a'); //test
 		game.load.audio('player_drinks_potion_sound_effect', 'sounds/minecraft_potion_drink_sound_effect.m4a'); //test
 		
-    }
+		game.load.audio('enemy_2nd_form_sound_effect', 'sounds/dbz_super_saiyan_sound_effect.m4a'); //test
+		game.load.audio('enemy_3rd_form_sound_effect', 'sounds/dbs_ultra_instinct_sound_effect.m4a'); //test
+		game.load.audio('enemy_3rd_form_background_theme', 'sounds/dbs_ultra_instinct_theme.m4a'); //test
+		
+		
+		
+	}
     
     //var bouncy;
     //-Testing Code---------
@@ -219,18 +226,29 @@ function make_main_game_state( game )
 		}
 		
 		//When enemy chicken is at at a certain percentage. Change the chickens form.
-		
+		//Chickenzilla is by default in the 1st form.
+		//3rd form
 		if (enemyHealth <= (enemyMaxHealth * 0.35) && (currentChickenForm == 1) ) {
 			
 			currentChickenForm = 2; //test //Marker for chicken current form. 2 is ultra instinct.
 			
 			enemy.animations.play('enemy_chicken_ultra_instinct_neutral'); //test
 			
-			//My code ---Testing sound effects here plays player sword attack sound effect
-			//sound = game.add.audio("player_sword_attack_sound_effect"); //test
-			//sound.play(); //test
+			//More code-----
+			game.sound.stopAll(); //test
+			
+			//My code --- plays a sound effect
+			sound = game.add.audio("enemy_3rd_form_sound_effect"); //test
+			sound.play(); //test
+			
+			//My code--- Playing background theme
+			music = game.add.audio("enemy_3rd_form_background_theme"); //test
+			music.play('', 0, 1, true); //test
+			
+			//background_art = game.add.tileSprite(0, 0, 800, 600, 'background_art_2'); //test
 		}
 		
+		//2nd form
 		//When enemy chicken is at half health or less, it goes into it's super form
 		//if (enemyHealth <= (enemyMaxHealth * 0.50) ) {
 		else if (enemyHealth <= (enemyMaxHealth * 0.80) && (currentChickenForm == 0) ) {
@@ -238,10 +256,24 @@ function make_main_game_state( game )
 			currentChickenForm = 1; //test //1 == Is in super chicken form.
 			
 			enemy.animations.play('enemy_chicken_super_neutral'); //test
+			
+			//More code---
+			
+			//My code --- plays a sound effect
+			sound = game.add.audio("enemy_2nd_form_sound_effect"); //test
+			sound.play(); //test
 		}
 		
 		//Playing player animation for this action
 		//player.animations.play('player_neutral'); //test
+		
+		//Scrolls the background if Chickenzilla is in it's final 3rd form.
+		/*
+		if (currentChickenForm == 2)
+		{
+			background_art.tilePosition.x -= 10; //test
+		}
+		*/
 		
     }
 	
