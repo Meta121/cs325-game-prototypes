@@ -19,7 +19,7 @@ function make_main_game_state( game )
 		game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_3.png', 160, 160); //tes
 		
 		//game.load.image('enemy', 'assets/big_chicken_1.png'); //test
-		game.load.spritesheet('enemy', 'assets/da4_piskel_custom_chicken_sprite_draft_3_attempt_1.png', 448, 448); //tes
+		game.load.spritesheet('enemy', 'assets/da4_piskel_custom_chicken_sprite_draft_4_attempt_1.png', 448, 448); //tes
 		
 		game.load.image('attack_button', 'assets/attackBox_template.png'); //test
 		game.load.image('defend_button', 'assets/defendBox_template.png'); //test
@@ -131,11 +131,15 @@ function make_main_game_state( game )
 		player.animations.add('player_heal', [4], 0, true); //test
 		//player.animations.add('right', [5, 6, 7, 8], 0, true); //original
 		
+		//Setting the first animation of the player
+		player.animations.play('player_neutral'); //tes
+		
 		//Setting the enemy animations
 		enemy.animations.add('enemy_chicken_normal_neutral', [0], 0, true); //test
-		enemy.animations.add('enemy_chicken_super_neutral', [1, 2], 0, true); //test
+		enemy.animations.add('enemy_chicken_super_neutral', [1, 2], 2, true); //test
 		//enemy.animations.add('enemy_chicken_super_enraged', [2], 0, true); //test
 		enemy.animations.add('enemy_chicken_super_defeated', [3], 0, true); //test
+		enemy.animations.add('enemy_chicken_ultra_instinct_neutral', [4, 5], 4, true); //test
 		
 		//Setting the first animation of the enemy
 		enemy.animations.play('enemy_chicken_normal_neutral'); //test
@@ -208,11 +212,18 @@ function make_main_game_state( game )
 			game.state.start('victory_end'); //test
 		}
 		
+		//When enemy chicken is at at a certain percentage. Change the chickens form.
+		if (enemyHealth <= (enemyMaxHealth * 0.35) ) {
+			enemy.animations.play('enemy_chicken_ultra_instinct_neutral'); //test
+			
+			//My code ---Testing sound effects here plays player sword attack sound effect
+			//sound = game.add.audio("player_sword_attack_sound_effect"); //test
+			//sound.play(); //test
+		}
 		//When enemy chicken is at half health or less, it goes into it's super form
-		if (enemyHealth <= (enemyMaxHealth / 2) ) {
+		else if (enemyHealth <= (enemyMaxHealth * 0.80) ) {
 			enemy.animations.play('enemy_chicken_super_neutral'); //test
 		}
-		
 		
 		//Playing player animation for this action
 		//player.animations.play('player_neutral'); //test
@@ -456,10 +467,13 @@ window.onload = function() {
 	game.state.add( "end", make_end_state(game) ); //test
     game.state.add( "victory_end", make_victory_end_state(game) ); //test
 	
+	game.state.add( "overworld", make_overworld_state( game ) ); //original
+	
 	
    // game.state.start( "main" ); //original
 	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
 	game.state.start( "start" ); //test
+	//game.state.start( "overworld" ); //test
 	
 	
 	//-----Tutorial Code. He used multile files so the tutorial video is probably in Phaser 3 instead of Phaser 2. -------------------------------------------------------
@@ -545,7 +559,8 @@ function make_start_state(game)
 		{
 			//Go to the main scene. The main part of the game.
 			game.sound.stopAll(); //test
-			game.state.start('main'); //test
+			//game.state.start('main'); //test
+			game.state.start('overworld'); //test
 		}
 	}
 	
@@ -657,5 +672,142 @@ function make_victory_end_state(game)
 	
 }
 
+function make_overworld_state(game)
+{
+	
+	var player;
+	
+	var enemy;
+	var enemies;
+	
+	var background_art; //test
+	
+	var music; //test
+	var sound; //test
+	
+	var cursors; //test
+	var restartButton; //test
+	
+	function preload() {
+		
+		game.load.spritesheet('player_overworld_sprite', 'assets/piskel_player_spritesheet_overworld_draft_1_attempt1.png', 128, 128); //tes
+		game.load.spritesheet('enemy_overworld_sprite', 'assets/da4_piskel_custom_chicken_overworld_sprite_attempt_1.png', 128, 128); //tes
+		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
+		game.load.image('overworld_map', 'assets/overworld_map_1.png'); //test
+		
+		game.load.audio('overworld_theme', 'sounds/legend_of_zelda_overworld_theme.m4a'); //test
+		
+		
+	}
+	
+	function create() {
+		
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+		
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'overworld_map'); //test
+		
+		//Creating the player
+		player = game.add.sprite(400, 500, 'player_overworld_sprite');
+		player.anchor.setTo(0.5, 0.5);
+		game.physics.enable(player, Phaser.Physics.ARCADE);
+		
+		player.animations.add('player_overworld_neutral', [0, 1, 2, 3], 2, true); //test
+		
+		
+		//Setting the first animation of the player
+		player.animations.play('player_overworld_neutral'); //tes
+		
+		
+		//Adding controls
+		cursors = game.input.keyboard.createCursorKeys();
+		
+		//Creating the enemy
+		//enemy = game.add.sprite(350, 70, 'enemy_overworld_sprite'); //test
+		//enemy = game.add.sprite(390, 120, 'enemy_overworld_sprite'); //test
+		
+		enemies = game.add.group();
+		enemies.enableBody = true;
+		enemies.physicsBodyType = Phaser.Physics.ARCADE;
+		
+		enemy = enemies.create(430, 200, 'enemy_overworld_sprite'); //test
+			
+        enemy.anchor.setTo(0.5, 0.5); 
+        enemy.body.moves = false;
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
+		
+		//My code--- Playing theme
+		music = game.add.audio("overworld_theme"); //test
+		music.play('', 0, 1, true); //test
+	}
+	
+	function update() {
+		
+		
+		if (player.alive)
+		{
+			//  Reset the player, then check for movement keys
+			player.body.velocity.setTo(0, 0);
+
+			if (cursors.left.isDown)
+			{
+				//player.body.velocity.x = -200; //original
+				player.body.velocity.x = -500; //test
+			}
+			else if (cursors.right.isDown) //original
+			//if (cursors.right.isDown)
+			{
+				//player.body.velocity.x = 200; //original
+				player.body.velocity.x = 500; //test
+			}
+			//else if (cursors.up.isDown) //test
+			if (cursors.up.isDown) //test
+			{
+				//player.body.velocity.y = -200; //test
+				player.body.velocity.y = -500; //test
+			}
+			else if (cursors.down.isDown) //test
+			//if (cursors.down.isDown) //test
+			{
+				//player.body.velocity.y = 200; //test
+				player.body.velocity.y = 500; //test
+			}
+        
+		//Run collision handlers
+		game.physics.arcade.overlap(player, enemy, enemyBodyHitsPlayer, null, this); //test
+		}
+		
+		
+		
+	}
+	
+	// Restart the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
+	
+	function enemyBodyHitsPlayer (player, enemy) {
+		
+		// Starts the 'main' state, which is where the player battles the chicken
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	
+	}
+	
+	
+	return { "preload": preload, "create": create, "update": update}; //Prof. given code
+	
+}
 
 
