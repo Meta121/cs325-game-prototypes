@@ -16,7 +16,8 @@ function make_main_game_state( game )
 		//game.load.spritesheet('player', 'assets/ff4_cecil_spritesheet_V2_draft_1.png', 28, 26); //test
 		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt1.png', 32, 32); //test
 		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_2.png', 320, 320); //test
-		game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_3.png', 160, 160); //tes
+		//game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_3.png', 160, 160); //tes
+		game.load.spritesheet('player', 'assets/piskel_player_spritesheet_attempt_4.png', 160, 160); //tes
 		
 		//game.load.image('enemy', 'assets/big_chicken_1.png'); //test
 		game.load.spritesheet('enemy', 'assets/da4_piskel_custom_chicken_sprite_draft_4_attempt_1.png', 448, 448); //tes
@@ -68,6 +69,8 @@ function make_main_game_state( game )
 	var labelEnemyHealth; //test
 	
 	var enemyMaxHealth = 0;
+	
+	var currentChickenForm = 0;
 	
 	var playerPotionAmount = 1; //test
 	var playerPotionAmountString = ''; //test
@@ -166,6 +169,9 @@ function make_main_game_state( game )
 		enemyHealthString= 'Enemy Health: \n'; //test 
 		labelEnemyHealth = game.add.text(550, 0, enemyHealthString + enemyHealth, { font: "40px", fill: "#FF0000" }); //test 
 		
+		//Setting up the current form of the chicken.
+		currentChickenForm = 0;
+		
 		//Creating and setting up the Special Meter. At 100, can use special move.
 		specialMeter = 0; //test
 		specialMeterString = 'Special Meter: '; //test 
@@ -213,15 +219,24 @@ function make_main_game_state( game )
 		}
 		
 		//When enemy chicken is at at a certain percentage. Change the chickens form.
-		if (enemyHealth <= (enemyMaxHealth * 0.35) ) {
+		
+		if (enemyHealth <= (enemyMaxHealth * 0.35) && (currentChickenForm == 1) ) {
+			
+			currentChickenForm = 2; //test //Marker for chicken current form. 2 is ultra instinct.
+			
 			enemy.animations.play('enemy_chicken_ultra_instinct_neutral'); //test
 			
 			//My code ---Testing sound effects here plays player sword attack sound effect
 			//sound = game.add.audio("player_sword_attack_sound_effect"); //test
 			//sound.play(); //test
 		}
+		
 		//When enemy chicken is at half health or less, it goes into it's super form
-		else if (enemyHealth <= (enemyMaxHealth * 0.80) ) {
+		//if (enemyHealth <= (enemyMaxHealth * 0.50) ) {
+		else if (enemyHealth <= (enemyMaxHealth * 0.80) && (currentChickenForm == 0) ) {
+			
+			currentChickenForm = 1; //test //1 == Is in super chicken form.
+			
 			enemy.animations.play('enemy_chicken_super_neutral'); //test
 		}
 		
@@ -495,9 +510,9 @@ function make_start_state(game)
 {
 	//preload function
 	function preload() {
-		game.load.image('title_screen', 'assets/title_screen_3.png'); //test
+		game.load.image('title_screen', 'assets/da4_title_screen_draft_1.png'); //test
 		
-		game.load.audio('start_scene_theme', 'sounds/initialD_runninginthe90s_background_theme.m4a'); //test
+		game.load.audio('start_scene_theme', 'sounds/dragon_quest_opening_theme.m4a'); //test
 	}
 	
 	
@@ -590,8 +605,7 @@ function make_end_state(game)
 	
 	
 	function preload() {
-		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
-		game.load.image('game_over_screen', 'assets/game_over_screen.jpg'); //test
+		game.load.image('game_over_screen', 'assets/da4_gameover_screen_2.png'); //test
 	}
 	
 	function create() {
@@ -635,8 +649,7 @@ function make_victory_end_state(game)
 	var restartButton; //test
 	
 	function preload() {
-		//game.load.image('background_art', 'assets/game_over_screen.jpg'); //test
-		game.load.image('victory_screen', 'assets/victory_screen.jpg'); //test
+		game.load.image('victory_screen', 'assets/da4_victory_screen.png'); //test
 	}
 	
 	function create() {
