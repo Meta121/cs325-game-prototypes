@@ -1,4 +1,5 @@
 "use strict";
+var total_score = 0;
 
 function make_main_game_state( game )
 {
@@ -56,6 +57,8 @@ function make_main_game_state( game )
 	
 	//var battle_background; //test
 	var background_art; //test
+	var background_art_2; //test
+	
 	var music; //test
 	var sound; //test
 	
@@ -116,6 +119,8 @@ function make_main_game_state( game )
 		//--My code. Start. ------------------------------------------------------------------
 		
 		//Adding the background art
+		background_art_2 = game.add.tileSprite(0, 0, 800, 600, 'background_art_2'); //test
+		
 		background_art = game.add.tileSprite(0, 0, 800, 600, 'background_art'); //test
 		
 		//-My code. Adding a restart button.
@@ -220,6 +225,10 @@ function make_main_game_state( game )
 	   
 	   //Goes to victory screen when the player wins when enemy health is 0 or less.
 	   if (enemyHealth <= 0) {
+			enemyHealth = 0; //test
+			
+			total_score = score; //test
+			
 			//Go to the end screen
 			game.sound.stopAll(); //test
 			game.state.start('victory_end'); //test
@@ -245,7 +254,11 @@ function make_main_game_state( game )
 			music = game.add.audio("enemy_3rd_form_background_theme"); //test
 			music.play('', 0, 1, true); //test
 			
-			//background_art = game.add.tileSprite(0, 0, 800, 600, 'background_art_2'); //test
+			//background_art_2 = game.add.tileSprite(0, 0, 800, 600, 'background_art_2'); //test
+			
+			//Testing to see if I can back the 1st background invisible to see the 2nd background
+			background_art.visible =! background_art.visible;
+			
 		}
 		
 		//2nd form
@@ -267,13 +280,13 @@ function make_main_game_state( game )
 		//Playing player animation for this action
 		//player.animations.play('player_neutral'); //test
 		
-		//Scrolls the background if Chickenzilla is in it's final 3rd form.
-		/*
+		//Scrolls the background art 2 if Chickenzilla is in it's final 3rd form.
+		
 		if (currentChickenForm == 2)
 		{
-			background_art.tilePosition.x -= 10; //test
+			background_art_2.tilePosition.x -= 10; //test
 		}
-		*/
+		
 		
     }
 	
@@ -678,6 +691,9 @@ function make_victory_end_state(game)
 	var music; //test
 	var sound; //test
 	
+	var totalScoreString = ''; //test
+	var labelTotalScore; //test
+	
 	var restartButton; //test
 	
 	function preload() {
@@ -695,6 +711,12 @@ function make_victory_end_state(game)
 		//My code--- Playing theme
 		music = game.add.audio("end_scene_theme"); //test
 		music.play('', 0, 1, true); //test
+		
+		//Creating and setting the total score
+		//score = 0; //original
+		totalScoreString = 'Total Score: '; //test
+		//labelScore = game.add.text(20, 30, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
+		labelTotalScore = game.add.text(250, 550, totalScoreString + total_score, { font: "40px", fill: "#ffffff" }); //test 
 	}
 	
 	function update() {
