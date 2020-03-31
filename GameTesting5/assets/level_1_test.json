@@ -1,4 +1,12 @@
 { "compressionlevel":0,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"level_1_test.json"
+        }
+    },
  "height":75,
  "infinite":false,
  "layers":[
@@ -24,8 +32,18 @@
  "tileheight":16,
  "tilesets":[
         {
+         "columns":50,
          "firstgid":1,
-         "source":"tileset.tsx"
+         "image":"..\/..\/..\/..\/Documents\/Tiled\/Tutorial\/simples_pimples.png",
+         "imageheight":1280,
+         "imagewidth":800,
+         "margin":0,
+         "name":"tileset",
+         "spacing":0,
+         "tilecount":4000,
+         "tileheight":16,
+         "tilewidth":16,
+         "transparentcolor":"#ff00ff"
         }],
  "tilewidth":16,
  "type":"map",

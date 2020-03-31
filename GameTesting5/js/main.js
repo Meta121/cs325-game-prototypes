@@ -4,10 +4,17 @@ function make_main_game_state( game )
 {
     function preload() {
         //game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
-		game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
+		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
+		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
+		game.load.tilemap('map', 'assets/level_1_test.csv');
+		
+		
 		
 		//game.load.image('tiles', 'assets/tilemaps/tiles/super_mario.png'); //original
-		game.load.image('tiles', 'assets/simples_pimples.png')
+		//game.load.image('tiles', 'assets/simples_pimples.png')
+		game.load.image('tileset', 'assets/simples_pimples.png')
+		
+		game.load.tilemap
 		
 		
     }
@@ -16,14 +23,25 @@ function make_main_game_state( game )
 	var layer;
     
     function create() {
-        game.stage.backgroundColor = '#787878';
+        /*
+		game.stage.backgroundColor = '#787878';
 		
 		map = game.add.tilemap('level_1');
-		map.addTilesetImage('level_1_TilesetImage', 'tiles');
+		map.addTilesetImage('tileset', 'tiles');
 		
-		layer = map.createLayer('World1');
+		layer = map.createLayer('Tile Layer 1');
+		*/
 		
 		//  This resizes the game world to match the layer dimensions
+		//layer.resizeWorld();
+		
+		//game.state.start('level1');//
+		
+		map = game.add.tilemap('map', 16, 16);
+		
+		map.addTilesetImage('tileset');
+		
+		layer = map.createLayer(0);
 		layer.resizeWorld();
 		
     }
@@ -49,8 +67,9 @@ window.onload = function() {
     // loading functions to reflect where you are putting the assets.
     // All loading functions will typically all be found inside "preload()".
     
-    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
-    
+    //var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
+    var game = new Phaser.Game( 1600, 1400, Phaser.AUTO, 'game' );
+	
     game.state.add( "main", make_main_game_state( game ) );
     
     game.state.start( "main" );
