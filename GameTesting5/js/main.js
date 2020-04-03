@@ -8,7 +8,8 @@ function make_main_game_state( game )
 		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
 		game.load.tilemap('map', 'assets/level_1_test.csv');
 		
-		
+		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
+
 		
 		//game.load.image('tiles', 'assets/tilemaps/tiles/super_mario.png'); //original
 		//game.load.image('tiles', 'assets/simples_pimples.png')
@@ -37,7 +38,8 @@ function make_main_game_state( game )
 	var enemyBomb;
     
     function create() {
-        /*
+       //game.physics.startSystem(Phaser.Physics.ARCADE);
+ /*
 		game.stage.backgroundColor = '#787878';
 		
 		map = game.add.tilemap('level_1');
@@ -59,12 +61,17 @@ function make_main_game_state( game )
 		
 		map.addTilesetImage('tileset');
 		
-		layer = map.createLayer(0);
+		layer = map.createLayer(0); //original
+		//layer = map.createLayer('Tile Layer 1'); //test
+		//layer = this.map.createLayer(0); //test
 		layer.resizeWorld();
 		
 		//map.setCollisionBetween(0,2); //original
-		map.setCollisionBetween(0,0); //test
+		//map.setCollisionBetween(0,0); //test //Default that I should use
 		//map.setCollisionBetween(100, 100); //test
+		//map.setCollisionBetween(0, 10000, true, layer3); //test
+		map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
+		//map.setCollisionBetween(0, 1000, true); //test //Somehow this works for touching tiles in tilemap.
 		
 		player = this.add.sprite(100,500, 'player');
 		player.anchor.setTo(0.5, 0.5) //original
@@ -100,7 +107,11 @@ function make_main_game_state( game )
     
     function update() {
         
-		game.physics.arcade.collide(player, layer);
+		game.physics.arcade.collide(player, layer); //test
+		//this.physics.arcade.collide(player, layer); //test
+		//game.physics.arcade.collide(player, layer[1]); //test
+		
+		
 		
 		player.body.velocity.x = 0; //So every frame sets player speed to 0 to avoid sliding.
 		
@@ -187,8 +198,8 @@ window.onload = function() {
     // loading functions to reflect where you are putting the assets.
     // All loading functions will typically all be found inside "preload()".
     
-    //var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' );
-    var game = new Phaser.Game( 1600, 1400, Phaser.AUTO, 'game' );
+    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game' ); //test //Normal view
+    //var game = new Phaser.Game( 1600, 1400, Phaser.AUTO, 'game' ); //test //Full view of level 1 for testing
 	
     game.state.add( "main", make_main_game_state( game ) );
     
