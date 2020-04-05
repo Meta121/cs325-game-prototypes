@@ -3,42 +3,92 @@
 function make_main_game_state( game )
 {
     function preload() {
-        //game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
+		
+		//--My code-------------------------------------------
+		//Preloading the background
+		game.load.image('background_art', 'assets/futuristic_city_background.jpg'); //test
+		
+		//Preloading the music
+		game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //test
+		
+		//Adding the tilemap
+		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
 		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
 		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
 		game.load.tilemap('map', 'assets/level_1_test.csv');
 		
 		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
 
-		
+		//Adding the tileset
 		//game.load.image('tiles', 'assets/tilemaps/tiles/super_mario.png'); //original
 		//game.load.image('tiles', 'assets/simples_pimples.png')
 		game.load.image('tileset', 'assets/simples_pimples.png')
 		
 		game.load.tilemap
 		
+		//Adding images and sprites
+		
 		//this.load.spritesheet('dude', 'src/games/firstgame/assets/dude.png', { frameWidth: 32, frameHeight: 48 }); //from other game example
 		game.load.spritesheet('player', 'assets/dude.png', 32, 48);//test
 		
 		game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
+		
 		game.load.image('bomb', 'assets/bomb.png');//test
 		
     }
     
-    var map;
+    //Variables
+	var map;
 	var layer;
 	
-	//More added variables
+	//More added variables 1
+	var background_art;
+	
+	var music; //test
+	var sound; //test
+	
+	
+	//More added variables 2
 	var player;
 	var controls; //var controls {};
-	var playerSpeed = 150;
+	//var playerSpeed = 150; //original
+	var playerSpeed = 300; //test
 	var jumpTimer = 0;
 	
 	var enemy1;
 	var enemyBomb;
+	
+	//More added variables 3
+	var score; //test
+	var scoreString = ''; //test
+	var labelScore; //test
+	
+	var playerLevel = 1; //test
+	var playerLevelString = ''; //test
+	var labelPlayerLevel; //test
+	
+	var playerHealth = 0; //test
+	var playerHealthString = ''; //test
+	var labelPlayerHealth; //test
+	
+	var playerMaxHealth; //test
+	var playerMaxHealthString = ''; //test
+	var labelPlayerHealth; //test
+	
+	var playerAttack = 0; //test
+	var playerAttackString = ''; //test
+	var labelPlayerAttack; //test
+	
+	var playerDefense = 0; //test
+	var playerHealthString = ''; //test
+	var labelPlayerDefense; //test
+	
+	var restartButton; //test
     
     function create() {
-       //game.physics.startSystem(Phaser.Physics.ARCADE);
+		
+	   
+	   //game.physics.startSystem(Phaser.Physics.ARCADE);
  /*
 		game.stage.backgroundColor = '#787878';
 		
@@ -53,7 +103,16 @@ function make_main_game_state( game )
 		
 		//game.state.start('level1');//
 		
-		game.stage.backgroundColor = '#787878';
+		//Adding the background art
+		game.stage.backgroundColor = '#787878'; //test
+		//background_art = game.add.tileSprite(0, 0, 800, 600, 'background_art'); //test
+		//background_art = game.add.tileSprite(0, 0, 1600, 1400, 'background_art'); //test
+		//background_art = game.add.tileSprite(0, 0, 16000, 14000, 'background_art'); //test
+		
+		//Adding the music //Turn this back on later
+		//My code--- Playing background theme
+		//music = game.add.audio("background_theme"); //test
+		//music.play('', 0, 1, true); //test
 		
 		game.physics.arcade.gravity.y = 1400; //original //Creates almost realistic gravity
 		
@@ -93,12 +152,27 @@ function make_main_game_state( game )
 			right: game.input.keyboard.addKey(Phaser.Keyboard.D),
 			left: game.input.keyboard.addKey(Phaser.Keyboard.A),
 			up: game.input.keyboard.addKey(Phaser.Keyboard.W),
-			
-			
+			down: game.input.keyboard.addKey(Phaser.Keyboard.S),
 		}
+		//Creating the UI (User Interface) for the player START--------------------------
 		
+		//Creating and setting Player Health on the screen
+		//playerHealth = 1500; //test
+		playerLevel = 1; //test
+		playerLevelString = 'Level: '; //test 
+		labelPlayerLevel= game.add.text(0, 0, playerLevelString + playerLevel, { font: "30px", fill: "#FFFFFF" }); //test 
+		labelPlayerLevel.fixedToCamera = true; //test //Fixes the text to the camera
 		
+		//Creating and setting Player Health on the screen
+		//playerHealth = 1500; //test
+		playerHealth = 50; //test
+		playerHealthString = 'Player Health: '; //test 
+		playerMaxHealth = 50;
+		playerMaxHealthString = '/'; //test 
+		labelPlayerHealth = game.add.text(0, 30, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "30px", fill: "#00FF00" }); //test 
+		labelPlayerHealth.fixedToCamera = true; //test //Fixes the text to the camera
 		
+		//Creating the UI (User Interface) for the player END--------------------------
 		//Making the bomb enemy
 		enemy1 = new enemyBomb(0, game, player.x + 400, player.y - 200);
 		
@@ -149,12 +223,22 @@ function make_main_game_state( game )
 			player.animations.play('neutral');
 		}
 		
-		
-		if (controls.up.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) {
+		//Implements regular jumping on the floor
+		//if (controls.up.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) { //original
+		if (controls.up.isDown == true && (player.body.onFloor() == true || player.body.touching.down) == true) {//test
 			
-			player.body.velocity.y = -600;
+			//player.body.velocity.y = -600; //original
+			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
 		
+		}
+		//My Code. Implementing a fast fall for Gen. //test
+		if (controls.down.isDown == true)
+		{
+			//Fast fall
+			player.body.velocity.y = 800; //test
+			
+			
 		}
 		
 		//Checking player collision with enemy
@@ -206,6 +290,8 @@ window.onload = function() {
     game.state.start( "main" );
 };
 
+/* This functions checks if 2 sprites are overlapping with each other or not.
+*/
 function checkOverlap(spriteA, spriteB) {
 	
 	var boundsA = spriteA.getBounds();
