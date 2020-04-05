@@ -52,8 +52,12 @@ function make_main_game_state( game )
 	var player;
 	var controls; //var controls {};
 	//var playerSpeed = 150; //original
-	var playerSpeed = 300; //test
+	//var playerSpeed = 300; //test
+	//var playerSpeed = 400; //test
+	var playerSpeed = 450; //test
 	var jumpTimer = 0;
+	
+	var allowWallJump = false;
 	
 	var enemy1;
 	var enemyBomb;
@@ -80,7 +84,7 @@ function make_main_game_state( game )
 	var labelPlayerAttack; //test
 	
 	var playerDefense = 0; //test
-	var playerHealthString = ''; //test
+	var playerDefenseString = ''; //test
 	var labelPlayerDefense; //test
 	
 	var restartButton; //test
@@ -129,8 +133,11 @@ function make_main_game_state( game )
 		//map.setCollisionBetween(0,0); //test //Default that I should use
 		//map.setCollisionBetween(100, 100); //test
 		//map.setCollisionBetween(0, 10000, true, layer3); //test
-		map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
+		//map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
 		//map.setCollisionBetween(0, 1000, true); //test //Somehow this works for touching tiles in tilemap.
+		
+		map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
+		
 		
 		player = this.add.sprite(100,500, 'player');
 		player.anchor.setTo(0.5, 0.5) //original
@@ -145,6 +152,8 @@ function make_main_game_state( game )
 		//run
 		
 		game.physics.arcade.enable(player);
+		//Player physics properties. Give the player some bounceyness.
+		//player.body.bounce.y = 0.2; //test
 		game.camera.follow(player);
 		player.body.collideWorldBounds = true;
 		
@@ -156,21 +165,31 @@ function make_main_game_state( game )
 		}
 		//Creating the UI (User Interface) for the player START--------------------------
 		
-		//Creating and setting Player Health on the screen
-		//playerHealth = 1500; //test
+		//Creating and setting Player Level on the screen
 		playerLevel = 1; //test
 		playerLevelString = 'Level: '; //test 
-		labelPlayerLevel= game.add.text(0, 0, playerLevelString + playerLevel, { font: "30px", fill: "#FFFFFF" }); //test 
+		labelPlayerLevel = game.add.text(0, 0, playerLevelString + playerLevel, { font: "30px", fill: "#FFFFFF" }); //test 
 		labelPlayerLevel.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting Player Health on the screen
-		//playerHealth = 1500; //test
 		playerHealth = 50; //test
 		playerHealthString = 'Player Health: '; //test 
 		playerMaxHealth = 50;
 		playerMaxHealthString = '/'; //test 
 		labelPlayerHealth = game.add.text(0, 30, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "30px", fill: "#00FF00" }); //test 
 		labelPlayerHealth.fixedToCamera = true; //test //Fixes the text to the camera
+		
+		//Creating and setting Player Attack on the screen
+		playerAttack = 10; //test
+		playerAttackString = 'Attack: '; //test 
+		labelPlayerAttack = game.add.text(0, 60, playerAttackString + playerAttack, { font: "30px", fill: "#FF0000" }); //test 
+		labelPlayerAttack.fixedToCamera = true; //test //Fixes the text to the camera
+		
+		//Creating and setting Player Attack on the screen
+		playerDefense = 2; //test
+		playerDefenseString = 'Defense: '; //test 
+		labelPlayerDefense = game.add.text(0, 90, playerDefenseString + playerDefense, { font: "30px", fill: "#0000FF" }); //test 
+		labelPlayerDefense.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating the UI (User Interface) for the player END--------------------------
 		//Making the bomb enemy
@@ -231,6 +250,32 @@ function make_main_game_state( game )
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
 		
+		}
+		/*
+		* Implementing the wall jump.
+		* The wall jump mechanic for Gen
+		*/
+		//allowWallJump = checkOverlap(player, map); //test
+		//if (controls.up.isDown == true && (player.body.onFloor() == false || player.body.touching.down) == false) //test
+		//if (controls.up.isDown == true && (player.body.onFloor() == false) ) //test
+		if (controls.up.isDown == true && (player.body.onFloor() == false) && player.body.onWall() == true) //test
+		{
+			//Sends Gen up initially
+			player.body.velocity.y = -650; //test
+			
+			/*
+			//test
+			//This part of the code doesn't work like how I imagined
+			if (player.body.onWall() == true && controls.left.isDown)
+			{
+				player.body.velocity.x += 200; //test //Bounces the player to the right a bit when wall jumping from a wall on the left side of the player
+			}
+			
+			if (player.body.onWall() == true && controls.right.isDown)
+			{
+				player.body.velocity.x -= 200; //test //Bounces the player to the left a bit when wall jumping from a wall on the left side of the player
+			}
+			*/
 		}
 		//My Code. Implementing a fast fall for Gen. //test
 		if (controls.down.isDown == true)
