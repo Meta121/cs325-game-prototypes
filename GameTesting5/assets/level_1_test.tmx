@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="75" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <editorsettings>
-  <export target="level_1_test.json" format="json"/>
+  <export target="level_1_test.json" format="csv"/>
  </editorsettings>
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="4000" columns="50">
   <image source="../../../../Documents/Tiled/Tutorial/simples_pimples.png" trans="ff00ff" width="800" height="1280"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="100" height="75">
   <data encoding="base64" compression="zlib">
-   eAHt1kFqwzAUBNDc/2q9VOuFwHglOxo6Fi9gkoD4mf+mgn4+XgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYG+Bn7/1Us/ecpntji4Sr9TcRNammSm31Nwmu0SWlFtqbsKgaWbKLTW3yS6RJeWWmpswaJqZckvNbbJLZEm5peYmDJpmzrgdZ548TXu+JctsH2/Z5+059dHVoD700SXQlcb90EeXQFca90MfXQJdadwPfXQJdKVxP/TRJdCVxv3QR5dAVxr3Qx9dAl1p3A99dAl0pXE/9NEl0JXG/dBHl8B3aWb+nu/8wsy8mTN3fvO/z67a55izatYwmZk3c2bMe8P7in2OGeNZufNMtpkzKzOlZ327z+hhvK/MO5Nt5szKTOlZ3+wzOji/p/PuPv9pH+cOzp9390rv96SPs//1czrv7vPv9nH1v37f3Su939XT9/X/t9/p8Bd6A6wU
+   eAHtm+Fqw0AMg/v+r7ZnKmxmHGQlOdmRfElXFUq2nCwrnyjrnz0fj8fz4P31c/+q91GmuH9VphV74/n8ugeB6Nt93KOLSOE+7tOF+7hXF+7DfdyPwL0S+e+Hvg/0nXi20X3M6OjPgvfs5T5mdPRn7kPPlHF0Hww9/az70DNlHN0HQ08/6z70TBlH98HQ08+6Dz1TxtF9MPT0s+5Dz5RxdB8MPf2s+9AzZRzdB0NPP+s+9EwZR/fB0NPPug89U8bRfTD09LPuQ8+UcXQfDD39rPvQM2Uc3QdDTz/rPvRMGUf3wdDTz7oPPVPG0X0w9PSz7kPPlHF89z4if9eb4Xp29j/0cfbZZ3OIy2yWOUN74/zO/6+G8p9l0+WL8qC97gMR1J67j32eiMv+FH8X7fXng2dccXAf+7QQl/0p/i7a688Hz7ji8Al9xDOeeVc4qrSf0oeKV7eP++gmXPN3HzVe3Wr30U245u8+ary61e6jm3DN333UeHWr3Uc34Zq/+6jx6la7j27CNX/3UePVrXYf3YRr/u6jxqtb7T66Cdf83UeNV7c60wfSdGec+WeyZTSzHSvPUNY4R5qVeV93ZbJlNK++V/2OssY50lyVPfZmsmU0Vz7DdjfKGudIs/Vb/XMmW0azOvfRPpQ1zpHmyHvF/Uy2jGZF1swOlDXOkSazp0uTyZbRdOWr+qKscY401Z1KfSZbRqPMxHihrHGONJX9Sq/Ym/HLaCrP0KlFWeMcabL5lF5jZyZbRjP8rr6irCqGwwftq/LI+GU01b1depQ1zpEGZRse44r0lfNMtrH3Xa6z5x/PMNPMzsb89jrT+2xOYHCcq/ZPx+zrdV/tuxkCg2VGu9WMub3rVuefawQGz8rUmDm6Vrys/UvgiKnv/37PuYLDN6gI6FI=
   </data>
  </layer>
 </map>
