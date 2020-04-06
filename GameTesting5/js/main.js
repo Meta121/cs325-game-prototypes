@@ -816,7 +816,7 @@ function make_main_game_state( game )
 	function collisionPlayer_and_ExitBox (player, exit_box) {
 		
 		//My code---------
-		player.body.velocity.y = -1000; //test
+		game.state.start( "victory_end" ); //test
 		
 		//My code --- play player death sound
 		//sound = game.add.audio("player_death_sound"); //test
@@ -844,6 +844,205 @@ window.onload = function() {
     //var game = new Phaser.Game( 1600, 1400, Phaser.AUTO, 'game' ); //test //Full view of level 1 for testing
 	
     game.state.add( "main", make_main_game_state( game ) );
+	
+	game.state.add( "start", make_start_state(game) ); //test
+	game.state.add( "end", make_end_state(game) ); //test
+    game.state.add( "victory_end", make_victory_end_state(game) ); //test
     
-    game.state.start( "main" );
+	//--My code. Starting the game at the start scene instead of at main which is the main game. -------
+	game.state.start( "start" ); //test
+    //game.state.start( "main" ); //test
 };
+
+//--My code-------------------------------------------------------------------
+//---------------------My code. More functions such as for the start and end state.-----------------------------------------------------------
+function make_start_state(game)
+{
+	//preload function
+	function preload() {
+		game.load.image('title_screen', 'assets/da4_title_screen_draft_1.png'); //test
+		
+		game.load.audio('start_scene_theme', 'sounds/dragon_quest_opening_theme.m4a'); //test
+	}
+	
+	
+	var background_art; //test
+	
+	var music; //test
+	var sound; //test
+	
+	var startButton; //test
+	var leftClickMouse; //test
+	
+	//Create function
+	function create() {
+		
+		//this.music = null; //og
+		//this.playButton = null; //og
+		this.startButton = null; //test
+		this.leftClickMouse = null; ///test
+		
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'title_screen'); //test
+		
+		//startButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //original
+		
+		
+		//------------------------
+		
+		//this.music = this.add.audio('titleMusic'); //original
+		//this.music = this.add.audio('title_theme'); //test
+		//this.music.play(); //original
+
+		//this.add.sprite(0, 0, 'titlepage'); //original
+		//this.add.sprite(0, 0, 'title_screen'); //test
+
+		//this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
+		
+		//My code--- Playing theme
+		music = game.add.audio("start_scene_theme"); //test
+		music.play('', 0, 1, true); //test
+	}
+	
+	//Update function
+	function update() {
+		
+		//-My code. Using Space Bar key to start the game----
+		//if (startButton.isDown) //test
+		/*
+		if (startButton.isDown == true) //test
+        {
+			//Go to the main scene. The main part of the game.
+			game.sound.stopAll(); //test
+			game.state.start('main'); //test
+        }
+		*/
+		
+		//-My code. Using Mouse Left Click to start the game----
+		leftClickMouse = game.input.activePointer.leftButton.isDown; //test
+		if (leftClickMouse == true) //test
+		{
+			//Go to the main scene. The main part of the game.
+			game.sound.stopAll(); //test
+			//game.state.start('main'); //test
+			game.state.start('main'); //test
+		}
+	}
+	
+	//Start Game function
+	function startGame(pointer) {
+		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
+		//this.music.stop(); //original
+
+		//	And start the actual game
+		//this.state.start('Game'); //original
+		//this.state.start('main'); //test
+	}
+	
+	return { "preload": preload, "create": create, "update": update, "startGame": startGame}; //test //Prof. given code
+}
+
+function make_end_state(game)
+{
+	
+	
+	var background_art; //test
+	
+	var music; //test
+	var sound; //test
+	
+	var restartButton; //test
+	
+	
+	function preload() {
+		game.load.image('game_over_screen', 'assets/da4_gameover_screen_2.png'); //test
+	}
+	
+	function create() {
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'game_over_screen'); //test
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
+	}
+	
+	function update() {
+		
+		
+	}
+	
+	// Restart the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
+	
+	
+	return { "preload": preload, "create": create, "update": update}; //Prof. given code
+	
+}
+
+function make_victory_end_state(game)
+{
+	
+	var background_art; //test
+	
+	var music; //test
+	var sound; //test
+	
+	var totalScoreString = ''; //test
+	var labelTotalScore; //test
+	
+	var restartButton; //test
+	
+	function preload() {
+		game.load.image('victory_screen', 'assets/da4_victory_screen.png'); //test
+		
+		game.load.audio('end_scene_theme', 'sounds/initialD_nightoffire_background_theme.m4a'); //test
+	}
+	
+	function create() {
+		//Adding the background art
+		background_art = game.add.tileSprite(0, 0, 800, 600, 'victory_screen'); //test
+		
+		//-My code. Adding a restart button.
+		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
+		restartButton.onDown.add(restartGame); //test
+		
+		//My code--- Playing theme
+		music = game.add.audio("end_scene_theme"); //test
+		music.play('', 0, 1, true); //test
+		
+		//Creating and setting the total score
+		//score = 0; //original
+		totalScoreString = 'Total Score: '; //test
+		//labelScore = game.add.text(20, 30, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
+		labelTotalScore = game.add.text(250, 550, totalScoreString + total_score, { font: "40px", fill: "#ffffff" }); //test 
+	}
+	
+	function update() {
+		
+	}
+	
+	// Restart the game
+	//restartGame: function() { //original
+	function restartGame() { //test
+		// Start the 'main' state, which restarts the game
+		game.state.start('main');
+		
+		// My added code ---------------------
+		game.sound.stopAll();//test
+	//},
+	}
+	
+	
+	return { "preload": preload, "create": create, "update": update}; //Prof. given code
+	
+}
+
