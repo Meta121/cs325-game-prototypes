@@ -12,7 +12,8 @@ function make_main_game_state( game )
 		game.load.image('background_art', 'assets/futuristic_city_background.jpg'); //test
 		
 		//Preloading the music
-		game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //test
+		//game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //test
+		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //test
 		
 		//Adding the tilemap
 		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
@@ -860,7 +861,7 @@ function make_start_state(game)
 {
 	//preload function
 	function preload() {
-		game.load.image('title_screen', 'assets/da4_title_screen_draft_1.png'); //test
+		game.load.image('title_screen', 'assets/da5_title_screen_draft_1.png'); //test
 		
 		game.load.audio('start_scene_theme', 'sounds/dragon_quest_opening_theme.m4a'); //test
 	}
@@ -955,7 +956,7 @@ function make_end_state(game)
 	
 	
 	function preload() {
-		game.load.image('game_over_screen', 'assets/da4_gameover_screen_2.png'); //test
+		game.load.image('game_over_screen', 'assets/da5_gameover_screen_draft_1.png'); //test
 	}
 	
 	function create() {
@@ -1002,7 +1003,7 @@ function make_victory_end_state(game)
 	var restartButton; //test
 	
 	function preload() {
-		game.load.image('victory_screen', 'assets/da4_victory_screen.png'); //test
+		game.load.image('victory_screen', 'assets/da5_victory_screen_draft_1.png'); //test
 		
 		game.load.audio('end_scene_theme', 'sounds/initialD_nightoffire_background_theme.m4a'); //test
 	}
