@@ -15,6 +15,12 @@ function make_main_game_state( game )
 		//game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //test
 		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //test
 		
+		//Preloading sound effects
+		game.load.audio('player_jump_sound_effect', 'sounds/02_jump_sound_effect.wav'); //test
+		game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
+		game.load.audio('player_projectile_sound_effect', 'sounds/11_throwing_star_sound_effect.wav'); //test
+		game.load.audio('explosion_sound_effect', 'sounds/18_small_explosion.wav'); //test
+		
 		//Adding the tilemap
 		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
 		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
@@ -134,6 +140,10 @@ function make_main_game_state( game )
 	var ground_enemy; //test
 	var ground_enemies; //test
 	
+	var currentEnemyHealth = 0; //test
+	var currentEnemyHealthString = ''; //test
+	var labelCurrentEnemyHealth; //test
+	
 	var explosion;
 	var explosions; //test
 	
@@ -172,8 +182,8 @@ function make_main_game_state( game )
 		
 		//Adding the music //Turn this back on later
 		//My code--- Playing background theme
-		//music = game.add.audio("background_theme"); //test
-		//music.play('', 0, 1, true); //test
+		music = game.add.audio("background_theme"); //test
+		music.play('', 0, 1, true); //test
 		
 		game.physics.arcade.gravity.y = 1400; //original //Creates almost realistic gravity
 		
@@ -221,7 +231,7 @@ function make_main_game_state( game )
 			down: game.input.keyboard.addKey(Phaser.Keyboard.S),
 			heal: game.input.keyboard.addKey(Phaser.Keyboard.R),
 		}
-		//Creating the UI (User Interface) for the player START--------------------------
+		//-------Creating the UI (User Interface) for the player START--------------------------
 		
 		//Creating and setting Player Level on the screen
 		//playerLevel = 1; //test
@@ -269,7 +279,13 @@ function make_main_game_state( game )
 		labelPlayerRepairKitAmount = game.add.text(0, 150, playerRepairKitAmountString + playerRepairKitAmount, { font: "30px", fill: "#FFFF00" }); //test 
 		labelPlayerRepairKitAmount.fixedToCamera = true; //test //Fixes the text to the camera
 		
-		//Creating the UI (User Interface) for the player END--------------------------
+		//Creating and setting the current enemy health on the screen
+		currentEnemyHealth = 0; //test
+		currentEnemyHealthString = 'Current Enemy HP: '; //test 
+		labelCurrentEnemyHealth = game.add.text(550, 60, currentEnemyHealthString + currentEnemyHealth, { font: "25px", fill: "#00FF00" }); //test
+		labelCurrentEnemyHealth.fixedToCamera = true; //test //Fixes the text to the camera
+		
+		//-------Creating the UI (User Interface) for the player END--------------------------
 		
 		//Creating the player projectile group
 		player_projectiles = game.add.group();
@@ -371,17 +387,24 @@ function make_main_game_state( game )
 			
 			player.animations.play('neutral');
 		}
-		
-		//Implements regular jumping on the floor
+		/*
+		* REGULAR JUMP
+		*Implements regular jumping on the floor
+		*/
 		//if (controls.up.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) { //original
 		if (controls.up.isDown == true && (player.body.onFloor() == true || player.body.touching.down) == true) {//test
 			
 			//player.body.velocity.y = -600; //original
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
+			
+			//Playing the player jump sound effect
+			sound = game.add.audio("player_jump_sound_effect"); //test
+			sound.play(); //test
 		
 		}
 		/*
+		* WALL JUMP
 		* Implementing the wall jump.
 		* The wall jump mechanic for Gen
 		*/
@@ -392,6 +415,10 @@ function make_main_game_state( game )
 		{
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
+			
+			//Playing the player jump sound effect
+			//sound = game.add.audio("player_jump_sound_effect"); //test
+			//sound.play(); //test
 			
 			/*
 			//test
@@ -409,12 +436,17 @@ function make_main_game_state( game )
 		}
 		
 		/*
-		* Implementing the ceiling climb
+		* CEILING CLIMB
+		* Implementing the ceiling climb.
 		*/
 		if (controls.up.isDown == true && (player.body.onFloor() == false) && player.body.onCeiling() == true) //test
 		{
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
+			
+			//Playing the player jump sound effect
+			//sound = game.add.audio("player_jump_sound_effect"); //test
+			//sound.play(); //test
 			
 			/*
 			//test
@@ -437,6 +469,10 @@ function make_main_game_state( game )
 			//player.body.velocity.y = -600; //original
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
+			
+			//Playing the player jump sound effect
+			sound = game.add.audio("player_jump_sound_effect"); //test
+			sound.play(); //test
 		
 		}
 		
@@ -512,10 +548,27 @@ function make_main_game_state( game )
 		labelPlayerDefense.text = playerDefenseString + playerDefense; //test
 		labelPlayerRepairKitAmount.text = playerRepairKitAmountString + playerRepairKitAmount; //test
 		
+		//Constantly updating the stats of the current enemy on the top right part of the screen every frame
+		labelCurrentEnemyHealth.text = currentEnemyHealthString + currentEnemyHealth; //test
+		
 		//If the player health exceeds the max player health, set the player health to what the max player health is.
 		if (playerHealth > playerMaxHealth)
 		{
 			playerHealth = playerMaxHealth; //test
+		}
+		//If the player health is 0 or below, go to the game over screen
+		if (playerHealth <= 0)
+		{
+			playerHealth = 0; //test
+			
+			//My code---------
+			game.sound.stopAll(); //test
+			
+			game.state.start( "end" ); //test
+			
+			//My code --- play player death sound
+			sound = game.add.audio("player_death_sound"); //test
+			sound.play(); //test
 		}
 		
 		//Setting the global variable global_player_level to what is the current level.
@@ -577,10 +630,11 @@ function make_main_game_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			//Plays player projectile sound effect.
+			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
+			sound = game.add.audio("player_projectile_sound_effect"); //test
+			sound.play(); //test
 		}
-		//My code --- play player shoot sound
-		//sound = game.add.audio("player_shoot_sound"); //test
-		//sound.play(); //test
 
 	}
 	
@@ -601,10 +655,11 @@ function make_main_game_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			//Plays player projectile sound effect.
+			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
+			sound = game.add.audio("player_projectile_sound_effect"); //test
+			sound.play(); //test
 		}
-		//My code --- play player shoot sound
-		//sound = game.add.audio("player_shoot_sound"); //test
-		//sound.play(); //test
 
 	}
 
@@ -774,6 +829,9 @@ function make_main_game_state( game )
 			enemy.health = 0;
 		}
 		
+		//Settomg tje current enemy health displayed to the most recently hit enemy's enemy.health
+		currentEnemyHealth = enemy.health; //test
+		
 		//  When a player projectile hits an enemy, we kill them both
 		player_projectile.kill();
 		//enemy.kill(); //test
@@ -790,6 +848,10 @@ function make_main_game_state( game )
 		explosion = explosions.getFirstExists(false); //test
 		explosion.reset(enemy.body.x, enemy.body.y);
 		explosion.play('explosion', 30, false, true);
+		
+		//Play the explosion sound effect
+		sound = game.add.audio("explosion_sound_effect"); //test
+		sound.play(); //test
 		
 		
 		if (enemy.health == 0)
@@ -817,6 +879,8 @@ function make_main_game_state( game )
 	function collisionPlayer_and_ExitBox (player, exit_box) {
 		
 		//My code---------
+		game.sound.stopAll(); //test
+		
 		game.state.start( "victory_end" ); //test
 		
 		//My code --- play player death sound
@@ -1020,11 +1084,12 @@ function make_victory_end_state(game)
 		music = game.add.audio("end_scene_theme"); //test
 		music.play('', 0, 1, true); //test
 		
+		/*
 		//Creating and setting the total score
-		//score = 0; //original
 		totalScoreString = 'Total Score: '; //test
-		//labelScore = game.add.text(20, 30, scoreString + score, { font: "40px", fill: "#ffffff" }); //test 
 		labelTotalScore = game.add.text(250, 550, totalScoreString + total_score, { font: "40px", fill: "#ffffff" }); //test 
+		*/
+		
 	}
 	
 	function update() {
