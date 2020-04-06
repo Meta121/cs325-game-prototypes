@@ -17,8 +17,10 @@ function make_main_game_state( game )
 		
 		//Preloading sound effects
 		game.load.audio('player_jump_sound_effect', 'sounds/02_jump_sound_effect.wav'); //test
+		game.load.audio('player_damaged_sound', 'sounds/robolox_oof_sound_effect.m4a'); //test
 		game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
 		game.load.audio('player_projectile_sound_effect', 'sounds/11_throwing_star_sound_effect.wav'); //test
+		game.load.audio('player_uses_repair_kit_sound_effect', 'sounds/minecraft_potion_drink_sound_effect.m4a'); //test
 		game.load.audio('explosion_sound_effect', 'sounds/18_small_explosion.wav'); //test
 		
 		//Adding the tilemap
@@ -512,6 +514,10 @@ function make_main_game_state( game )
 				playerHealth += playerMaxHealth / 2; //Recovers the player's health by half the max health.
 				
 				player_repair_kit_use_time = game.time.now + 200; //test
+				
+				//Playing the player using a repair kit sound effect
+				sound = game.add.audio("player_uses_repair_kit_sound_effect"); //test
+				sound.play(); //test
 			}
 			
 		}
@@ -812,8 +818,8 @@ function make_main_game_state( game )
 		player.body.velocity.y = -1000; //test
 		
 		//My code --- play player death sound
-		//sound = game.add.audio("player_death_sound"); //test
-		//sound.play(); //test
+		sound = game.add.audio("player_damaged_sound"); //test
+		sound.play(); //test
 	}
 	
 	/*
@@ -1928,8 +1934,8 @@ function make_main_game_level_2_state( game )
 		player.body.velocity.y = -1000; //test
 		
 		//My code --- play player death sound
-		//sound = game.add.audio("player_death_sound"); //test
-		//sound.play(); //test
+		sound = game.add.audio("player_damaged_sound"); //test
+		sound.play(); //test
 	}
 	
 	/*
