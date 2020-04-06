@@ -486,8 +486,8 @@ function make_main_game_state( game )
 		}
 		
 		//Checking collisions
-		game.physics.arcade.overlap(player_projectile, enemies, collisionPlayerProjectile_and_EnemyBody, null, this); //test
 		game.physics.arcade.overlap(player, enemies, collisionPlayer_and_EnemyBody, null, this); //test
+		game.physics.arcade.overlap(player_projectile, enemies, collisionPlayerProjectile_and_EnemyBody, null, this); //test
 		game.physics.arcade.overlap(player, exit_boxes, collisionPlayer_and_ExitBox, null, this); //test
 		
 		//Checking if the player levels up or not
@@ -708,6 +708,8 @@ function make_main_game_state( game )
 		//game.physics.arcade.collide(this.enemy, layer); //test
 		
 		//test
+		this.enemy.health = 50; //test
+		//test
 		/*
 		this.enemyTween = game.add.tween(this.enemy).to( {
 			x: this.enemy.x + 800
@@ -746,8 +748,9 @@ function make_main_game_state( game )
 		
 		//My code---------
 		//invader.kill(); //test //Kill invader that was touched
-		//My code -------- Decreasing score
+		//My code -------- Decreasing Health
 		playerHealth -= 5; //test
+		//playerHealth = playerDefense; //test
 		
 		//player.body.velocity.y = -650; //test
 		player.body.velocity.y = -1000; //test
@@ -761,21 +764,40 @@ function make_main_game_state( game )
 	* Function that handles the collision between the player projectile and the body of an enemy.
 	*/
 	function collisionPlayerProjectile_and_EnemyBody (player_projectile, enemy) {
-
+		
+		//Decrease the health of the enemy
+		enemy.health -= playerAttack; //test //Modify later with player attack
+		
+		if (enemy.health < 0)
+		{
+			enemy.health = 0;
+		}
+		
 		//  When a player projectile hits an enemy, we kill them both
 		player_projectile.kill();
-		enemy.kill();
+		//enemy.kill(); //test
 		
 		//  Increase the experience of the player
+		
+		/*
 		playerExperience += 5;
 		labelPlayerExperience.text =  playerExperienceString + playerExperience + playerMaxExperienceString + playerMaxExperience;
-	
-		//  And create an explosion :)
+		*/
+		
+		//Create an explosion visual effect
 		//var explosion = explosions.getFirstExists(false); //original
 		explosion = explosions.getFirstExists(false); //test
 		explosion.reset(enemy.body.x, enemy.body.y);
 		explosion.play('explosion', 30, false, true);
-	
+		
+		
+		if (enemy.health == 0)
+		{
+			playerExperience += 5;
+			labelPlayerExperience.text =  playerExperienceString + playerExperience + playerMaxExperienceString + playerMaxExperience;
+			
+			enemy.kill(); //test
+		}
 	
 		//My extra code-----------------------------------------
 		/*
