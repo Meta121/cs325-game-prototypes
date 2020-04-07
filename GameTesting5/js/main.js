@@ -1,5 +1,6 @@
 var global_player_level = 1; //test
 var global_player_experience = 0; //test
+var global_player_repair_kit_amount = 2; //test
 
 "use strict";
 
@@ -16,6 +17,7 @@ function make_main_game_state( game )
 		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //test
 		
 		//Preloading sound effects
+		game.load.audio('player_level_up_sound_effect', 'sounds/ffxi_level_up_sound_effect.m4a'); //test
 		game.load.audio('player_jump_sound_effect', 'sounds/02_jump_sound_effect.wav'); //test
 		game.load.audio('player_damaged_sound', 'sounds/robolox_oof_sound_effect.m4a'); //test
 		game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
@@ -27,7 +29,8 @@ function make_main_game_state( game )
 		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
 		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
 		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
-		game.load.tilemap('map', 'assets/level_1_test.csv');
+		game.load.tilemap('map', 'assets/level_1_test.csv'); //Level 1
+		//game.load.tilemap('map', 'assets/level_2_test.csv'); //Level 2
 		
 		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
 
@@ -207,8 +210,11 @@ function make_main_game_state( game )
 		
 		map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
 		
+		//Spawning the player at a certain x and y location
+		//player = this.add.sprite(100,500, 'player'); //original
+		player = this.add.sprite(8 * 16, 60 * 16, 'player'); //test //Level 1 player spawn location
+		//player = this.add.sprite(0 * 16, 4 * 16, 'player'); //test //Level 2 player spawn location
 		
-		player = this.add.sprite(100,500, 'player');
 		player.anchor.setTo(0.5, 0.5) //original
 		
 		//  Our two animations, walking left and right.
@@ -276,7 +282,7 @@ function make_main_game_state( game )
 		labelPlayerDefense.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting the amount of Repair Kits the Player has on the screen
-		playerRepairKitAmount = 2; //test
+		playerRepairKitAmount = global_player_repair_kit_amount; //test
 		playerRepairKitAmountString = 'Repair Kits: '; //test 
 		labelPlayerRepairKitAmount = game.add.text(0, 150, playerRepairKitAmountString + playerRepairKitAmount, { font: "30px", fill: "#FFFF00" }); //test 
 		labelPlayerRepairKitAmount.fixedToCamera = true; //test //Fixes the text to the camera
@@ -314,6 +320,8 @@ function make_main_game_state( game )
 		//createGroundEnemies(); //test
 		
 		//Making and spawning the bomb enemy at specific locations
+		
+		//Level 1 enemy spawn locations
 		enemy_1 = new enemyBomb(0, game, player.x + 400, player.y - 200); //test
 		enemy_2 = new createSingleGroundEnemy_1(1, game, 42 * 16, 43 * 16); //test
 		enemy_3 = new createSingleGroundEnemy_1(2, game, 24 * 16, 72 * 16); //test
@@ -322,12 +330,26 @@ function make_main_game_state( game )
 		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
 		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
 		
+		//Level 2 enemy spawn locations
+		/*
+		enemy_1 = new enemyBomb(0, game, player.x + 400, player.y - 200); //test
+		enemy_2 = new createSingleGroundEnemy_1(1, game, 42 * 16, 43 * 16); //test
+		enemy_3 = new createSingleGroundEnemy_1(2, game, 24 * 16, 72 * 16); //test
+		enemy_4 = new createSingleGroundEnemy_1(3, game, 54 * 16, 40 * 16); //test //Enemy at the last part of the top level after the wall jump section
+		enemy_5 = new createSingleGroundEnemy_1(4, game, 48 * 16, 71 * 16); //test
+		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
+		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
+		*/
+		
 		//Creating the exit boxes group
 		exit_boxes = game.add.group();
 		exit_boxes.enableBody = true;
 		exit_boxes.physicsBodyType = Phaser.Physics.ARCADE;
+
 		//Creating and spawning the exit box
-		exit_box_1 = new createExitBox(7, game, 57 * 16, 40 * 16); //test
+		exit_box_1 = new createExitBox(7, game, 57 * 16, 40 * 16); //test //Level 1 Exit Box
+		
+		//exit_box_1 = new createExitBox(7, game, 6 * 16, 70 * 16); //test //Level 2 Exit Box
 		
 		
 		
@@ -544,6 +566,10 @@ function make_main_game_state( game )
 			playerHealth = playerMaxHealth; //Restoring the player's health to the new max player health limit.
 			playerAttack += 2; //Increasing the attack of the player
 			playerDefense += 2; //Increasing the defense of the player
+			
+			//Play the level up sound effect
+			sound = game.add.audio("player_level_up_sound_effect"); //test
+			sound.play(); //test
 		}
 		
 		//Constantly updating the stats of the player on the top left part of the screen every frame
@@ -577,8 +603,10 @@ function make_main_game_state( game )
 			sound.play(); //test
 		}
 		
-		//Setting the global variable global_player_level to what is the current level.
+		//Setting the global variable like global_player_level to what is the current in scene variable like playerLevel.
 		global_player_level = playerLevel; //test
+		global_player_experience = playerExperience; //test
+		global_player_repair_kit_amount = playerRepairKitAmount; //test
    }
 	
 	/* This functions checks if 2 sprites are overlapping with each other or not.
@@ -887,7 +915,7 @@ function make_main_game_state( game )
 		//My code---------
 		game.sound.stopAll(); //test
 		
-		game.state.start( "main_level_2" ); //test //Goes to the next level
+		game.state.start( "main_level_2" ); //test ////Goes to level 2
 		//game.state.start( "victory_end" ); //test //Goes to the victory screen
 		
 		//My code --- play player death sound
@@ -935,7 +963,7 @@ function make_start_state(game)
 	function preload() {
 		game.load.image('title_screen', 'assets/da5_title_screen_draft_1.png'); //test
 		
-		game.load.audio('start_scene_theme', 'sounds/dragon_quest_opening_theme.m4a'); //test
+		game.load.audio('start_scene_theme', 'sounds/megaman2_opening_theme.m4a'); //test
 	}
 	
 	
@@ -1029,6 +1057,8 @@ function make_end_state(game)
 	
 	function preload() {
 		game.load.image('game_over_screen', 'assets/da5_gameover_screen_draft_1.png'); //test
+		
+		game.load.audio('game_over_end_scene_theme', 'sounds/megaman2_password_theme.m4a'); //test
 	}
 	
 	function create() {
@@ -1038,6 +1068,10 @@ function make_end_state(game)
 		//-My code. Adding a restart button.
 		restartButton = game.input.keyboard.addKey(Phaser.Keyboard.R); //test
 		restartButton.onDown.add(restartGame); //test
+		
+		//My code--- Playing theme
+		music = game.add.audio("game_over_end_scene_theme"); //test
+		music.play('', 0, 1, true); //test
 	}
 	
 	function update() {
@@ -1077,7 +1111,7 @@ function make_victory_end_state(game)
 	function preload() {
 		game.load.image('victory_screen', 'assets/da5_victory_screen_draft_1.png'); //test
 		
-		game.load.audio('end_scene_theme', 'sounds/initialD_nightoffire_background_theme.m4a'); //test
+		game.load.audio('end_scene_theme', 'sounds/ninja_gaiden_ending_theme.m4a'); //test
 	}
 	
 	function create() {
@@ -1138,16 +1172,20 @@ function make_main_game_level_2_state( game )
 		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //test
 		
 		//Preloading sound effects
+		game.load.audio('player_level_up_sound_effect', 'sounds/ffxi_level_up_sound_effect.m4a'); //test
 		game.load.audio('player_jump_sound_effect', 'sounds/02_jump_sound_effect.wav'); //test
+		game.load.audio('player_damaged_sound', 'sounds/robolox_oof_sound_effect.m4a'); //test
 		game.load.audio('player_death_sound', 'sounds/megamanX1_death_sound.m4a'); //test
 		game.load.audio('player_projectile_sound_effect', 'sounds/11_throwing_star_sound_effect.wav'); //test
+		game.load.audio('player_uses_repair_kit_sound_effect', 'sounds/minecraft_potion_drink_sound_effect.m4a'); //test
 		game.load.audio('explosion_sound_effect', 'sounds/18_small_explosion.wav'); //test
 		
 		//Adding the tilemap
 		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
 		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
 		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
-		game.load.tilemap('map', 'assets/level_2_test.csv');
+		//game.load.tilemap('map', 'assets/level_1_test.csv'); //Level 1
+		game.load.tilemap('map', 'assets/level_2_test.csv'); //Level 2
 		
 		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
 
@@ -1327,8 +1365,11 @@ function make_main_game_level_2_state( game )
 		
 		map.setCollisionBetween(0, 10000, true); //test //Somehow this works for touching tiles in tilemap.
 		
+		//Spawning the player at a certain x and y location
+		//player = this.add.sprite(100,500, 'player'); //original
+		//player = this.add.sprite(8 * 16, 60 * 16, 'player'); //test //Level 1 player spawn location
+		player = this.add.sprite(0 * 16, 4 * 16, 'player'); //test //Level 2 player spawn location
 		
-		player = this.add.sprite(0 * 16, 4 * 16, 'player');
 		player.anchor.setTo(0.5, 0.5) //original
 		
 		//  Our two animations, walking left and right.
@@ -1396,7 +1437,7 @@ function make_main_game_level_2_state( game )
 		labelPlayerDefense.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting the amount of Repair Kits the Player has on the screen
-		playerRepairKitAmount = 2; //test
+		playerRepairKitAmount = global_player_repair_kit_amount; //test
 		playerRepairKitAmountString = 'Repair Kits: '; //test 
 		labelPlayerRepairKitAmount = game.add.text(0, 150, playerRepairKitAmountString + playerRepairKitAmount, { font: "30px", fill: "#FFFF00" }); //test 
 		labelPlayerRepairKitAmount.fixedToCamera = true; //test //Fixes the text to the camera
@@ -1434,6 +1475,20 @@ function make_main_game_level_2_state( game )
 		//createGroundEnemies(); //test
 		
 		//Making and spawning the bomb enemy at specific locations
+		
+		//Level 1 enemy spawn locations
+		/*
+		enemy_1 = new enemyBomb(0, game, player.x + 400, player.y - 200); //test
+		enemy_2 = new createSingleGroundEnemy_1(1, game, 42 * 16, 43 * 16); //test
+		enemy_3 = new createSingleGroundEnemy_1(2, game, 24 * 16, 72 * 16); //test
+		enemy_4 = new createSingleGroundEnemy_1(3, game, 54 * 16, 40 * 16); //test //Enemy at the last part of the top level after the wall jump section
+		enemy_5 = new createSingleGroundEnemy_1(4, game, 48 * 16, 71 * 16); //test
+		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
+		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
+		*/
+		
+		//Level 2 enemy spawn locations
+		
 		enemy_1 = new enemyBomb(0, game, player.x + 400, player.y - 200); //test
 		enemy_2 = new createSingleGroundEnemy_1(1, game, 42 * 16, 43 * 16); //test
 		enemy_3 = new createSingleGroundEnemy_1(2, game, 24 * 16, 72 * 16); //test
@@ -1442,12 +1497,16 @@ function make_main_game_level_2_state( game )
 		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
 		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
 		
+		
 		//Creating the exit boxes group
 		exit_boxes = game.add.group();
 		exit_boxes.enableBody = true;
 		exit_boxes.physicsBodyType = Phaser.Physics.ARCADE;
+
 		//Creating and spawning the exit box
-		exit_box_1 = new createExitBox(7, game, 6 * 16, 70 * 16); //test
+		//exit_box_1 = new createExitBox(7, game, 57 * 16, 40 * 16); //test //Level 1 Exit Box
+		
+		exit_box_1 = new createExitBox(7, game, 6 * 16, 70 * 16); //test //Level 2 Exit Box
 		
 		
 		
@@ -1634,6 +1693,10 @@ function make_main_game_level_2_state( game )
 				playerHealth += playerMaxHealth / 2; //Recovers the player's health by half the max health.
 				
 				player_repair_kit_use_time = game.time.now + 200; //test
+				
+				//Playing the player using a repair kit sound effect
+				sound = game.add.audio("player_uses_repair_kit_sound_effect"); //test
+				sound.play(); //test
 			}
 			
 		}
@@ -1660,6 +1723,10 @@ function make_main_game_level_2_state( game )
 			playerHealth = playerMaxHealth; //Restoring the player's health to the new max player health limit.
 			playerAttack += 2; //Increasing the attack of the player
 			playerDefense += 2; //Increasing the defense of the player
+			
+			//Play the level up sound effect
+			sound = game.add.audio("player_level_up_sound_effect"); //test
+			sound.play(); //test
 		}
 		
 		//Constantly updating the stats of the player on the top left part of the screen every frame
@@ -1695,6 +1762,8 @@ function make_main_game_level_2_state( game )
 		
 		//Setting the global variable global_player_level to what is the current level.
 		global_player_level = playerLevel; //test
+		global_player_experience = playerExperience; //test
+		global_player_repair_kit_amount = playerRepairKitAmount; //test
    }
 	
 	/* This functions checks if 2 sprites are overlapping with each other or not.
@@ -2003,7 +2072,8 @@ function make_main_game_level_2_state( game )
 		//My code---------
 		game.sound.stopAll(); //test
 		
-		game.state.start( "victory_end" ); //test
+		//game.state.start( "main_level_2" ); //test //Goes to level 2
+		game.state.start( "victory_end" ); //test //Goes to the victory screen
 		
 		//My code --- play player death sound
 		//sound = game.add.audio("player_death_sound"); //test
