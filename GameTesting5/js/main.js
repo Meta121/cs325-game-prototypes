@@ -52,7 +52,7 @@ function make_main_game_state( game )
 		
 		game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 		
-		game.load.spritesheet('player_blue_throwing_star', 'assets/piskel_blue_throwing_star_draft_1.png', 32, 32);//test
+		game.load.spritesheet('player_blue_throwing_star', 'assets/piskel_blue_throwing_star_draft_5.png', 32, 32);//test
 		
 		//Loading enemy sprites
 		game.load.spritesheet('ground_enemy_1', 'assets/piskel_ground_enemy_draft_1.png', 32, 32);//test
@@ -752,6 +752,11 @@ function make_main_game_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			
+			//Animating the current player projectile
+			player_projectile.animations.add('player_projectile_neutral', [0, 1], 60, true); //test
+			player_projectile.animations.play('player_projectile_neutral'); //test
+			
 			//Plays player projectile sound effect.
 			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
 			sound = game.add.audio("player_projectile_sound_effect"); //test
@@ -777,6 +782,11 @@ function make_main_game_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			
+			//Animating the current player projectile
+			player_projectile.animations.add('player_projectile_neutral', [0, 1], 60, true); //test
+			player_projectile.animations.play('player_projectile_neutral'); //test
+			
 			//Plays player projectile sound effect.
 			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
 			sound = game.add.audio("player_projectile_sound_effect"); //test
@@ -1295,7 +1305,7 @@ function make_main_game_level_2_state( game )
 		
 		game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 		
-		game.load.spritesheet('player_blue_throwing_star', 'assets/piskel_blue_throwing_star_draft_1.png', 32, 32);//test
+		game.load.spritesheet('player_blue_throwing_star', 'assets/piskel_blue_throwing_star_draft_5.png', 32, 32);//test
 		
 		//Loading enemy sprites
 		game.load.spritesheet('ground_enemy_1', 'assets/piskel_ground_enemy_draft_1.png', 32, 32);//test
@@ -1997,6 +2007,11 @@ function make_main_game_level_2_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			
+			//Animating the current player projectile
+			player_projectile.animations.add('player_projectile_neutral', [0, 1], 60, true); //test
+			player_projectile.animations.play('player_projectile_neutral'); //test
+			
 			//Plays player projectile sound effect.
 			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
 			sound = game.add.audio("player_projectile_sound_effect"); //test
@@ -2022,6 +2037,11 @@ function make_main_game_level_2_state( game )
 				player_projectile.body.allowGravity = false; //Make it so the projectile shoots in a straight line
 				player_projectile_time = game.time.now + 200;
 			}
+			
+			//Animating the current player projectile
+			player_projectile.animations.add('player_projectile_neutral', [0, 1], 60, true); //test
+			player_projectile.animations.play('player_projectile_neutral'); //test
+			
 			//Plays player projectile sound effect.
 			//This is kept in the if statement so it only plays when you actually fire a projectile instead of each left click button click.
 			sound = game.add.audio("player_projectile_sound_effect"); //test
