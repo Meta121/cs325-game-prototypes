@@ -45,7 +45,10 @@ function make_main_game_state( game )
 		
 		//Loading player sprites
 		//this.load.spritesheet('dude', 'src/games/firstgame/assets/dude.png', { frameWidth: 32, frameHeight: 48 }); //from other game example
-		game.load.spritesheet('player', 'assets/dude.png', 32, 48);//test
+		//game.load.spritesheet('player', 'assets/dude.png', 32, 48);//test //Testing original monkey sprite
+		//game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_2.png', 32, 32);//test //Gen sprite 32x32 draft 2
+		//game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_5.png', 32 * 2, 32 * 2);//test //Gen sprite 64x64 draft 3
+		game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_6.png', 32 * 1, 32 * 1);//test //Gen sprite 32x32 draft 6
 		
 		game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 		
@@ -218,14 +221,33 @@ function make_main_game_state( game )
 		player.anchor.setTo(0.5, 0.5) //original
 		
 		//  Our two animations, walking left and right.
+		/*
+		//Monkey sprite animations
 		player.animations.add('left', [0, 1, 2, 3], 10, true); //original
 		player.animations.add('right', [5, 6, 7, 8], 10, true); //original
 		
 		player.animations.add('neutral', [4], 10, true); //test
+		*/
+		//Gen sprite animations
+		/*
+		//Draft 2 //test
+		player.animations.add('neutral', [0], 10, true); //test
+		player.animations.add('left', [1, 3, 5], 10, true); //test
+		player.animations.add('left_jump', [7], 10, true); //test
+		player.animations.add('right', [2, 4, 6], 10, true); //test
+		player.animations.add('right_jump', [8], 10, true); //test
+		*/
+		player.animations.add('neutral_left', [0], 10, true); //test
+		player.animations.add('neutral_right', [1], 10, true); //test
+		player.animations.add('left', [2, 4, 6], 10, true); //test
+		player.animations.add('left_jump', [8], 10, true); //test
+		player.animations.add('right', [3, 5, 7], 10, true); //test
+		player.animations.add('right_jump', [9], 10, true); //test
 		
 		//jump
 		//run
 		
+		//Enabling physics ARCADE on the player
 		game.physics.arcade.enable(player);
 		//Player physics properties. Give the player some bounceyness.
 		//player.body.bounce.y = 0.2; //test
@@ -383,10 +405,15 @@ function make_main_game_state( game )
 		}
 		*/
 		
+		/*
+		* CONTROLS
+		*/
 		if (controls.left.isDown) {
 			
 			//player.animations.play('right'); //This makes him look left when using player.scale.setTo(-1, 1);
-			player.animations.play('left'); //original
+			//player.animations.play('left'); //original //For Monkey sprite
+			player.animations.play('left'); //test //For Gen sprite
+			
 			//player.scale.setTo(-1, 1); //test //This messes with the animation for some reason
 			player.body.velocity.x -= playerSpeed;
 			
@@ -395,7 +422,9 @@ function make_main_game_state( game )
 		
 		else if (controls.right.isDown == true && controls.left.isDown == false) {
 			
-			player.animations.play('right');
+			//player.animations.play('right'); //original //For Monkey Sprite
+			player.animations.play('right'); //test //For Gen sprite
+			
 			//player.scale.setTo(1, 1);
 			player.body.velocity.x += playerSpeed;
 			
@@ -404,12 +433,32 @@ function make_main_game_state( game )
 		//Else if the player is standing still and not jumping, play the neutral animation
 		else if (player.body.velocity.x == 0 && player.body.velocity.y == 0)
 		{
-			player.animations.play('neutral');
+			//player.animations.play('neutral'); //test
+			
+			//Playing the neutral animation depending on what direction the player is facing
+			if (facingLeft == true)
+			{
+				player.animations.play('neutral_left'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('neutral_right'); //test //For Gen sprite
+			}
 		}
 		//test
 		else{
 			
-			player.animations.play('neutral');
+			//player.animations.play('neutral'); //test
+			
+			//Playing the neutral animation depending on what direction the player is facing
+			if (facingLeft == true)
+			{
+				player.animations.play('neutral_left'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('neutral_right'); //test //For Gen sprite
+			}
 		}
 		/*
 		* REGULAR JUMP
@@ -422,6 +471,15 @@ function make_main_game_state( game )
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
 			
+			//Playing the jump animation
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			//Playing the player jump sound effect
 			sound = game.add.audio("player_jump_sound_effect"); //test
 			sound.play(); //test
@@ -439,6 +497,15 @@ function make_main_game_state( game )
 		{
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
+			
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			
 			//Playing the player jump sound effect
 			//sound = game.add.audio("player_jump_sound_effect"); //test
@@ -468,6 +535,17 @@ function make_main_game_state( game )
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
 			
+			//Playing the jump animations
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
+			
+			
 			//Playing the player jump sound effect
 			//sound = game.add.audio("player_jump_sound_effect"); //test
 			//sound.play(); //test
@@ -493,6 +571,16 @@ function make_main_game_state( game )
 			//player.body.velocity.y = -600; //original
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
+			
+			//Playing the jump animations
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			
 			//Playing the player jump sound effect
 			sound = game.add.audio("player_jump_sound_effect"); //test
@@ -1200,7 +1288,10 @@ function make_main_game_level_2_state( game )
 		
 		//Loading player sprites
 		//this.load.spritesheet('dude', 'src/games/firstgame/assets/dude.png', { frameWidth: 32, frameHeight: 48 }); //from other game example
-		game.load.spritesheet('player', 'assets/dude.png', 32, 48);//test
+		//game.load.spritesheet('player', 'assets/dude.png', 32, 48);//test //Testing original monkey sprite
+		//game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_2.png', 32, 32);//test //Gen sprite 32x32 draft 2
+		//game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_5.png', 32 * 2, 32 * 2);//test //Gen sprite 64x64 draft 3
+		game.load.spritesheet('player', 'assets/piskel_gen_spritesheet_draft_6.png', 32 * 1, 32 * 1);//test //Gen sprite 32x32 draft 6
 		
 		game.load.spritesheet('baddie', 'assets/baddie.png', 32, 48);//test
 		
@@ -1373,14 +1464,33 @@ function make_main_game_level_2_state( game )
 		player.anchor.setTo(0.5, 0.5) //original
 		
 		//  Our two animations, walking left and right.
+		/*
+		//Monkey sprite animations
 		player.animations.add('left', [0, 1, 2, 3], 10, true); //original
 		player.animations.add('right', [5, 6, 7, 8], 10, true); //original
 		
 		player.animations.add('neutral', [4], 10, true); //test
+		*/
+		//Gen sprite animations
+		/*
+		//Draft 2 //test
+		player.animations.add('neutral', [0], 10, true); //test
+		player.animations.add('left', [1, 3, 5], 10, true); //test
+		player.animations.add('left_jump', [7], 10, true); //test
+		player.animations.add('right', [2, 4, 6], 10, true); //test
+		player.animations.add('right_jump', [8], 10, true); //test
+		*/
+		player.animations.add('neutral_left', [0], 10, true); //test
+		player.animations.add('neutral_right', [1], 10, true); //test
+		player.animations.add('left', [2, 4, 6], 10, true); //test
+		player.animations.add('left_jump', [8], 10, true); //test
+		player.animations.add('right', [3, 5, 7], 10, true); //test
+		player.animations.add('right_jump', [9], 10, true); //test
 		
 		//jump
 		//run
 		
+		//Enabling physics ARCADE on the player
 		game.physics.arcade.enable(player);
 		//Player physics properties. Give the player some bounceyness.
 		//player.body.bounce.y = 0.2; //test
@@ -1540,10 +1650,15 @@ function make_main_game_level_2_state( game )
 		}
 		*/
 		
+		/*
+		* CONTROLS
+		*/
 		if (controls.left.isDown) {
 			
 			//player.animations.play('right'); //This makes him look left when using player.scale.setTo(-1, 1);
-			player.animations.play('left'); //original
+			//player.animations.play('left'); //original //For Monkey sprite
+			player.animations.play('left'); //test //For Gen sprite
+			
 			//player.scale.setTo(-1, 1); //test //This messes with the animation for some reason
 			player.body.velocity.x -= playerSpeed;
 			
@@ -1552,7 +1667,9 @@ function make_main_game_level_2_state( game )
 		
 		else if (controls.right.isDown == true && controls.left.isDown == false) {
 			
-			player.animations.play('right');
+			//player.animations.play('right'); //original //For Monkey Sprite
+			player.animations.play('right'); //test //For Gen sprite
+			
 			//player.scale.setTo(1, 1);
 			player.body.velocity.x += playerSpeed;
 			
@@ -1561,12 +1678,32 @@ function make_main_game_level_2_state( game )
 		//Else if the player is standing still and not jumping, play the neutral animation
 		else if (player.body.velocity.x == 0 && player.body.velocity.y == 0)
 		{
-			player.animations.play('neutral');
+			//player.animations.play('neutral'); //test
+			
+			//Playing the neutral animation depending on what direction the player is facing
+			if (facingLeft == true)
+			{
+				player.animations.play('neutral_left'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('neutral_right'); //test //For Gen sprite
+			}
 		}
 		//test
 		else{
 			
-			player.animations.play('neutral');
+			//player.animations.play('neutral'); //test
+			
+			//Playing the neutral animation depending on what direction the player is facing
+			if (facingLeft == true)
+			{
+				player.animations.play('neutral_left'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('neutral_right'); //test //For Gen sprite
+			}
 		}
 		/*
 		* REGULAR JUMP
@@ -1579,6 +1716,15 @@ function make_main_game_level_2_state( game )
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
 			
+			//Playing the jump animation
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			//Playing the player jump sound effect
 			sound = game.add.audio("player_jump_sound_effect"); //test
 			sound.play(); //test
@@ -1596,6 +1742,15 @@ function make_main_game_level_2_state( game )
 		{
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
+			
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			
 			//Playing the player jump sound effect
 			//sound = game.add.audio("player_jump_sound_effect"); //test
@@ -1625,6 +1780,17 @@ function make_main_game_level_2_state( game )
 			//Sends the player  up initially
 			player.body.velocity.y = -650; //test
 			
+			//Playing the jump animations
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
+			
+			
 			//Playing the player jump sound effect
 			//sound = game.add.audio("player_jump_sound_effect"); //test
 			//sound.play(); //test
@@ -1650,6 +1816,16 @@ function make_main_game_level_2_state( game )
 			//player.body.velocity.y = -600; //original
 			player.body.velocity.y = -650; //test
 			jumpTimer = game.time.now + 750;
+			
+			//Playing the jump animations
+			if (facingLeft == true)
+			{
+				player.animations.play('left_jump'); //test //For Gen sprite
+			}
+			else
+			{
+				player.animations.play('right_jump'); //test //For Gen sprite
+			}
 			
 			//Playing the player jump sound effect
 			sound = game.add.audio("player_jump_sound_effect"); //test
@@ -1760,7 +1936,7 @@ function make_main_game_level_2_state( game )
 			sound.play(); //test
 		}
 		
-		//Setting the global variable global_player_level to what is the current level.
+		//Setting the global variable like global_player_level to what is the current in scene variable like playerLevel.
 		global_player_level = playerLevel; //test
 		global_player_experience = playerExperience; //test
 		global_player_repair_kit_amount = playerRepairKitAmount; //test
@@ -2072,7 +2248,7 @@ function make_main_game_level_2_state( game )
 		//My code---------
 		game.sound.stopAll(); //test
 		
-		//game.state.start( "main_level_2" ); //test //Goes to level 2
+		//game.state.start( "main_level_2" ); //test ////Goes to level 2
 		game.state.start( "victory_end" ); //test //Goes to the victory screen
 		
 		//My code --- play player death sound
