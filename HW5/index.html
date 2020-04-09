@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gen’s Fantastic Adventure</title>
+    <script src="js/phaser.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Gen’s Fantastic Adventure</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+The originality of this game “Gen’s Fantastic Adventure” is that it is a 3rd person point of view, 2D platformer, RPG, side scroller, adventure game. 
+It combines RPG elements such as stats, level, health, attack, defense, etc. with 2D platformer elements such as interacting with enemies, shooting projectiles, maneuvering around obstacles, solving puzzles, and many movement options such as fast falling, gliding, and wall jumping.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The game is able to create multiple objects that uniquely intereact with other objects within the game. 
+The game has multiple scenes such as the start, main game, other levels, and end scenes which all have their individual purposes. 
+The game keeps track of variables that determine what occurs in the battle between the player and the enemy such the player resources like potions and what the current form of the chicken is.
+The game features an in-game restart feature by clicking R at the any of the ending scenes to replay the game at level 1 like a new game +.
+The game has unique animations and sound effects that appear depending on how the player interacts with the game.
+
+
+The player can move in 9 directions, wall jump, wall climb, ceiling climb, and shoot projectiles. The player and enemies have stats that effect how they interact with each other. 
+The game uses tile maps with layers for its levels. 
+The game has multiple levels. 
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+What I learned from this prototype is how to use Phaser 2 with tilemaps, more about the ARCADE physics, how to work with data of sprites and objects,and how to have multiple levels. 
+The hardest part to make was the many object groups in the games like enemies and how they interact with other object groups. 
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+
+<li>Phaser 3 and its resources: <a href="https://phaser.io/download/stable">Phaser 3 and its resources</a></li>
+<li>Phaser 2 Tutorial Game Code and Assets: <a href="http://phaser.io/tutorials/making-your-first-phaser-2-game/index">Phaser Code and Assets</a></li>
+<li>Phaser 2 Flappy Bird Example: <a href="http://www.lessmilk.com/tutorial/flappy-bird-phaser-1">How to Make Flappy Bird in HTML5 With Phaser</a></li>
+<li>Start Scene Background Theme: <a href="https://www.youtube.com/watch?v=7ht92XkIDVw">Mega Man II - Title Theme Extended</a></li>
+<li>Victory Screen End Scene Background Theme: <a href="https://www.youtube.com/watch?v=I_h1DP2YxYk&t=9s">Ninja Gaiden - Ending (Arranged)</a></li>
+<li>Game Over End Scene Background Theme: <a href="https://www.youtube.com/watch?v=Sw-2EiWZ-QU">Let's Listen: Mega Man 2 (NES) - Password Theme (Extended)</a></li>
+<li>Main Game Level 1 Background Theme: <a href="https://www.youtube.com/watch?v=qv0TSofXC1w">Ninja Gaiden - Unbreakable Determination (4-2 stage music) (extended)</a></li>
+<li>Main Game Level 2 Background Theme: <a href="https://www.youtube.com/watch?v=ENqEn20w7GQ&t=345s">Mechanical Rhythm Xenoblade Music Extended [Music OST][Original Soundtrack]</a></li>
+<li>Main Game Level 3 Background Theme: <a href="https://www.youtube.com/watch?v=aFeL7kTw2CU">Mega Man 2: Dr. Wily Stage 1 Music EXTENDED</a></li>
+<li>Main Game Level 1 Background Art: <a href="https://www.pinterest.com/pin/404831453998665449/">Level BG - Sprite design and animation for video game PTZ... Carlo Bruzzese art</a></li>
+<li>Main Game Tile Set: <a href="https://opengameart.org/content/simple-broad-purpose-tileset">simple-broad-purpose-tileset</a></li>
+<li>Multiple Character Sprite Base References: <a href="https://www.spriters-resource.com/nes/mm2/sheet/36583/">Mega Man and Friendly NPCs Spritesheet</a></li>
+<li>Multiple Player Sound Effect: <a href="https://www.sounds-resource.com/nes/ninjagaidennes/sound/358/">Ninja Gaiden Sound Effects</a></li>
+<li>Player Level Up Sound Effect: <a href="https://www.youtube.com/watch?v=MO9pW3sfbTY">Final Fantasy XI - Level Up Sound (High Quality)</a></li>
+<li>Player Damaged Sound Effect: <a href="https://www.youtube.com/watch?v=3w-2gUSus34">Roblox Death Sound - Sound Effect (HD)</a></li>
+<li>Player Repair Kit Used Sound Effect: <a href="https://www.youtube.com/watch?v=WeLDDCvjD78">Minecraft Potion Drinking - Sound Effect [HD]</a></li>
+<li>Player Death Sound Effect: <a href="https://www.youtube.com/watch?v=JgT-IOPxk-k">Megaman x 1 death sound effect</a></li>
+
+
+
+
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+<li>
+The game that most closely resembles my game and that I also borrowed code from is:
+<ul>
+<li>Example game on phaser.io: <a href="http://phaser.io/examples/v3/view/scalemanager/full-screen-game">Full Screen Game</a></li>
+
+<li>I borrowed code and assets from the Phaser 2 tutorial: <a href="http://phaser.io/tutorials/making-your-first-phaser-2-game/index">Phaser Code and Assets</a></li>
+</ul>
+</li>
+
+</li>
+
+<li><strong>High Concept:</strong>
+The goal of the game “Gen’s Fantastic Adventure” which is a 3rd person point of view, 2D platformer, RPG, side scroller, adventure game is for the player to control Gen to move left and right, jump, wall jump, float, and attack to maneuver successfully through levels that contain platforms, obstacles, and enemies while managing resources like health and level in order to successfully reach the end goal of defeating the final boss in the final level.
+</li>
+
+<li><strong>Theme:</strong>
+There are no required storymatic themes from the storymatic cards for this Digital Assignment.
+I used my own chosen storymatic themes which are 1. "futuristic", 2. "robots", 3. "cyborgs", and 4. "ninjas" for this digital assignment.
+</li>
+
+<li><strong>Mandated Variety:</strong>
+For input, I used "direct", "mouse", and "keyboard" in this prototype. 
+For randomness, I used "deterministic" for this prototype. 
+For genre I used "platformer", "shooter", "puzzle", "adventure", "side-scroller", "role-playing game (RPG)", "2D", and "3rd person point of view" in this prototype. 
+For playstyle I used "explorer", "achiever", "story teller", and "performer" for this prototype. 
+</li>
+
+<li><strong>Prototype Goal:</strong>
+The game mechanics that this protype is evaluating are 9 directional player movement, the ability to keep track of statistics through variables such as levels, the ability for the player to shoot a projectile. object to object interactions, in game puzzles, platform arrangement, item functions, background visuals, usage of a background theme, and sound effects.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to enjoy moving the player character around and to feel good when they are moving the player character. 
+I want the player to feel powerful when his or her level increases. 
+I want the player to feel somewhat stressed against common enemies. 
+I want the player to be moderately stressed when playing against boss enemies. 
+I want the player to feel accomplished when he or she completes a level. 
+</li>
+
+<li><strong>Gameplay:</strong>
+
+System dynamics are in statistics, platforming, shooting, 2D side scroller, 3D point of view, obstacles and enemies. 
+Statistics include level, health, attack, and defense of players and enemies. 
+The core mechanic of the game are that 
+the player has many movement options, 
+the player must move the character to maneuver through a level and defeat bosses to beat the game, 
+the player must control the character to complete puzzles by doing certain actions, 
+the player must maneuver around the level space while avoiding obstacles, 
+the player can attack by shooting, 
+the player must manage statistics such as level, health, etc. to determine what action is the best to do in certain scenarios, 
+and that the abilities the player can do and how puzzles are solved depend on each other.
+
+<li><strong>Main Game Gameplay -</strong>
+These are the gameplay elements of the 2D platforming part of the game.
+<ul>
+<li>Press the W key to make Gen jump up.</a></li>
+<li>Press the W and A key to make Gen jump up and left.</a></li>
+<li>Press the W and D key to make Gen jump up and right.</a></li>
+<li>Press the A key to move Gen left.</a></li>
+<li>Press the D to move Gen right.</a></li>
+<li>Press the S key to fast fall Gen down.</a></li>
+<li>Press the S and A key to fast fall Gen down and left.</a></li>
+<li>Press the S and D key to fast fall Gen down and right.</a></li>
+<li>Press and hold W and the key A or D which is the same direction of the wall Gen is touching when Gen touches a wall to perform a wall climb.</a></li>
+<li>Press W and the key A or D which is the opposite direction of the wall Gen is touching when Gen touches a wall to perform a wall jump.</a></li>
+<li>Press and hold W when Gen is touching a ceiling to perform a ceiling climb.</a></li>
+<li>Press the left mouse button to make Gen throw ninja throwing stars.</a></li>
+<li>Press F to attack in front of the player with a melee weapon.</a></li>
+<li>Press R to use a repair kit to heal half of Gen's current max health.</a></li>
+
+</ul>
+</li>
+
+</li>
+
+<li><strong>Strategies:</strong>
+Take as much time as possible to beat the game because there is no time limit in which the game needs to be completed in.
+Avoid using repair kits to heal small amounts of damage. 
+Only use repair kits when the player is significantly not at max health because the health of the player cannot be increased pass the max health of the player.
+Defeat most to all of the enemies to level up as many times as you can because leveling up gives the player more stats which makes the game easier.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The world of the game "Gen’s Fantastic Adventure" takes place in a futuristic Earth in the year 2120 where machines have become far advanced enough for human augmentation that has been abused to take control of Earth by force. 
+The player character Gen is a cyborg ninja who has lost his entire family and loved ones because of an exploding incident at his wedding caused by the people that abused the power of human augmentation known as the human augmentation abuse group (HAAG). 
+Gen decided to get his own human augmentation to return peace and control to Earth by eliminating those who abuse the power of human augmentation. 
+The world and characters in "Gen’s Fantastic Adventure" are unique because they are in a futuristic setting with cyborgs that effects the design of levels and focuses on old ideas like ninjas in a futuristic setting as a core part of the game. 
+The dramatic tension interacts with the gameplay tension by making the primary goal of the player character Gen be what the player wants which is to end the human augmentation abuse group (HAAG).
+</li>
+
+<li><strong>Target Audience:</strong>
+The demographic the game "Gen’s Fantastic Adventure" is trying to reach are male teens and male young adults who would like to buy a 2D side scrolling game with RPG elements such as stats like health, level, etc. and with many actions elements such as having movement options like wall jumping that features a futuristic setting with ninjas and cyborgs. 
+</li>
+
+<li><strong>Play Time:</strong>
+This game takes around  30 seconds to 4 minutes of play time to complete.
+</li>
+
+</ul>
+</div>
+</body>
+</html>
