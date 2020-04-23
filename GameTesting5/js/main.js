@@ -10,12 +10,12 @@ function make_main_game_state( game )
 		
 		//--My code-------------------------------------------
 		//Preloading the background
-		game.load.image('background_art', 'assets/futuristic_city_background.jpg'); //test
+		game.load.image('background_art', 'assets/futuristic_city_background.jpg');
 		
 		//Preloading the music
-		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //test //Level 1 theme
-		//game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //test //Level 2 theme
-		//game.load.audio('background_theme', 'sounds/megaman2_wily_stage_1.m4a'); //test //Level 3 theme
+		game.load.audio('background_theme', 'sounds/ninja_gaiden_unbreakable_determination.m4a'); //Level 1 theme
+		//game.load.audio('background_theme', 'sounds/xenoblade_chronicles_mechanical_rhythm_music.m4a'); //Level 2 theme
+		//game.load.audio('background_theme', 'sounds/megaman2_wily_stage_1.m4a'); //Level 3 theme
 		
 		//Preloading sound effects
 		game.load.audio('player_level_up_sound_effect', 'sounds/ffxi_level_up_sound_effect.m4a'); //test
@@ -27,9 +27,6 @@ function make_main_game_state( game )
 		game.load.audio('explosion_sound_effect', 'sounds/18_small_explosion.wav'); //test
 		
 		//Adding the tilemap
-		//game.load.tilemap('mario', 'assets/tilemaps/maps/super_mario.json', null, Phaser.Tilemap.TILED_JSON); //original
-		//game.load.tilemap('level_1', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON);
-		//game.load.tilemap('level_1', 'assets/level_1_test.csv');
 		game.load.tilemap('map', 'assets/level_1_test.csv'); //Level 1
 		//game.load.tilemap('map', 'assets/level_2_test.csv'); //Level 2
 		//game.load.tilemap('map', 'assets/level_3_test.csv'); //Level 3
@@ -37,8 +34,6 @@ function make_main_game_state( game )
 		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
 
 		//Adding the tileset
-		//game.load.image('tiles', 'assets/tilemaps/tiles/super_mario.png'); //original
-		//game.load.image('tiles', 'assets/simples_pimples.png')
 		game.load.image('tileset', 'assets/simples_pimples.png')
 		
 		game.load.tilemap
@@ -58,13 +53,23 @@ function make_main_game_state( game )
 		
 		//Loading enemy sprites
 		game.load.spritesheet('ground_enemy_1', 'assets/piskel_ground_enemy_draft_1.png', 32, 32);//test
+		game.load.spritesheet('flying_enemy_1', 'assets/piskel_flying_enemy_draft_1.png', 32, 32);//test
 		
 		
 		//Loading visual effect sprites
+		game.load.image('player_health_bar', 'assets/health_bar_draft_2.png');
+		game.load.image('player_health_bar_back', 'assets/health_bar_back_draft_1.png');
+		game.load.image('player_experience_bar', 'assets/experience_bar_draft_1.png');
+		game.load.image('player_experience_bar_back', 'assets/experience_bar_back_draft_1.png');
+
+		game.load.image('enemy_health_bar', 'assets/health_bar_draft_2.png');
+		game.load.image('enemy_health_bar_back', 'assets/health_bar_back_draft_1.png');
+		
 		game.load.spritesheet('explosion', 'assets/explode.png', 128, 128);
 		
 		//Loading objects in the game
 		game.load.image('bomb', 'assets/bomb.png');//test
+		game.load.spritesheet('repair_kit', 'assets/piskel_repair_kit_draft_1.png', 32, 32);//test
 		
 		game.load.spritesheet('exit_box', 'assets/piskel_exit_box.png', 32, 32);//tes
 		
@@ -99,10 +104,19 @@ function make_main_game_state( game )
 	
 	var allowWallJump = false;
 	
+	var enemyBomb; //original
 	var enemy_1; //test
 	var enemy_2; //test
 	var enemy_3; //test
-	var enemyBomb; //original
+	var enemy_4; //test
+	var enemy_5; //test
+	var enemy_6; //test
+	var enemy_7; //test
+	var enemy_8; //test
+	var enemy_9; //test
+	var enemy_10; //test
+	var enemy_11; //test
+	var enemy_12; //test
 	
 	//More added variables 3
 	var score; //test
@@ -121,9 +135,15 @@ function make_main_game_state( game )
 	var playerMaxExperienceString = ''; //test
 	var labelPlayerExperience; //test
 	
+	var player_experience_bar;
+	var player_experience_bar_back;
+	
 	var playerHealth = 0; //test
 	var playerHealthString = ''; //test
 	var labelPlayerHealth; //test
+	
+	var player_health_bar;
+	var player_health_bar_back;
 	
 	var playerMaxHealth; //test
 	var playerMaxHealthString = ''; //test
@@ -150,9 +170,15 @@ function make_main_game_state( game )
 	var ground_enemy; //test
 	var ground_enemies; //test
 	
+	var flying_enemy; //test DA 6
+	var flying_enemies; //test DA 6
+	
 	var currentEnemyHealth = 0; //test
 	var currentEnemyHealthString = ''; //test
 	var labelCurrentEnemyHealth; //test
+	
+	var enemy_health_bar;
+	var enemy_health_bar_back;
 	
 	var explosion;
 	var explosions; //test
@@ -273,23 +299,46 @@ function make_main_game_state( game )
 		labelPlayerLevel = game.add.text(0, 0, playerLevelString + playerLevel, { font: "30px", fill: "#FFFFFF" }); //test 
 		labelPlayerLevel.fixedToCamera = true; //test //Fixes the text to the camera
 		
+		
 		//Creating and setting Player Experience on the screen
+		player_experience_bar_back = game.add.sprite(5, 30, 'player_experience_bar_back'); //test //Used for matching x,y with player_health bar
+		player_experience_bar_back.fixedToCamera = true; //test
+		player_experience_bar = game.add.sprite(5, 30, 'player_experience_bar'); //DA 6
+		player_experience_bar.fixedToCamera = true; //test
+		player_experience_bar.cropEnabled = true; //test
+		
 		playerExperience = global_player_experience; //test
-		playerExperienceString = 'Player Experience: '; //test 
+		//playerExperienceString = 'Player Experience: '; //DA 5
+		playerExperienceString = 'EXP: '; //DA 6
 		//playerMaxExperience = 10; //test
 		playerMaxExperience = 5 + (global_player_level * 5); //test
 		playerMaxExperienceString = '/'; //test 
-		labelPlayerExperience = game.add.text(0, 30, playerExperienceString + playerExperience + playerMaxExperienceString + playerMaxExperience, { font: "30px", fill: "#FFFFFF" }); //test 
+		//labelPlayerExperience = game.add.text(0, 30, playerExperienceString + playerExperience + playerMaxExperienceString + playerMaxExperience, { font: "30px", fill: "#FFFFFF" }); //DA 5 
+		labelPlayerExperience = game.add.text(10, 30, playerExperienceString + playerExperience + playerMaxExperienceString + playerMaxExperience, { font: "30px", fill: "#000000" }); //DA 6 
 		labelPlayerExperience.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting Player Health on the screen
+		//player_health_bar_back = game.add.sprite(0, 55, 'player_health_bar_back'); //test //Original when back was bigger than front bar
+		player_health_bar_back = game.add.sprite(5, 60, 'player_health_bar_back'); //test //Used for matching x,y with player_health bar
+		player_health_bar_back.fixedToCamera = true; //test
+		//player_health_bar = game.add.sprite(0, 60, 'player_health_bar'); //DA 5
+		player_health_bar = game.add.sprite(5, 60, 'player_health_bar'); //DA 6
+		player_health_bar.fixedToCamera = true; //test
+		player_health_bar.cropEnabled = true; //test
+		//player_health_bar.crop.width = (playerHealth / playerMaxHealth) * player_health_bar.width; //test
+		
 		//playerHealth = 50; //test
 		playerHealth = 40 + (global_player_level * 10); //test
-		playerHealthString = 'Player Health: '; //test 
+		//playerHealthString = 'Player Health: '; //test //DA 5
+		playerHealthString = 'HP: '; //test //DA 6
 		//playerMaxHealth = 50; //test
 		playerMaxHealth = 40 + (global_player_level * 10); //test
 		playerMaxHealthString = '/'; //test 
-		labelPlayerHealth = game.add.text(0, 60, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "30px", fill: "#00FF00" }); //test 
+		
+		
+		
+		//labelPlayerHealth = game.add.text(0, 60, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "30px", fill: "#00FF00" }); //DA 5 Green color text
+		labelPlayerHealth = game.add.text(10, 60, playerHealthString + playerHealth + playerMaxHealthString + playerMaxHealth, { font: "30px", fill: "#000000" }); //DA 6
 		labelPlayerHealth.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting Player Attack on the screen
@@ -313,9 +362,17 @@ function make_main_game_state( game )
 		labelPlayerRepairKitAmount.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//Creating and setting the current enemy health on the screen
+		enemy_health_bar_back = game.add.sprite(550, 60, 'enemy_health_bar_back'); //test //Used for matching x,y with bar visual
+		enemy_health_bar_back.fixedToCamera = true; //test
+		enemy_health_bar = game.add.sprite(550, 60, 'enemy_health_bar'); //DA 6
+		enemy_health_bar.fixedToCamera = true; //test
+		enemy_health_bar.cropEnabled = true; //test
+		
 		currentEnemyHealth = 0; //test
-		currentEnemyHealthString = 'Current Enemy HP: '; //test 
-		labelCurrentEnemyHealth = game.add.text(550, 60, currentEnemyHealthString + currentEnemyHealth, { font: "25px", fill: "#00FF00" }); //test
+		//currentEnemyHealthString = 'Current Enemy HP: '; //DA 5
+		currentEnemyHealthString = 'Enemy HP: '; //DA 6
+		//labelCurrentEnemyHealth = game.add.text(550, 60, currentEnemyHealthString + currentEnemyHealth, { font: "25px", fill: "#00FF00" }); //DA 5
+		labelCurrentEnemyHealth = game.add.text(555, 64, currentEnemyHealthString + currentEnemyHealth, { font: "25px", fill: "#000000" }); //DA 6
 		labelCurrentEnemyHealth.fixedToCamera = true; //test //Fixes the text to the camera
 		
 		//-------Creating the UI (User Interface) for the player END--------------------------
@@ -354,6 +411,8 @@ function make_main_game_state( game )
 		enemy_5 = new createSingleGroundEnemy_1(4, game, 48 * 16, 71 * 16); //test
 		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
 		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
+		
+		enemy_8 =  new createSingleFlyingEnemy_1(7, game, 30 * 16, 40 * 16); //test
 		
 		//Level 2 enemy spawn locations
 		/*
@@ -675,9 +734,19 @@ function make_main_game_state( game )
 		labelPlayerAttack.text = playerAttackString + playerAttack; //test
 		labelPlayerDefense.text = playerDefenseString + playerDefense; //test
 		labelPlayerRepairKitAmount.text = playerRepairKitAmountString + playerRepairKitAmount; //test
+		//Updating visual for bars
+		//player_health_bar.crop.width = (playerHealth / playerMaxHealth) * player_health_bar.width; //test //Player health bar visual //Wouldn't work
+		player_health_bar.width = (playerHealth / playerMaxHealth) * 220; //test //Player health bar visual //220 is the original Y value of the player_health_bar image
+		player_health_bar.updateCrop();
+		player_experience_bar.width = (playerExperience / playerMaxExperience) * 220; //test //Player health bar visual //220 is the original Y value of the player_health_bar image
+		player_experience_bar.updateCrop(); //test //Apparently this does nothing here
+		
 		
 		//Constantly updating the stats of the current enemy on the top right part of the screen every frame
 		labelCurrentEnemyHealth.text = currentEnemyHealthString + currentEnemyHealth; //test
+		//Updating visuals for bars
+		enemy_health_bar.width = (currentEnemyHealth / 100) * 220; //test //Player health bar visual //220 is the original Y value of the player_health_bar image
+		enemy_health_bar.updateCrop();
 		
 		//If the player health exceeds the max player health, set the player health to what the max player health is.
 		if (playerHealth > playerMaxHealth)
@@ -850,8 +919,9 @@ function make_main_game_state( game )
 		//  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
 		//var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true); //original
 		//var tween = game.add.tween(aliens).to( { y: 1000 }, 3500, Phaser.Easing.Linear.None, true, -100, 100, true); //test
-		tween = game.add.tween(enemies).to( { y: 1000 }, 3500, Phaser.Easing.Linear.None, true, -100, 100, true); //test
-	
+		//tween = game.add.tween(enemies).to( { y: 1000 }, 3500, Phaser.Easing.Linear.None, true, -100, 100, true); //DA 5
+		tween = game.add.tween(enemies).to( { y: 1000 }, 3500, Phaser.Easing.Linear.None, true, -100, 100, true); //DA 5
+		
 	
 		//When the tween loops it calls descend
 		tween.onLoop.add(descend, this);
@@ -914,6 +984,39 @@ function make_main_game_state( game )
 		this.enemyTween = game.add.tween(this.enemy).to( {
 			x: this.enemy.x + 100
 		}, 2000, 'Linear', true, 0, 100, true);
+	}
+	
+	function createSingleFlyingEnemy_1 (index, game, x, y) //test //My version
+	{
+		//this.enemy = game.add.sprite(x, y, 'ground_enemy_1'); //test
+		this.enemy = enemies.create(x, y, 'flying_enemy_1'); //test
+		this.enemy.anchor.setTo(0.5, 0.5);
+		this.enemy.name = index.toString();
+		//game.physics.enable(this.enemy, Phaser.Physics.ARCADE); //original
+		game.physics.arcade.enable(this.enemy); //test
+		this.enemy.body.immovable = true;
+		this.enemy.body.collideWorldBounds = true;
+		this.enemy.body.allowGravity = false;
+		
+		//this.enemy.body.checkCollision = true; //test
+		
+		//game.physics.arcade.enable(enemies); //test
+		//game.physics.arcade.collide(this.enemy, layer); //test
+		
+		//game.physics.arcade.collide(this.enemy, layer); //test
+		
+		
+		this.enemy.health = 75; //test
+		
+		/*
+		this.enemyTween = game.add.tween(this.enemy).to( {
+			x: this.enemy.x + 800
+		}, 2000, 'Linear', true, 0, 100, true);
+		*/
+		this.enemyTween = game.add.tween(this.enemy).to( {
+			y: this.enemy.y + 800
+		}, 2000, 'Linear', true, 0, 100, true);
+		
 	}
 	
 	/*
@@ -1630,6 +1733,7 @@ function make_main_game_level_2_state( game )
 		enemy_6 = new createSingleGroundEnemy_1(5, game, 50 * 16, 31 * 16); //test
 		enemy_7 = new createSingleGroundEnemy_1(6, game, 14 * 16, 55 * 16); //test
 		
+		//enemy_8 =  new createSingleFlyingEnemy_1(7, game, 10 * 16, 10 * 16); //test
 		
 		//Level 3 enemy spawn locations
 		/*
@@ -1940,6 +2044,10 @@ function make_main_game_level_2_state( game )
 		labelPlayerAttack.text = playerAttackString + playerAttack; //test
 		labelPlayerDefense.text = playerDefenseString + playerDefense; //test
 		labelPlayerRepairKitAmount.text = playerRepairKitAmountString + playerRepairKitAmount; //test
+		//Player health bar updating
+		player_health_bar.cropEnabled = true; //test
+		player_health_bar.crop.width = (playerHealth / playerMaxHealth) * player_health_bar.width; //test //Player health bar visual
+		player_health_bar.updateCrop();
 		
 		//Constantly updating the stats of the current enemy on the top right part of the screen every frame
 		labelCurrentEnemyHealth.text = currentEnemyHealthString + currentEnemyHealth; //test
