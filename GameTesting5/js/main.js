@@ -34,14 +34,14 @@ function make_main_game_state( game )
 		game.load.audio('explosion_sound_effect', 'sounds/18_small_explosion.wav'); //test
 		
 		//Adding the tilemap
-		//game.load.tilemap('map', 'assets/level_1_test.csv'); //Level 1
+		game.load.tilemap('map', 'assets/level_1_test.csv'); //Level 1
 		//game.load.tilemap('map', 'assets/level_2_test.csv'); //Level 2
 		//game.load.tilemap('map', 'assets/level_3_test.csv'); //Level 3
 		//game.load.tilemap('map', 'assets/level_4_test.csv'); //Level 4
 		//game.load.tilemap('map', 'assets/level_5_test.csv'); //Level 5
 		//game.load.tilemap('map', 'assets/level_6_test.csv'); //Level 6
 		//game.load.tilemap('map', 'assets/level_7_test.csv'); //Level 7
-		game.load.tilemap('map', 'assets/level_8_test.csv'); //Level 8
+		//game.load.tilemap('map', 'assets/level_8_test.csv'); //Level 8
 		//game.load.tilemap('map', 'assets/level_final_boss_test.csv'); //Level Final Boss
 		
 		//game.load.tilemap('map', 'assets/level_1_test.json', null, Phaser.Tilemap.TILED_JSON); //test
@@ -506,6 +506,11 @@ function make_main_game_state( game )
 		repair_kits.enableBody = true;
 		repair_kits.physicsBodyType = Phaser.Physics.ARCADE;
 		
+		//Creating the exit boxes group
+		exit_boxes = game.add.group();
+		exit_boxes.enableBody = true;
+		exit_boxes.physicsBodyType = Phaser.Physics.ARCADE;
+		
 		//Making and spawning the bomb enemy at specific locations
 		
 		//Level 1 enemy spawn locations
@@ -524,7 +529,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 5 * 16, 60 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 57 * 16, 40 * 16); //test //Level 1 Exit Box
+		exit_box_1 = new createExitBox(10, game, 57 * 16, 40 * 16); //test //Level 1 Exit Box
 		
 		//Level 2 enemy spawn locations
 		/*
@@ -542,7 +547,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 5 * 16, 60 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 6 * 16, 70 * 16); //test //Level 2 Exit Box
+		exit_box_1 = new createExitBox(11, game, 6 * 16, 70 * 16); //test //Level 2 Exit Box
 		*/
 		
 		//Level 3 enemy spawn locations
@@ -561,7 +566,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 27 * 16, 65 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 94 * 16, 72 * 16); //test //Level 3 Exit Box
+		exit_box_1 = new createExitBox(11, game, 94 * 16, 72 * 16); //test //Level 3 Exit Box
 		*/
 		
 		//Level 4 enemy spawn locations
@@ -580,7 +585,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 97 * 16, 21 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 65 * 16, 51 * 16); //test //Level 4 Exit Box
+		exit_box_1 = new createExitBox(11, game, 65 * 16, 51 * 16); //test //Level 4 Exit Box
 		*/
 		//Level 5 enemy spawn locations
 		/*
@@ -598,7 +603,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 97 * 16, 21 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 92 * 16, 6 * 16); //test //Level 5 Exit Box
+		exit_box_1 = new createExitBox(11, game, 92 * 16, 6 * 16); //test //Level 5 Exit Box
 		*/
 		
 		//Level 6 enemy spawn locations
@@ -617,7 +622,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 97 * 16, 20 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 93 * 16, 69 * 16); //test //Level 6 Exit Box
+		exit_box_1 = new createExitBox(11, game, 93 * 16, 69 * 16); //test //Level 6 Exit Box
 		*/
 		
 		//Level 7 enemy spawn locations
@@ -636,7 +641,7 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 6 * 16, 21 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 92 * 16, 20 * 16); //test //Level 7 Exit Box
+		exit_box_1 = new createExitBox(11, game, 92 * 16, 20 * 16); //test //Level 7 Exit Box
 		*/
 		
 		//Level 8 enemy spawn locations
@@ -655,20 +660,16 @@ function make_main_game_state( game )
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 6 * 16, 21 * 16); //test
 		
-		exit_box_1 = new createExitBox(7, game, 92 * 16, 20 * 16); //test //Level 8 Exit Box
+		exit_box_1 = new createExitBox(11, game, 92 * 16, 20 * 16); //test //Level 8 Exit Box
 		*/
 		
 		//Level Final - Final Boss Level Spawn Locations
 		/*
-		enemy_1 = new createSingleBossEnemy_Head_1(0, game, 92 * 16, 67 * 16); //test
+		enemy_1 = new createSingleBossEnemy_Head_1(1, game, 92 * 16, 67 * 16); //test
 		
 		repair_kit_1 = new createSingleRepairKit(0, game, 5 * 16, 60 * 16); //test
 		*/
 		
-		//Creating the exit boxes group
-		exit_boxes = game.add.group();
-		exit_boxes.enableBody = true;
-		exit_boxes.physicsBodyType = Phaser.Physics.ARCADE;
 
 		//Creating and spawning the exit box (Old code)
 		/*
@@ -1597,6 +1598,9 @@ function make_main_game_state( game )
 		//game.state.start( "main_level_4" ); //test ////Goes to level 4
 		//game.state.start( "main_level_5" ); //test ////Goes to level 5
 		//game.state.start( "main_level_6" ); //test ////Goes to level 6
+		//game.state.start( "main_level_7" ); //test ////Goes to level 7
+		//game.state.start( "main_level_8" ); //test ////Goes to level 8
+		//game.state.start( "main_level_6" ); //test ////Goes to level Final Boss Level
 		//game.state.start( "victory_end" ); //test //Goes to the victory screen
 		
 		//My code --- play player death sound
