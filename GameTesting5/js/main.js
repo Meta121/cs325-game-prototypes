@@ -21,7 +21,9 @@ function make_main_game_state( game )
 		//game.load.audio('background_theme', 'sounds/castlevania_rondo_of_blood_divine_bloodlines.m4a'); //Level 4 theme
 		//game.load.audio('background_theme', 'sounds/ninja_gaiden_act_1_theme.m4a'); //Level 5 theme
 		//game.load.audio('background_theme', 'sounds/castlevania_symphony_of_the_night_dracula_castle.m4a'); //Level 6 theme
-		
+		//game.load.audio('background_theme', 'sounds/talesofsymphonia_fatalize_theme.m4a'); //Level 7 theme
+		//game.load.audio('background_theme', 'sounds/megaman_battlenetwork_courage_theme.m4a'); //Level 8 theme
+		//game.load.audio('background_theme', 'sounds/ninja_gaiden_finalboss_theme.m4a'); //Level Final Boss Level theme
 		
 		//Preloading sound effects
 		game.load.audio('player_level_up_sound_effect', 'sounds/ffxi_level_up_sound_effect.m4a'); //test
